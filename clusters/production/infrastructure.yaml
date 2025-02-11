@@ -5,13 +5,12 @@ metadata:
   name: monitoring
   namespace: flux-system
 spec:
-  interval: 30m0s
-  path: ./monitoring
-  prune: true
-  retryInterval: 2m0s
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  path: ./infrastructure/alerts
   sourceRef:
     kind: GitRepository
     name: flux-system
-  targetNamespace: default
-  timeout: 3m0s
+  prune: true
   wait: true
