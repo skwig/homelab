@@ -9,7 +9,9 @@ spec:
   eventSources:
   - kind: GitRepository
     name: '*'
+    namespace: '*'
   - kind: Kustomization
     name: '*'
+    namespace: '*'
   providerRef:
     name: discord
