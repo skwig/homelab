@@ -1,9 +1,0 @@
----
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-  name: weave-gitops-helm
-  namespace: flux-system
-spec:
-  interval: 1m0s
-  url: https://github.com/weaveworks/weave-gitops
