@@ -26,13 +26,13 @@ metadata:
   name: ww-gitops
   namespace: flux-system
 spec:
-  value: 4.0.36
   chart:
     spec:
       chart: weave-gitops
       sourceRef:
         kind: HelmRepository
         name: ww-gitops
+  version: 4.0.36
   interval: 1h0m0s
   values:
     adminUser:
