@@ -26,6 +26,7 @@ metadata:
   name: ww-gitops
   namespace: flux-system
 spec:
+  value: 4.0.36
   chart:
     spec:
       chart: weave-gitops
