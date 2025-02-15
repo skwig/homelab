@@ -20,7 +20,7 @@ spec:
                 - skwig/homelab
               envFrom:
                 - secretRef:
-                    name: renovate-container-env
+                    name: renovate-token
                 - configMapRef:
                     name: renovate-configmap
           restartPolicy: Never
