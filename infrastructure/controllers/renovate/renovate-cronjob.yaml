@@ -5,7 +5,7 @@ metadata:
   name: renovate
   namespace: renovate
 spec:
-  schedule: "@hourly"
+  schedule: "@daily"
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 2
   concurrencyPolicy: Forbid
