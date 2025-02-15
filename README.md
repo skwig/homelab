@@ -28,4 +28,5 @@ pi@raspberrypi:~ $ neofetch
 ```
 curl -sfL https://get.k3s.io | sh -
 flux bootstrap github --owner skwig --repository homelab --branch master --path clusters/production --personal
+kubectl create secret generic azure-credentials --from-literal=ClientID="$(terraform output -raw client_id)" --from-literal=ClientSecret="$(terraform output -raw client_secret)" -n external-secrets
 ```
