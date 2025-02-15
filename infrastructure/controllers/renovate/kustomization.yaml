@@ -5,4 +5,4 @@ resources:
   - namespace.yaml
   - renovate-cronjob.yaml
   - renovate-configmap.yaml
-  - renovate-secrets.yaml
+  - renovate-token-secret.yaml
