@@ -5,7 +5,7 @@ metadata:
   name: syn-nidus-smb-retain
 provisioner: smb.csi.k8s.io
 parameters:
-  source: //syn.nidus/Test_Shared
+  source: //192.168.100.37/Test_Shared
   # if csi.storage.k8s.io/provisioner-secret is provided, will create a sub directory
   # with PV name under source
   # csi.storage.k8s.io/provisioner-secret-name: smbcreds
@@ -15,7 +15,4 @@ parameters:
 reclaimPolicy: Retain
 allowVolumeExpansion: true
 mountOptions:
-  - dir_mode=0777
-  - file_mode=0777
-  - uid=1001
-  - gid=1001
+  - guest
