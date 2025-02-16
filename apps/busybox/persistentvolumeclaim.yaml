@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: busybox-pvc
+  namespace: busybox
+spec:
+  storageClassName: syn-nidus-smb-retain
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2Gi
