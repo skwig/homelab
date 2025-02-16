@@ -6,6 +6,7 @@ metadata:
   namespace: busybox
 spec:
   storageClassName: syn-nidus-smb-retain
+  volumeName: busybox
   accessModes:
     - ReadWriteMany
   resources:
