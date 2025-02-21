@@ -13,5 +13,4 @@ parameters:
 reclaimPolicy: Retain
 allowVolumeExpansion: true
 mountOptions:
-  - guest
   - noserverino
