@@ -3,11 +3,13 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: smb-share-retain
+  namespace: csi-driver-smb
 provisioner: smb.csi.k8s.io
 parameters:
   source: //192.168.100.37/Homelab
   subDir: ${pvc.metadata.name}
   csi.storage.k8s.io/node-stage-secret-name: smb-share-credentials
+  csi.storage.k8s.io/node-stage-secret-namespace: csi-driver-smb
 reclaimPolicy: Retain
 allowVolumeExpansion: true
 mountOptions:
