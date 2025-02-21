@@ -5,7 +5,7 @@ metadata:
   name: busybox-pvc
   namespace: busybox
 spec:
-  storageClassName: syn-nidus-smb-retain
+  storageClassName: smb-share-retain
   accessModes:
     - ReadWriteMany
   resources:
