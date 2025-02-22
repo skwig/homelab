@@ -8,6 +8,8 @@ provisioner: smb.csi.k8s.io
 parameters:
   source: //192.168.100.37/Homelab
   subDir: ${pvc.metadata.name}
+  csi.storage.k8s.io/provisioner-secret-name: smb-share-credentials
+  csi.storage.k8s.io/provisioner-secret-namespace: csi-driver-smb
   csi.storage.k8s.io/node-stage-secret-name: smb-share-credentials
   csi.storage.k8s.io/node-stage-secret-namespace: csi-driver-smb
 reclaimPolicy: Retain
