@@ -43,7 +43,7 @@ spec:
       createSecret: false
       username: admin
     ingress:
-      enable: true
+      enabled: true
       hosts:
         - host: homelab.nidus
           paths:
