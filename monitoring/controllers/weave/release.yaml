@@ -47,5 +47,5 @@ spec:
       hosts:
         - host: homelab.nidus
           paths:
-            - path: /
+            - path: /weave/
               pathType: ImplementationSpecific
