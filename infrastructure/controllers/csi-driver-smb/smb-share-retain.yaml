@@ -14,7 +14,6 @@ parameters:
 reclaimPolicy: Retain
 allowVolumeExpansion: true
 mountOptions:
-  - noserverino
   - dir_mode=0777
   - file_mode=0777
   - uid=1001
