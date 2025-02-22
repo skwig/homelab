@@ -28,7 +28,6 @@ metadata:
   name: ww-gitops
   namespace: flux-system
 spec:
-  releaseName: weave
   targetNamespace: flux-system
   interval: 10m
   chart:
