@@ -28,6 +28,7 @@ metadata:
   name: ww-gitops
   namespace: flux-system
 spec:
+  targetNamespace: weave
   chart:
     spec:
       chart: weave-gitops
@@ -41,21 +42,3 @@ spec:
       create: true
       createSecret: false
       username: admin
----
-apiVersion: external-secrets.io/v1beta1
-kind: ExternalSecret
-metadata:
-  name: cluster-user-auth
-  namespace: flux-system
-spec:
-  refreshInterval: 1h
-  secretStoreRef:
-    name: azure-kv-cluster-secret-store
-    kind: ClusterSecretStore
-  data:
-    - secretKey: username
-      remoteRef:
-        key: weave-username
-    - secretKey: password
-      remoteRef:
-        key: weave-password
