@@ -44,11 +44,8 @@ spec:
       username: admin
     ingress:
       enabled: true
-      annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: web
-        traefik.ingress.kubernetes.io/router.middlewares: weave-stripprefix@kubernetescrd
       hosts:
         - host: homelab.nidus
           paths:
-            - path: /weave/
+            - path: /
               pathType: ImplementationSpecific
