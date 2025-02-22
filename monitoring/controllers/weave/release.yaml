@@ -42,3 +42,10 @@ spec:
       create: true
       createSecret: false
       username: admin
+    ingress:
+      enable: true
+      hosts:
+        - host: homelab.nidus
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
