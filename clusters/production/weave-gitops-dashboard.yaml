@@ -23,12 +23,11 @@ kind: HelmRelease
 metadata:
   annotations:
     metadata.weave.works/description:
-      This is the Weave GitOps Dashboard. It provides
+      This is the Weave GitOps Dashboard.  It provides
       a simple way to get insights into your GitOps workloads.
   name: ww-gitops
   namespace: flux-system
 spec:
-  interval: 10m
   chart:
     spec:
       chart: weave-gitops
@@ -36,25 +35,9 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: ww-gitops
+  interval: 1h0m0s
   values:
     adminUser:
       create: true
-      createSecret: false
----
-apiVersion: external-secrets.io/v1beta1
-kind: ExternalSecret
-metadata:
-  name: cluster-user-auth
-  namespace: flux-system
-spec:
-  refreshInterval: 1h
-  secretStoreRef:
-    name: azure-kv-cluster-secret-store
-    kind: ClusterSecretStore
-  data:
-    - secretKey: username
-      remoteRef:
-        key: weave-username
-    - secretKey: password
-      remoteRef:
-        key: weave-password
+      passwordHash: $2a$10$ohDE1EdUOca1eRSHBpRk2Of/MKzMWAFRSFSWXT926EwnRUKGUy2lC
+      username: admin
