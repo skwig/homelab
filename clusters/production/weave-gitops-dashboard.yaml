@@ -39,5 +39,22 @@ spec:
   values:
     adminUser:
       create: true
-      passwordHash: $2a$10$ohDE1EdUOca1eRSHBpRk2Of/MKzMWAFRSFSWXT926EwnRUKGUy2lC
-      username: admin
+      createSecret: false
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: cluster-user-auth
+  namespace: flux-system
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: azure-kv-cluster-secret-store
+    kind: ClusterSecretStore
+  data:
+    - secretKey: username
+      remoteRef:
+        key: weave-username
+    - secretKey: password
+      remoteRef:
+        key: weave-password
