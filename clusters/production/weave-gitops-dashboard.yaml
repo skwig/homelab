@@ -40,6 +40,7 @@ spec:
     adminUser:
       create: true
       createSecret: false
+      username: admin
 ---
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
