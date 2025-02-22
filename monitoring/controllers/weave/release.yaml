@@ -23,11 +23,14 @@ kind: HelmRelease
 metadata:
   annotations:
     metadata.weave.works/description:
-      This is the Weave GitOps Dashboard.  It provides
+      This is the Weave GitOps Dashboard. It provides
       a simple way to get insights into your GitOps workloads.
   name: ww-gitops
   namespace: flux-system
 spec:
+  releaseName: weave
+  targetNamespace: weave
+  interval: 10m
   chart:
     spec:
       chart: weave-gitops
@@ -35,9 +38,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: ww-gitops
-  interval: 1h0m0s
   values:
     adminUser:
       create: true
-      passwordHash: $2a$10$ohDE1EdUOca1eRSHBpRk2Of/MKzMWAFRSFSWXT926EwnRUKGUy2lC
-      username: admin
+      createSecret: false
