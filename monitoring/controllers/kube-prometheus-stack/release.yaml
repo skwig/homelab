@@ -27,3 +27,14 @@ spec:
         namespace: flux-system
   install:
     createNamespace: true
+  values:
+    prometheusSpec:
+      resources:
+        limits:
+          cpu: 100m
+          memory: 500M
+    alertmanagerSpec:
+      resources:
+        limits:
+          cpu: 100m
+          memory: 500M
