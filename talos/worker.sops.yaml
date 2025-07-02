@@ -1,0 +1,66 @@
+version: v1alpha1
+debug: false
+persist: true
+machine:
+  type: worker
+  token: ENC[AES256_GCM,data:YViyrcCScPP43mCnaJJbp7H7xKAfFNY=,iv:HzHj9fJIMBDL3t6xKiLAbYaW3PVuqk0HgUhLyLP+PrI=,tag:V3jBN7/u7YIxSqX7NpbZYg==,type:str]
+  ca:
+    crt: ENC[AES256_GCM,data:VjdaS7dzKqyaTGy1AITDdHH/67e9j0R02c87tp7KAs0O1FYfSA9AU7vF9Mmj5FEIcam0lTA5enujpEL2gwe58gY1M4c++BYNXrac9ccfqzk489WlvSujmesLx+pz1WMganGmunSLqgJJdQsQ0eJGkA/Xqf/NCTNfAadeb7rPW2WWxuEy9qurFmMGNIabPmJtCyekRHYr3ynK36ruT2bLlIFriGk0mIOBOkNOx6FqBTgA2rE4b80j8f8cxQrFzjZUdoQ6TKO0aZGFnKOiIsuI7tIf9y62DicI6+MisFZl1Vcre8S+Cs2axJxI7G2ypXIWr0aAfXApJMOdOhLPvFXegk5ewcTpNuvHGdF1ihUnO4H+7Wzquv8MkS6LI43z/FPtWwbIJ0jDiW3JKsTS1udIo9tWgm5zvfwzSEq9yiWA8HIVQwtuOQyM8k/bLCofuKQQSzH4lAkiDvGOXqFIYJYYFQLqhqa2q4QQbC29WJEWyOD0ICGBKD7anu6u+R0eVoiJfC5qyLgU7FgwpB6NEIeXY/Hd9WCwDyQavGAm56befST5p5oc8qRvbRtC7geAmsA9kPyAxJV4StNLkjDngDcf5xV0mLXDrlEjmvwmKjXo3BxKqEDkVN/Q/d9EZOeOroc2IRtQmt8+Y35oa2qogWJU/e2zFT8/K0fv8T2oGizuu5Wa+JzV688QKrzOgTggDQcwWMfE//YbmUhhn4lYHVbYLwZHEv4D613KLeBbJDtVKhMmhxLgajAMVbYRR6G3OF/XrDF3SJGe7Pj/z84cjNnfVPZVPuJEoj1YjJ5yWmDsTB4vexu4M2DmOApOz9AmWnOjBYb2Tcur3F4FqE8WEDr4w2wBWdfNlMi/EizohFKOSGhqbHAq,iv:zLqNUbBt3ztbHYBHkV/iD06XZQnKtSXOPCGQAlN3NiQ=,tag:1BWl3fW38whL2Jj+txs+6Q==,type:str]
+    key: ""
+  certSANs:
+    - homelab.nidus
+  kubelet:
+    image: ghcr.io/siderolabs/kubelet:v1.33.1
+    defaultRuntimeSeccompProfileEnabled: true
+    disableManifestsDirectory: true
+  network: {}
+  install:
+    disk: /dev/nvme0n1
+    image: ghcr.io/siderolabs/installer:v1.10.4
+    wipe: false
+  registries: {}
+  features:
+    rbac: true
+    stableHostname: true
+    apidCheckExtKeyUsage: ENC[AES256_GCM,data:yqUSiQ==,iv:G89h3mT5tHIEP+aooREQ/hL4hGEi1PGKo/eUXVybsxU=,tag:R0tjKSI46t2mv585SLYnnQ==,type:bool]
+    diskQuotaSupport: true
+    kubePrism:
+      enabled: true
+      port: 7445
+    hostDNS:
+      enabled: true
+      forwardKubeDNSToHost: true
+cluster:
+  id: fHgR4VgISqIsqrB9CNdixKg6lupDy3N2QFh57TVu-8c=
+  secret: ENC[AES256_GCM,data:n3HuT75AgOGiaz1G5VHi6zrJhF6CV4UNrdrw8NzC8l11FG9SmQefTljIFSc=,iv:YPH1mOQCFZ4MNu3F4a+kbW2zsaJGG6EgpIbQRJOY2cM=,tag:xSQjGAVhh7GHYSXKUKmmyg==,type:str]
+  controlPlane:
+    endpoint: https://homelab.nidus:6443
+  clusterName: homelab
+  network:
+    dnsDomain: cluster.local
+    podSubnets:
+      - 10.244.0.0/16
+    serviceSubnets:
+      - 10.96.0.0/12
+  token: ENC[AES256_GCM,data:6NeS5erm8obNl/aphFEm2rNEkm7pU7Y=,iv:HOeI64CE+81vNk14RKdBB9pSJpuOC36gVZot0nI8Ojw=,tag:wDZi9V8RoNEhEAkaJ+wWuQ==,type:str]
+  ca:
+    crt: ENC[AES256_GCM,data:REDyyFQWdIoAiCUgkZYVbsZs2Lm37Vf4ijt+saXZjOmWGgQ2TEzGEkPV/prn+dGjQRLC1G+LquW4lwiDU1YhZ62MiZG5a3GktY8h6DWvilyWvAE2YRwuarmgxUGTctS5TvI8rQp0ZRhlE19aBDI/6u5266R8D9mWusWmBH6qix94fwpd+MggRezil+tZeS+uREHCenfhL1fwroJMPN5lm51qOCFm1UQ/ST/hwdHF96VN/leI4kvz0RS+10wChp3F1sBoduhAfd6CqRpBgSxooykEFvecwQuCBLhbR/oqdYQxgaug+B4Y5wgX9/jkG7IopOJwBVKD98J1qmvGx6yLqW+plAaJnhnI65Kzp3LHWTXlEFoR0UPd+H5V9eSxr2fm0TMPx22HAYHQ9iBucYr94WlSgp+EivSrlRGg7ap/9puJtflAyHrv6n5+RR4Gv6sWCb9wXwqqfq7jAoXT0OXv0UC5aX6RgxOvv0/TvfplL3zI1TZboCsFKqeFVNM+Rx0U3YChQSBaRSj//29o4a1SR3EvtTzPXGdPdzQOpsEohblkjYDKUfGzKCJRq7tLGPcY406n6c6y+TPQ8T+0lqdvq57Rvr5Dr4kcIHPJKwAPTvxXGWv4IDwJx0C6NoimL14vb3Sshz0CGunbi2lLxvJd0RXgQysLXw0YhDFaWtEiHczB931CGu0RWxldVx4eSEXOjV4BmvgPVwsoSAGIYw9Ic4D7KKKSCO43cVPzfkHHT0iqxwAcL71N4LYbt3oe/oLnHzAsrAklgLo3sa5f3l+ETBF3s00IHG8+aphfxgxruvsqZQLfdwsFHMIQH/JyW1XAk6AkuO2YFM/dXNthHN9DyIH0fgtIIYQrFeIqBMazI3l66YrjqtI2edG/i5TVmaradZwuOzh77v6rS0wcOMNku/Ksr0B9iVCBEhUdtST/8uWcy7TC3hgmMqqCO/0nAWZkN22TozpOHJKZ4/6cjTQQy73f0z5TeuI44wBo16LKjXOqEkJu/fjVPk8hEeUeXACNTDY9vgDHOCZQ8t7JANGgLi7Rr8cdYvdLNJU63A==,iv:22Gqevh5SfIG14RmpcEuM38JAVp7i1dQjcLbMs9NUfM=,tag:WtAId7XqUG3ewdicYERfXg==,type:str]
+    key: ""
+  discovery:
+    enabled: true
+    registries:
+      kubernetes:
+        disabled: true
+      service: {}
+sops:
+  azure_kv:
+    - vault_url: https://skwig-homelab-kv-euw-prd.vault.azure.net
+      name: sops
+      version: bda497ff566d4945ba8f5d1016483d29
+      created_at: "2025-07-02T19:11:17Z"
+      enc: FvykVHj4K7T0qfk8uQ22Vobsecam22WrTdoQmR9UMqD1s4LYVRteAgUPMWlAxWNV0wZmpqhWZHvsG3NQkUJt_bdVzGEPMtPHG6ePPMgGj4m9HY4_4ep1t2r673KXe8O-3jqFE9xkmicQbw_Z1rpE5SGjRamz_6cW1JET82iO2rTdjgrGdFRu09X8YjDc5wkUbdUSaBPD74KeRmYB_hmhbtNhm77bAZxKri-YLnq42tPqi1XHuzK26KlfFgOmgxUpSrIXcd4Lxj_fC0L-XYhxQQAeMxlvhqjbKWtkKdQ2_y7VB1ARdJKfWpYu0ROc9djhTGHwUzHkrnDG3PSTH7nh-w
+  lastmodified: "2025-07-02T19:11:20Z"
+  mac: ENC[AES256_GCM,data:QcGeQwBKZseS5JJOsuifNhmOwsKDeHHGrCijnC4cOjoXeCCtX0lXNpJOKwpOECr0g/ysVuJGv9E7e3rhMDKm5a5P0WvKuN6neAGF3rCxGUYp4ALUcv6oOMCk2gMv+B4ZkEd3hAmFsrwJnZIVFUlw/C2rOJ7iBS1sY3SWdBnoqfQ=,iv:tiib1ZX/yCmM8+n2VNstL2ktcSWCPEQDmHPjuGfqbUY=,tag:3PFCdpJh58swb3LPrvhQAw==,type:str]
+  encrypted_regex: ((?i)(pass|secret($|[^N])|ca|crt|key|token|^data$|^stringData$))
+  mac_only_encrypted: true
+  version: 3.10.2
