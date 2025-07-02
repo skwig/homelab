@@ -8,7 +8,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./monitoring/controllers/weave
+  path: ./kubernetes/monitoring/controllers/weave
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -24,7 +24,7 @@ spec:
 #   interval: 1h
 #   retryInterval: 1m
 #   timeout: 5m
-#   path: ./monitoring/controllers/kube-prometheus-stack
+#   path: ./kubernetes/monitoring/controllers/kube-prometheus-stack
 #   sourceRef:
 #     kind: GitRepository
 #     name: flux-system

@@ -8,7 +8,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./infrastructure/controllers/alerts
+  path: ./kubernetes/infrastructure/controllers/alerts
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -24,7 +24,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./infrastructure/controllers/renovate
+  path: ./kubernetes/infrastructure/controllers/renovate
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -40,7 +40,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./infrastructure/controllers/csi-driver-smb
+  path: ./kubernetes/infrastructure/controllers/csi-driver-smb
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -57,7 +57,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./infrastructure/controllers/external-secrets
+  path: ./kubernetes/infrastructure/controllers/external-secrets
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -75,7 +75,7 @@ spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./infrastructure/configs/external-secrets
+  path: ./kubernetes/infrastructure/configs/external-secrets
   sourceRef:
     kind: GitRepository
     name: flux-system
