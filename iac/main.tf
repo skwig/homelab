@@ -74,6 +74,31 @@ resource "azurerm_key_vault" "homelab_key_vault" {
   enable_rbac_authorization = true
 }
 
+resource "azurerm_key_vault_key" "homelab_sops_key" {
+  name         = "sops"
+  key_vault_id = azurerm_key_vault.homelab_key_vault.id
+  key_type     = "RSA"
+  key_size     = 2048
+
+  key_opts = [
+    "decrypt",
+    "encrypt",
+    "sign",
+    "unwrapKey",
+    "verify",
+    "wrapKey",
+  ]
+
+  rotation_policy {
+    automatic {
+      time_before_expiry = "P30D"
+    }
+
+    expire_after         = "P90D"
+    notify_before_expiry = "P29D"
+  }
+}
+
 resource "azurerm_role_assignment" "homelab_service_principal_key_vaultcontributor" {
   scope                = azurerm_key_vault.homelab_key_vault.id
   principal_id         = azuread_service_principal.homelab_service_principal.object_id
