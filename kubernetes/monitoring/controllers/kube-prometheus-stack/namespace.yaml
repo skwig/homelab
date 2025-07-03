@@ -4,4 +4,5 @@ kind: Namespace
 metadata:
   name: kube-prometheus-stack
   labels:
+    # needed for daemonset/kube-prometheus-stack-prometheus-node-exporter
     pod-security.kubernetes.io/enforce: privileged
