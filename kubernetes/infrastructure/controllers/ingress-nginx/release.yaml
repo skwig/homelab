@@ -30,7 +30,10 @@ spec:
   # https://github.com/kubernetes/ingress-nginx/tree/main/charts/ingress-nginx#values
   values:
     controller:
-      ingressClass: nginx
+      ingressClassResource:
+        enabled: true
+        name: nginx
+        default: true
       hostNewtork: true
       service:
         type: ClusterIP
