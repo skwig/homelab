@@ -4,4 +4,5 @@ kind: Namespace
 metadata:
   name: csi-driver-smb
   labels:
+    # needed for daemonset/csi-smb-node
     pod-security.kubernetes.io/enforce: privileged
