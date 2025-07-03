@@ -34,7 +34,7 @@ spec:
         enabled: true
         name: nginx
         default: true
-      hostNewtork: true
+      hostNetwork: true
       service:
         type: ClusterIP
       metrics:
