@@ -20,9 +20,11 @@
         };
 
         nativeDeps = with pkgs; [
-          talosctl
-          sops
+          fluxcd
+          kubernetes-helm
           opentofu
+          sops
+          talosctl
         ];
       in
       {
