@@ -40,9 +40,6 @@ spec:
               resources:
                 requests:
                   storage: 10Gi
-    prometheus-node-exporter:
-      labels:
-        pod-security.kubernetes.io/enforce: privileged
     alertManager:
       enabled: true
       alertmanagerSpec:
@@ -54,3 +51,9 @@ spec:
               resources:
                 requests:
                   storage: 1Gi
+    grafana:
+      enabled: true
+      ingress:
+        enabled: true
+        hosts:
+          - grafana.homelab.nidus
