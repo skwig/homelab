@@ -27,14 +27,30 @@ spec:
         namespace: flux-system
   install:
     createNamespace: true
+  # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
-    prometheusSpec:
-      resources:
-        limits:
-          cpu: 100m
-          memory: 500M
-    alertmanagerSpec:
-      resources:
-        limits:
-          cpu: 100m
-          memory: 500M
+    prometheus:
+      enabled: true
+      prometheusSpec:
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: smb-share-retain
+              accessModes: ["ReadWriteMany"]
+              resources:
+                requests:
+                  storage: 10Gi
+    prometheus-node-exporter:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+    alertManager:
+      enabled: true
+      alertmanagerSpec:
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: smb-share-retain
+              accessModes: ["ReadWriteMany"]
+              resources:
+                requests:
+                  storage: 1Gi
