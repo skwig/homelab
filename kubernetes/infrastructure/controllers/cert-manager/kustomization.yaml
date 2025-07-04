@@ -4,4 +4,5 @@ resources:
   - namespace.yaml
   - release.yaml
   - porkbun-release.yaml
+  - porkbun-rbac.yaml
   - porkbun-keys-secret.yaml
