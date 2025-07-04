@@ -45,6 +45,12 @@ spec:
     ingress:
       enabled: true
       className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-staging
+      tls:
+        - secretName: homelab-tls
+          hosts:
+            - homelab.skwig.party
       hosts:
         - host: homelab.skwig.party
           paths:
