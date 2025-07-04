@@ -28,4 +28,4 @@ spec:
   install:
     createNamespace: true
   values:
-    groupName: porkbun
+    groupName: acme.skwig.party

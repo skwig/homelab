@@ -12,7 +12,7 @@ spec:
     solvers:
       - dns01:
           webhook:
-            groupName: porkbun
+            groupName: acme.skwig.party
             solverName: porkbun
             config:
               apiKeySecretRef:
