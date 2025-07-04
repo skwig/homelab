@@ -1,0 +1,23 @@
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-cluster-issuer-staging
+spec:
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: 16136203+skwig@users.noreply.github.com
+    privateKeySecretRef:
+      name: letsencrypt-cluster-issuer-staging-private-key
+    solvers:
+      - dns01:
+          webhook:
+            groupName: porkbun
+            solverName: porkbun
+            config:
+              apiKeySecretRef:
+                name: porkbun-key
+                key: api-key
+              secretKeySecretRef:
+                name: porkbun-key
+                key: secret-key
