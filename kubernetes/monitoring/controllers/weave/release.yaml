@@ -46,7 +46,7 @@ spec:
       enabled: true
       className: nginx
       hosts:
-        - host: homelab.nidus
+        - host: homelab.skwig.party
           paths:
             - path: /
               pathType: ImplementationSpecific
