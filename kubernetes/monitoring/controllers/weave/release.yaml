@@ -46,7 +46,7 @@ spec:
       enabled: true
       className: nginx
       annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-staging
+        cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
       tls:
         - secretName: homelab-tls
           hosts:
