@@ -16,8 +16,8 @@ spec:
             solverName: porkbun
             config:
               apiKeySecretRef:
-                name: porkbun-key
+                name: porkbun-keys-secret
                 key: api-key
               secretKeySecretRef:
-                name: porkbun-key
+                name: porkbun-keys-secret
                 key: secret-key
