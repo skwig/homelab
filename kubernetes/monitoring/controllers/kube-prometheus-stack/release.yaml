@@ -55,5 +55,14 @@ spec:
       enabled: true
       ingress:
         enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
+        tls:
+          - secretName: grafana-homelab-tls
+            hosts:
+              - grafana.homelab.skwig.party
         hosts:
-          - grafana.homelab.nidus
+          - grafana.homelab.skwig.party
+        paths:
+          - /
+
