@@ -55,5 +55,12 @@ spec:
         securityContext:
           runAsUser: 1000
           runAsNonRoot: true
+        # external-dns chart by default probes webhook's 8080, despite using 8888 for communicating with the webhook
         livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8888
         readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8888
