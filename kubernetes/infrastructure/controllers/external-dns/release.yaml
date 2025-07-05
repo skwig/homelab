@@ -40,6 +40,8 @@ spec:
         env:
         - name: GO_LOG
           value: "debug"
+        - name: LISTEN_ADDRESS
+          value: 8080
         - name: API_KEY
           valueFrom:
             secretKeyRef:
