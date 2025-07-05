@@ -19,7 +19,7 @@ spec:
   interval: 10m
   chart:
     spec:
-      chart: ingress-nginx
+      chart: couchdb
       version: 4.6.1
       sourceRef:
         kind: HelmRepository
