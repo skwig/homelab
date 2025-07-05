@@ -37,6 +37,6 @@ spec:
       kind: DaemonSet
       hostNetwork: true
       service:
-        type: ClusterIP
+        type: NodePort
       metrics:
         enabled: true
