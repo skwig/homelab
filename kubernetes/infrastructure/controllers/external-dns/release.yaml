@@ -32,7 +32,7 @@ spec:
       name: webhook
       webhook:
         image:
-          repository: ghcr.io/konnektr-io/external-dns-porkbun-webhook:v0.2.18
+          repository: ghcr.io/konnektr-io/external-dns-porkbun-webhook
           tag: v0.2.18
           pullPolicy: IfNotPresent
         args:
