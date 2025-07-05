@@ -28,6 +28,8 @@ spec:
   install:
     createNamespace: true
   values:
+    extraArgs:
+    - --publish-host-ip
     provider:
       name: webhook
       webhook:
