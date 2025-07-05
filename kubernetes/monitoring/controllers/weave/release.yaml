@@ -48,6 +48,7 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
         external-dns.alpha.kubernetes.io/hostname: weave.homelab.skwig.party
+        external-dns.alpha.kubernetes.io/target: 192.168.100.47
       tls:
         - secretName: homelab-tls
           hosts:
