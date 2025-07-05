@@ -27,3 +27,26 @@ spec:
         namespace: flux-system
   install:
     createNamespace: true
+  values:
+    provider:
+      name: webhook
+      webhook:
+        image:
+          repository: ghcr.io/konnektr-io/external-dns-porkbun-webhook:v0.2.18
+          tag: v0.2.18
+          pullPolicy: IfNotPresent
+        args:
+        - --domain-filter=skwig.party
+        env:
+        - name: GO_LOG
+          value: "debug"
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: porkbun-keys-secret
+              key: api-key
+        - name: API_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: porkbun-keys-secret
+              key: secret-key
