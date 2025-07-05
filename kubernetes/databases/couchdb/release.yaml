@@ -27,3 +27,8 @@ spec:
         namespace: flux-system
   install:
     createNamespace: true
+  # https://artifacthub.io/packages/helm/couchdb/couchdb?modal=values
+  values:
+    couchdbConfig:
+      couchdb:
+        uuid: 11111111-1111-1111-1111-111111111111
