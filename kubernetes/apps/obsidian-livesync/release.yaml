@@ -30,7 +30,6 @@ spec:
   # https://artifacthub.io/packages/helm/couchdb/couchdb?modal=values
   values:
     clusterSize: 1
-    createAdminSecret: false
     extraSecretName: admin-credentials-secret
     couchdbConfig:
       couchdb:
