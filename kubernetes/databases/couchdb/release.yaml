@@ -29,6 +29,18 @@ spec:
     createNamespace: true
   # https://artifacthub.io/packages/helm/couchdb/couchdb?modal=values
   values:
+    clusterSize: 1
     couchdbConfig:
       couchdb:
         uuid: 11111111-1111-1111-1111-111111111111
+    persistentVolume:
+      enabled: true
+      # claim:
+      #   metadata:
+      #     name: couchdb-pvc
+      #   spec:
+      #     storageClassName: smb-share-retain
+      accessModes:
+        - ReadWriteOnce
+      size: 2Gi
+      storageClass: smb-share-retain
