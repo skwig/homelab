@@ -33,6 +33,19 @@ spec:
     couchdbConfig:
       couchdb:
         uuid: 11111111-1111-1111-1111-111111111111
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
+        external-dns.alpha.kubernetes.io/hostname: couchdb.homelab.skwig.party
+        external-dns.alpha.kubernetes.io/target: 192.168.100.47
+      tls:
+        - secretName: couchdb-homelab-tls
+          hosts:
+            - couchdb.homelab.skwig.party
+      hosts:
+        - couchdb.homelab.skwig.party
     persistentVolume:
       enabled: true
       # claim:
