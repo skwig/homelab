@@ -33,6 +33,16 @@ spec:
     couchdbConfig:
       couchdb:
         uuid: 11111111-1111-1111-1111-111111111111
+      httpd:
+        enable_cors: true
+        WWW-Authenticate: Basic realm="couchdb"
+      cors:
+        credentials: true
+        origins: app://obsidian.md,capacitor://localhost,http://localhost
+      chttpd:
+        require_valid_user: true
+      chttpd_auth:
+        require_valid_user: true
     ingress:
       enabled: true
       className: nginx
@@ -48,11 +58,6 @@ spec:
         - couchdb.homelab.skwig.party
     persistentVolume:
       enabled: true
-      # claim:
-      #   metadata:
-      #     name: couchdb-pvc
-      #   spec:
-      #     storageClassName: smb-share-retain
       accessModes:
         - ReadWriteOnce
       size: 2Gi
