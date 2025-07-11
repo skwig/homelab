@@ -16,7 +16,7 @@ machine:
   network: {}
   install:
     disk: /dev/nvme0n1
-    image: ghcr.io/siderolabs/installer:v1.10.4
+    image: ghcr.io/siderolabs/installer:v1.10.5
     wipe: false
   registries: {}
   features:
