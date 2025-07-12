@@ -2,45 +2,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: busybox
+  name: apps
   namespace: flux-system
 spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./kubernetes/apps/busybox
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  prune: true
-  wait: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: obsidian-livesync
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  path: ./kubernetes/apps/obsidian-livesync
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  prune: true
-  wait: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: jellyfin
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  path: ./kubernetes/apps/jellyfin
+  path: ./kubernetes/apps/overlays/production
   sourceRef:
     kind: GitRepository
     name: flux-system
