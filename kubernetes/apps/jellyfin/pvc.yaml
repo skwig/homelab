@@ -23,6 +23,11 @@ spec:
   capacity:
     storage: 1Ti
   persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - noserverino
+    - dir_mode=0777
+    - file_mode=0777
+    - guest
   # https://github.com/kubernetes-csi/csi-driver-smb/blob/master/docs/driver-parameters.md
   csi:
     driver: smb.csi.k8s.io
