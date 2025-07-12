@@ -50,7 +50,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: smb-share-retain
+        storageClass: local-path-retain
       media:
         enabled: true
         storageClass: smb-share-retain
