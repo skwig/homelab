@@ -1,0 +1,56 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: jellyfin
+  namespace: flux-system
+spec:
+  interval: 10m
+  url: https://jellyfin.github.io/jellyfin-helm
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: jellyfin
+  namespace: flux-system
+spec:
+  releaseName: jellyfin
+  targetNamespace: jellyfin
+  interval: 10m
+  chart:
+    spec:
+      chart: jellyfin
+      version: 2.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: jellyfin
+        namespace: flux-system
+  install:
+    createNamespace: true
+  # https://github.com/jellyfin/jellyfin-helm/blob/master/charts/jellyfin/values.yaml
+  values:
+    jellyfin:
+      enableDLNA: false
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
+        external-dns.alpha.kubernetes.io/hostname: jellyfin.homelab.skwig.party
+        external-dns.alpha.kubernetes.io/target: 192.168.100.47
+      hosts:
+        - host: jellyfin.homelab.skwig.party
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+      tls:
+        - secretName: jellyfin-homelab-tls
+          hosts:
+            - jellyfin.homelab.skwig.party
+    persistence:
+      config:
+        enabled: false
+      media:
+        enabled: false
+    metrics:
+      enabled: true
