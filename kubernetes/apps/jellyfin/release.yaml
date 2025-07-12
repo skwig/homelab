@@ -50,7 +50,9 @@ spec:
     persistence:
       config:
         enabled: true
+        storageClass: smb-share-retain
       media:
         enabled: true
+        storageClass: smb-share-retain
     metrics:
       enabled: true
