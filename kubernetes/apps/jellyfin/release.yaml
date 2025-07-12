@@ -53,6 +53,6 @@ spec:
         storageClass: local-path-retain
       media:
         enabled: true
-        storageClass: smb-share-retain
+        existingClaim: jellyfin-media-pvc
     metrics:
       enabled: false
