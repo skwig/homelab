@@ -35,5 +35,5 @@ spec:
   # https://github.com/rancher/local-path-provisioner/blob/master/deploy/chart/local-path-provisioner/values.yaml
   values:
     storageClass:
-      name: local-path
+      name: local-path-retain
       reclaimPolicy: Retain
