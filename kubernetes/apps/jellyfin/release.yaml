@@ -54,5 +54,20 @@ spec:
       media:
         enabled: true
         existingClaim: jellyfin-media-pvc
+    # HW acceleration
+    securityContext:
+      capabilities:
+        add:
+          - "SYS_ADMIN"
+        drop:
+          - "ALL"
+      privileged: false
+    extraVolumes:
+      - name: hwa
+        hostPath:
+          path: /dev/dri
+    extraVolumeMounts:
+      - name: hwa
+        mountPath: /dev/dri
     metrics:
       enabled: false
