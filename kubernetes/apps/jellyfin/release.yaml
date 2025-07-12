@@ -55,4 +55,4 @@ spec:
         enabled: true
         storageClass: smb-share-retain
     metrics:
-      enabled: true
+      enabled: false
