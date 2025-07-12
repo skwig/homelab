@@ -23,8 +23,12 @@ spec:
   capacity:
     storage: 1Ti
   persistentVolumeReclaimPolicy: Retain
+  # https://github.com/kubernetes-csi/csi-driver-smb/blob/master/docs/driver-parameters.md
   csi:
     driver: smb.csi.k8s.io
     readOnly: true
+    # Recommended: {smb-server-address}#{sub-dir-name}#{share-name}
+    volumeHandle: "//192.168.100.37#/#/Media_Shared"
     volumeAttributes:
       source: //192.168.100.37/Media_Shared
+      subDir: /
