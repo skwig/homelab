@@ -6,7 +6,6 @@ resources:
   - ../../base/cert-manager/
   - ../../base/csi-driver-smb/
   - ../../base/external-dns/
-  - ../../base/external-secrets/
   - ../../base/ingress-nginx/
   - ../../base/local-path-provisioner/
   - ../../base/renovate/

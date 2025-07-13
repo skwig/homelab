@@ -1,3 +1,38 @@
+# `core` being separate forces external-secrets to be created first, which a lot of infrastructure depends on for secrets
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infrastructure-core-configs
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: infrastructure-core-controllers
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  path: ./kubernetes/infrastructure/core-configs/overlays/production
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  prune: true
+  wait: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infrastructure-core-controllers
+  namespace: flux-system
+spec:
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  path: ./kubernetes/infrastructure/core-controllers/overlays/production
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  prune: true
+  wait: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
