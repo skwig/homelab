@@ -25,7 +25,6 @@ metadata:
       This is the Weave GitOps Dashboard. It provides
       a simple way to get insights into your GitOps workloads.
   name: ww-gitops
-  namespace: weave
 spec:
   targetNamespace: weave
   chart:
