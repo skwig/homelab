@@ -5,5 +5,4 @@ resources:
   - ../../base/alerts/
   - ../../base/cert-manager/
   - ../../base/csi-driver-smb/
-  - ../../base/external-dns/
   - ../../base/renovate/
