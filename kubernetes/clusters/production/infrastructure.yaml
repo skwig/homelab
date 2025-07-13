@@ -2,80 +2,15 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: alerts
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  path: ./kubernetes/infrastructure/controllers/alerts
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  prune: true
-  wait: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: renovate
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  path: ./kubernetes/infrastructure/controllers/renovate
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  prune: true
-  wait: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: csi-driver-smb
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  path: ./kubernetes/infrastructure/controllers/csi-driver-smb
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  prune: true
-  wait: true
-  force: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: controllers-external-secrets
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  path: ./kubernetes/infrastructure/controllers/external-secrets
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  prune: true
-  wait: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: configs-external-secrets
+  name: infrastructure-configs
   namespace: flux-system
 spec:
   dependsOn:
-    - name: controllers-external-secrets
+    - name: infrastructure-controllers
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./kubernetes/infrastructure/configs/external-secrets
+  path: ./kubernetes/infrastructure/configs/overlays/production
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -85,79 +20,13 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: ingress-nginx
+  name: infrastructure-controllers
   namespace: flux-system
 spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
-  path: ./kubernetes/infrastructure/controllers/ingress-nginx
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  prune: true
-  wait: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: controllers-cert-manager
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  path: ./kubernetes/infrastructure/controllers/cert-manager
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  prune: true
-  wait: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: configs-cert-manager
-  namespace: flux-system
-spec:
-  dependsOn:
-    - name: controllers-cert-manager
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  path: ./kubernetes/infrastructure/configs/cert-manager
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  prune: true
-  wait: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: controllers-external-dns
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  path: ./kubernetes/infrastructure/controllers/external-dns
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  prune: true
-  wait: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: controllers-local-path-provisioner
-  namespace: flux-system
-spec:
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  path: ./kubernetes/infrastructure/controllers/local-path-provisioner
+  path: ./kubernetes/infrastructure/controllers/overlays/production
   sourceRef:
     kind: GitRepository
     name: flux-system
