@@ -5,4 +5,3 @@ namespace: weave
 resources:
   - namespace.yaml
   - release.yaml
-  - cluster-user-auth-secret.yaml

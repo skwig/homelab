@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - letsencrypt-cluster-issuer-staging.yaml
   - letsencrypt-cluster-issuer-production.yaml
+  - porkbun-keys-secret.yaml

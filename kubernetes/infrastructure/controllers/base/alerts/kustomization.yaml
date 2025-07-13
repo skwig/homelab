@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - discord-alert.yaml
   - discord-provider.yaml
-  - discord-webhook-secret.yaml
