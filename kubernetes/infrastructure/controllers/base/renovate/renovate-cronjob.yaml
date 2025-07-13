@@ -3,7 +3,6 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: renovate
-  namespace: renovate
 spec:
   schedule: "@daily"
   successfulJobsHistoryLimit: 2
