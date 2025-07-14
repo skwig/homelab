@@ -25,3 +25,6 @@ spec:
   install:
     createNamespace: true
   # https://artifacthub.io/packages/helm/metrics-server/metrics-server?modal=values
+  values:
+    args:
+      - --kubelet-insecure-tls
