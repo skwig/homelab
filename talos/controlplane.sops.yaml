@@ -87,7 +87,7 @@ cluster:
   proxy:
     image: registry.k8s.io/kube-proxy:v1.33.1
   scheduler:
-    image: registry.k8s.io/kube-scheduler:v1.33.1
+    image: registry.k8s.io/kube-scheduler:v1.33.3
   discovery:
     enabled: true
     registries:
