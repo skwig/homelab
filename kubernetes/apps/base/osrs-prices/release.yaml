@@ -64,7 +64,7 @@ spec:
       volumes:
         - name: app-data
           persistentVolumeClaim:
-            claimName: osrs-prices-price-archive-projects-pv
+            claimName: osrs-prices-price-archive-projects-pvc
       volumeMounts:
         - name: app-data
           mountPath: /app-data/
