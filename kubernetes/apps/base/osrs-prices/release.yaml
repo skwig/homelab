@@ -35,11 +35,13 @@ spec:
   values:
     webapp:
       image:
-        tag: master-8-ec4d809827160d05f2e699b605958d6041215adb
+        tag: master-11-8242d6217fb01185bc5633f0b915b01932f21edf
       imagePullSecrets:
         - name: ghcr-credentials-secret
+      configMap:
+        PriceArchiveApiOptions__BaseUri: http://price-archive
     price-archive:
       image:
-        tag: master-8-ec4d809827160d05f2e699b605958d6041215adb
+        tag: master-11-8242d6217fb01185bc5633f0b915b01932f21edf
       imagePullSecrets:
         - name: ghcr-credentials-secret
