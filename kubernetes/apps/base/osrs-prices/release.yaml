@@ -11,6 +11,8 @@ spec:
   ignore: |
     /*
     !/charts/
+  secretRef:
+    name: github-credentials-secret
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease

@@ -4,3 +4,4 @@ namespace: osrs-prices
 resources:
   - namespace.yaml
   - release.yaml
+  - github-credentials-secret.yaml
