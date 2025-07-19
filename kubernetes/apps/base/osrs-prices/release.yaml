@@ -55,9 +55,18 @@ spec:
             hosts:
               - osrs-prices.homelab.skwig.party
       configMap:
-        PriceArchiveApiOptions__BaseUri: http://price-archive
+        PriceArchiveApiOptions__BaseUri: http://osrs-prices-price-archive:8080
     price-archive:
       image:
         tag: master-11-8242d6217fb01185bc5633f0b915b01932f21edf
       imagePullSecrets:
         - name: ghcr-credentials-secret
+      volumes:
+        - name: app-data
+          persistentVolumeClaim:
+            claimName: osrs-prices-price-archive-projects-pv
+      volumeMounts:
+        - name: app-data
+          mountPath: /app-data/
+      configMap:
+        FileStorageOptions__BasePath: /app-data/

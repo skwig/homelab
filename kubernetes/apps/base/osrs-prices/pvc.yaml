@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: osrs-prices-price-archive-projects-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  volumeName: osrs-prices-price-archive-projects-pv
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: osrs-prices-price-archive-projects-pv
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 1Ti
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - noserverino
+    - dir_mode=0777
+    - file_mode=0777
+    - guest
+  # https://github.com/kubernetes-csi/csi-driver-smb/blob/master/docs/driver-parameters.md
+  csi:
+    driver: smb.csi.k8s.io
+    readOnly: true
+    # Recommended: {smb-server-address}#{sub-dir-name}#{share-name}
+    volumeHandle: "//192.168.100.37#/#/Projects_Shared"
+    volumeAttributes:
+      source: //192.168.100.37/Projects_Shared
+      subDir: /OsrsPrices/OsrsPrices.PriceArchive.WebApi/app-data/
