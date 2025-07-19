@@ -38,6 +38,22 @@ spec:
         tag: master-11-8242d6217fb01185bc5633f0b915b01932f21edf
       imagePullSecrets:
         - name: ghcr-credentials-secret
+      ingress:
+        enabled: true
+        className: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
+          external-dns.alpha.kubernetes.io/hostname: osrs-prices.homelab.skwig.party
+          external-dns.alpha.kubernetes.io/target: 192.168.100.47
+        hosts:
+          - host: osrs-prices.homelab.skwig.party
+            paths:
+              - path: /
+                pathType: ImplementationSpecific
+        tls:
+          - secretName: osrs-prices-homelab-tls
+            hosts:
+              - osrs-prices.homelab.skwig.party
       configMap:
         PriceArchiveApiOptions__BaseUri: http://price-archive
     price-archive:
