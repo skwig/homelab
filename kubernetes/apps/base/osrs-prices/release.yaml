@@ -36,6 +36,10 @@ spec:
     webapp:
       image:
         tag: master-6-32bf1d9a1024eb81f2bde6353366dd8df928dfe3
+      imagePullSecrets:
+        - name: ghcr-credentials-secret
     price-archive:
       image:
         tag: master-6-32bf1d9a1024eb81f2bde6353366dd8df928dfe3
+      imagePullSecrets:
+        - name: ghcr-credentials-secret

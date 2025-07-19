@@ -5,3 +5,4 @@ resources:
   - namespace.yaml
   - release.yaml
   - github-credentials-secret.yaml
+  - ghcr-credentials-secret.yaml
