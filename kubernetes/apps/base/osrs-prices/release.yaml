@@ -31,11 +31,18 @@ spec:
         name: osrs-prices
   install:
     createNamespace: true
+    remediation:
+      retries: 1
+      remediateLastFailure: true
+  upgrade:
+    remediation:
+      retries: 1
+      remediateLastFailure: true
   # https://github.com/skwig/OsrsPrices/blob/master/charts/osrsprices/values.yaml
   values:
     webapp:
       image:
-        tag: master-11-8242d6217fb01185bc5633f0b915b01932f21edf
+        tag: master-14-76ff2b27347def5d32fd35eb090942ed2cd0ee8b
       imagePullSecrets:
         - name: ghcr-credentials-secret
       ingress:
@@ -58,7 +65,7 @@ spec:
         PriceArchiveApiOptions__BaseUri: http://osrs-prices-price-archive:8080
     price-archive:
       image:
-        tag: master-11-8242d6217fb01185bc5633f0b915b01932f21edf
+        tag: master-14-76ff2b27347def5d32fd35eb090942ed2cd0ee8b
       imagePullSecrets:
         - name: ghcr-credentials-secret
       volumes:
