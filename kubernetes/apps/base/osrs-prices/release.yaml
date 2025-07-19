@@ -1,0 +1,39 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: osrs-prices
+spec:
+  interval: 10m
+  url: https://github.com/skwig/OsrsPrices
+  ref:
+    branch: master
+  ignore: |
+    /*
+    !/charts/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: osrs-prices
+spec:
+  releaseName: osrs-prices
+  targetNamespace: osrs-prices
+  interval: 10m
+  chart:
+    spec:
+      chart: ./charts/osrsprices
+      version: 0.0.0
+      sourceRef:
+        kind: GitRepository
+        name: osrs-prices
+  install:
+    createNamespace: true
+  # https://github.com/skwig/OsrsPrices/blob/master/charts/osrsprices/values.yaml
+  values:
+    webapp:
+      image:
+        tag: master-6-32bf1d9a1024eb81f2bde6353366dd8df928dfe3
+    price-archive:
+      image:
+        tag: master-6-32bf1d9a1024eb81f2bde6353366dd8df928dfe3
