@@ -21,7 +21,7 @@ spec:
               service:
                 name: linkding
                 port:
-                  number: 3000
+                  name: http
   tls:
     - secretName: linkding-homelab-tls
       hosts:
