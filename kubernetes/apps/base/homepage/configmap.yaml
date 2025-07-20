@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homepage
+data:
+  settings.yaml: ""
+  custom.css: ""
+  custom.js: ""
+  bookmarks.yaml: ""
+  services.yaml: |
+    - OsrsPrices:
+          href: https://osrs-prices.homelab.skwig.party
+          icon: osrs-prices.png
+    - Jellyfin:
+          href: https://jellyfin.homelab.skwig.party
+          icon: jellyfin.png
+    - Grafana:
+          href: https://grafana.homelab.skwig.party
+          icon: grafana.png
+    - Weave:
+          href: https://weave.homelab.skwig.party
+          icon: weave.png
+  widgets.yaml: ""
+  docker.yaml: ""

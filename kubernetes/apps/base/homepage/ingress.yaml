@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: homepage
+  labels:
+    app.kubernetes.io/name: homepage
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
+    external-dns.alpha.kubernetes.io/hostname: homelab.skwig.party
+    external-dns.alpha.kubernetes.io/target: 192.168.100.47
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: homelab.skwig.party
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: homepage
+                port:
+                  number: 3000
+  tls:
+    - secretName: jellyfin-homelab-tls
+      hosts:
+        - homelab.skwig.party
+
