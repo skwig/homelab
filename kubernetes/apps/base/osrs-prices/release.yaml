@@ -42,7 +42,7 @@ spec:
   values:
     webapp:
       image:
-        tag: master-14-76ff2b27347def5d32fd35eb090942ed2cd0ee8b
+        tag: master-15-2a308886951b5a56e6560549df7fa9ed320c0738
       imagePullSecrets:
         - name: ghcr-credentials-secret
       ingress:
@@ -65,7 +65,7 @@ spec:
         PriceArchiveApiOptions__BaseUri: http://osrs-prices-price-archive:8080
     price-archive:
       image:
-        tag: master-14-76ff2b27347def5d32fd35eb090942ed2cd0ee8b
+        tag: master-15-2a308886951b5a56e6560549df7fa9ed320c0738
       imagePullSecrets:
         - name: ghcr-credentials-secret
       volumes:
