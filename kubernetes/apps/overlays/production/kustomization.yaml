@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - ../../base/homepage/
   - ../../base/jellyfin/
+  - ../../base/linkding/
   - ../../base/obsidian-livesync/
   - ../../base/osrs-prices/
