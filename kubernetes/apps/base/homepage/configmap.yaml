@@ -4,10 +4,11 @@ kind: ConfigMap
 metadata:
   name: homepage
 data:
-  settings.yaml: ""
-  custom.css: ""
   custom.js: ""
+  custom.css: ""
   bookmarks.yaml: ""
+  docker.yaml: ""
+  kubernetes.yaml: ""
   services.yaml: |
     - Links:
       - OsrsPrices:
@@ -20,5 +21,5 @@ data:
             icon: grafana.png
       - Weave:
             href: https://weave.homelab.skwig.party
+  settings.yaml: ""
   widgets.yaml: ""
-  docker.yaml: ""
