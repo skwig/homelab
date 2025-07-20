@@ -23,7 +23,7 @@ spec:
                 port:
                   number: 3000
   tls:
-    - secretName: jellyfin-homelab-tls
+    - secretName: homepage-homelab-tls
       hosts:
         - homelab.skwig.party
 
