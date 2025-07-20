@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: linkding
+  labels:
+    app.kubernetes.io/name: linkding
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
+    external-dns.alpha.kubernetes.io/hostname: linkding.homelab.skwig.party
+    external-dns.alpha.kubernetes.io/target: 192.168.100.47
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: linkding.homelab.skwig.party
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: linkding
+                port:
+                  number: 3000
+  tls:
+    - secretName: linkding-homelab-tls
+      hosts:
+        - linkding.homelab.skwig.party
+

@@ -13,6 +13,9 @@ data:
     - Links:
       - OsrsPrices:
             href: https://osrs-prices.homelab.skwig.party
+      - Linkding:
+            href: https://linkding.homelab.skwig.party
+            icon: linkding.png
       - Jellyfin:
             href: https://jellyfin.homelab.skwig.party
             icon: jellyfin.png
