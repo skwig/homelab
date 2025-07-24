@@ -62,6 +62,8 @@ metadata:
   name: infrastructure-controllers
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: infrastructure-core-configs
   interval: 1h
   retryInterval: 1m
   timeout: 5m
