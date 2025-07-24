@@ -18,6 +18,8 @@ spec:
   chart:
     spec:
       chart: external-secrets
+      # upgrading to 0.17.0 and above causes flux to fail healthchecks due to missing resources,
+      # even though they get created and are ready
       version: 0.16.2
       sourceRef:
         kind: HelmRepository
