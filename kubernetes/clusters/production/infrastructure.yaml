@@ -17,6 +17,10 @@ spec:
     name: flux-system
   prune: true
   wait: true
+  healthChecks:
+    - apiVersion: external-secrets.io/v1
+      kind: ClusterSecretStore
+      name: azure-kv-cluster-secret-store
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
