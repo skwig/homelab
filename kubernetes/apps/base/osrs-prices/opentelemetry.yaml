@@ -9,3 +9,6 @@ spec:
   propagators:
      - tracecontext
      - baggage
+  sampler:
+    type: parentbased_traceidratio
+    argument: "1"
