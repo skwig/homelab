@@ -1,0 +1,11 @@
+---
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  name: osrs-prices
+spec:
+  exporter: 
+    endpoint: http://opentelemetry-collector-collector.opentelemetry:4318
+  propagators:
+   - tracecontext
+   - baggage

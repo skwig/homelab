@@ -7,3 +7,4 @@ resources:
   - pvc.yaml
   - github-credentials-secret.yaml
   - ghcr-credentials-secret.yaml
+  - opentelemetry.yaml
