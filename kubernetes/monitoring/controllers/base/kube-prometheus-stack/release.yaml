@@ -30,6 +30,7 @@ spec:
     prometheus:
       enabled: true
       prometheusSpec:
+        enableOTLPReceiver: true
         storageSpec:
           volumeClaimTemplate:
             spec:
