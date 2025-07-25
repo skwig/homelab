@@ -4,3 +4,4 @@ namespace: ingress-nginx
 resources:
   - namespace.yaml
   - release.yaml
+  - opentelemetry.yaml

@@ -6,3 +6,5 @@ metadata:
   labels:
     # needed for daemonset/ingress-nginx-controller with hostNetwork=true
     pod-security.kubernetes.io/enforce: privileged
+  annotations:
+    instrumentation.opentelemetry.io/inject-nginx: "true"
