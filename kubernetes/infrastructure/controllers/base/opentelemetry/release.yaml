@@ -1,0 +1,29 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: opentelemetry
+spec:
+  interval: 10m
+  url: https://open-telemetry.github.io/opentelemetry-helm-charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: opentelemetry-operator
+spec:
+  releaseName: opentelemetry-operator
+  targetNamespace: opentelemetry
+  interval: 10m
+  chart:
+    spec:
+      chart: opentelemetry-operator
+      version: v1.18.2
+      sourceRef:
+        kind: HelmRepository
+        name: opentelemetry
+  install:
+    createNamespace: true
+  values:
+    crds:
+      create: true

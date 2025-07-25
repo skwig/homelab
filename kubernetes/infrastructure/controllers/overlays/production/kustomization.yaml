@@ -9,4 +9,5 @@ resources:
   - ../../base/ingress-nginx/
   - ../../base/local-path-provisioner/
   - ../../base/metrics-server/
+  - ../../base/opentelemetry/
   - ../../base/renovate/
