@@ -3,3 +3,5 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: osrs-prices
+annotations:
+  instrumentation.opentelemetry.io/inject-dotnet: "true"
