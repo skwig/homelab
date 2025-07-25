@@ -25,7 +25,7 @@ spec:
   chart:
     spec:
       chart: ./charts/osrsprices
-      version: 0.0.0
+      version: 1.34.0
       sourceRef:
         kind: GitRepository
         name: osrs-prices
@@ -41,8 +41,6 @@ spec:
   # https://github.com/skwig/OsrsPrices/blob/master/charts/osrsprices/values.yaml
   values:
     webapp:
-      image:
-        tag: master-16-79884f6c1261b24e59d3e5257dcad142ac77e8c5
       imagePullSecrets:
         - name: ghcr-credentials-secret
       ingress:
@@ -64,8 +62,6 @@ spec:
       configMap:
         PriceArchiveApiOptions__BaseUri: http://osrs-prices-price-archive:8080
     price-archive:
-      image:
-        tag: master-16-79884f6c1261b24e59d3e5257dcad142ac77e8c5
       imagePullSecrets:
         - name: ghcr-credentials-secret
       volumes:
