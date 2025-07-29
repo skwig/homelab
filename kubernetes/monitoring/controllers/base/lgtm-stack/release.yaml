@@ -27,7 +27,7 @@ spec:
   # https://artifacthub.io/packages/helm/grafana/lgtm-distributed?modal=values
   values:
     grafana-oncall:
-      enabled: true
+      enabled: false
     grafana:
       enabled: true
       # ingress:
