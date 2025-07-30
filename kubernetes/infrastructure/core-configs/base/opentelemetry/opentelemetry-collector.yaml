@@ -19,8 +19,10 @@ spec:
         endpoint: lgtm-stack-tempo-distributor.monitoring:4317
         tls:
           insecure: true
-      loki:
-        endpoint: http://lgtm-stack-loki-distributor.monitoring.svc:3100/loki/api/v1/push
+      otlphttp/loki:
+        endpoint: http://lgtm-stack-loki-distributor.monitoring.svc:3100/otlp/v1/logs
+        tls:
+          insecure: true
       prometheusremotewrite/mimir:
         endpoint: http://lgtm-stack-mimir-nginx.monitoring/api/v1/push
         tls:
@@ -45,8 +47,8 @@ spec:
         metrics:
           receivers: [otlp]
           processors: []
-          exporters: [debug, loki]
+          exporters: [debug, prometheustremotewrite/mimir]
         logs:
           receivers: [otlp]
           processors: []
-          exporters: [debug, prometheustremotewrite/mimir]
+          exporters: [debug, otlphttp/loki]
