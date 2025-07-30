@@ -63,7 +63,7 @@ spec:
           storageClass: smb-share-retain
       # https://github.com/minio/minio/blob/master/helm/minio/values.yaml
       minio:
-        persistentVolume:
+        persistence:
           storageClass: smb-share-retain
     tempo:
       enabled: true
