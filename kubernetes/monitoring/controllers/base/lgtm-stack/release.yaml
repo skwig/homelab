@@ -46,7 +46,24 @@ spec:
       #     - /
     loki:
       enabled: true
+    # https://artifacthub.io/packages/helm/grafana/mimir-distributed?modal=values
     mimir:
       enabled: true
+      alertmanager:
+        persistentVolume:
+          storageClass: smb-share-retain
+      ingester:
+        persistentVolume:
+          storageClass: smb-share-retain
+      store_gateway:
+        persistentVolume:
+          storageClass: smb-share-retain
+      compactor:
+        persistentVolume:
+          storageClass: smb-share-retain
+      # https://github.com/minio/minio/blob/master/helm/minio/values.yaml
+      minio:
+        persistentVolume:
+          storageClass: smb-share-retain
     tempo:
       enabled: true
