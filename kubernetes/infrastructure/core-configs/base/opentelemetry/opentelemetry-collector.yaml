@@ -16,7 +16,7 @@ spec:
     processors: {}
     exporters:
       otlp/tempo:
-        endpoint: lgtm-stack-tempo-distributor.monitoring
+        endpoint: lgtm-stack-tempo-distributor.monitoring:3100
         tls:
           insecure: true
       otlphttp/loki:
