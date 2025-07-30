@@ -23,8 +23,8 @@ spec:
         endpoint: http://lgtm-stack-loki-distributor.monitoring.svc:3100/otlp/v1/logs
         tls:
           insecure: true
-      prometheusremotewrite/mimir:
-        endpoint: http://lgtm-stack-mimir-nginx.monitoring/api/v1/push
+      otlphttp/mimir:
+        endpoint: http://lgtm-stack-mimir-nginx.monitoring/otlp
         tls:
           insecure: true
       debug: {}
@@ -47,7 +47,7 @@ spec:
         metrics:
           receivers: [otlp]
           processors: []
-          exporters: [debug, prometheustremotewrite/mimir]
+          exporters: [debug, otlphttp/mimir]
         logs:
           receivers: [otlp]
           processors: []
