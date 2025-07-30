@@ -30,20 +30,21 @@ spec:
       enabled: false
     grafana:
       enabled: true
-      # ingress:
-      #   enabled: true
-      #   annotations:
-      #     cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
-      #     external-dns.alpha.kubernetes.io/hostname: lgtm.homelab.skwig.party
-      #     external-dns.alpha.kubernetes.io/target: 192.168.100.47
-      #   tls:
-      #     - secretName: lgtm-homelab-tls
-      #       hosts:
-      #         - lgtm.homelab.skwig.party
-      #   hosts:
-      #     - lgtm.homelab.skwig.party
-      #   paths:
-      #     - /
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
+          external-dns.alpha.kubernetes.io/hostname: lgtm.homelab.skwig.party
+          external-dns.alpha.kubernetes.io/target: 192.168.100.47
+        tls:
+          - secretName: lgtm-homelab-tls
+            hosts:
+              - lgtm.homelab.skwig.party
+        hosts:
+          - lgtm.homelab.skwig.party
+        paths:
+          - /
     loki:
       enabled: true
     # https://artifacthub.io/packages/helm/grafana/mimir-distributed?modal=values
