@@ -1,0 +1,17 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-share-retain
+provisioner: nfs.csi.k8s.io
+parameters:
+  source: //192.168.100.37/Homelab
+  subDir: ${pvc.metadata.name}
+  csi.storage.k8s.io/provisioner-secret-name: nfs-share-credentials
+  csi.storage.k8s.io/provisioner-secret-namespace: csi-driver-nfs
+  csi.storage.k8s.io/node-stage-secret-name: nfs-share-credentials
+  csi.storage.k8s.io/node-stage-secret-namespace: csi-driver-nfs
+reclaimPolicy: Retain
+allowVolumeExpansion: true
+mountOptions:
+  - nfsvers=4.1

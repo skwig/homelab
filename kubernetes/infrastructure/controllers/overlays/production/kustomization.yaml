@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ../../base/alerts/
   - ../../base/cert-manager/
+  - ../../base/csi-driver-nfs/
   - ../../base/csi-driver-smb/
   - ../../base/external-dns/
   - ../../base/ingress-nginx/
