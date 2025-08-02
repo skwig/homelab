@@ -16,15 +16,15 @@ spec:
     processors: {}
     exporters:
       otlphttp/tempo:
-        endpoint: http://lgtm-stack-tempo-distributor.monitoring:3100
+        endpoint: http://lgtm-tempo-distributor.monitoring:4318
         tls:
           insecure: true
       otlphttp/loki:
-        endpoint: http://lgtm-stack-loki-distributor.monitoring:3100/otlp
+        endpoint: http://lgtm-loki-distributor.monitoring:3100/otlp
         tls:
           insecure: true
       otlphttp/mimir:
-        endpoint: http://lgtm-stack-mimir-nginx.monitoring/otlp
+        endpoint: http://lgtm-mimir-nginx.monitoring/otlp
         tls:
           insecure: true
       debug:
