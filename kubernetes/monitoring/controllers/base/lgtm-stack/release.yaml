@@ -43,6 +43,7 @@ spec:
               - lgtm.homelab.skwig.party
         hosts:
           - lgtm.homelab.skwig.party
+    # https://artifacthub.io/packages/helm/grafana/loki-distributed?modal=values
     loki:
       enabled: true
     # https://artifacthub.io/packages/helm/grafana/mimir-distributed?modal=values
@@ -66,5 +67,12 @@ spec:
         persistence:
           storageClass: local-path-retain
 
+    # https://artifacthub.io/packages/helm/grafana/tempo-distributed?modal=values
     tempo:
       enabled: true
+      traces:
+        otlp:
+          http:
+            enabled: true
+          grpc:
+            enabled: true
