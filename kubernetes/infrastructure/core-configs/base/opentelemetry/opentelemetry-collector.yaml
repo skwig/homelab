@@ -27,7 +27,8 @@ spec:
         endpoint: http://lgtm-stack-mimir-nginx.monitoring/otlp
         tls:
           insecure: true
-      debug: {}
+      debug:
+        verbosity: detailed
     extensions:
       health_check:
       pprof:
