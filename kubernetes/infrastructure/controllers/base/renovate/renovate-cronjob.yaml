@@ -14,7 +14,7 @@ spec:
         spec:
           containers:
             - name: renovate
-              image: renovate/renovate:41.46
+              image: renovate/renovate:41.51
               args:
                 - skwig/homelab
               envFrom:
