@@ -76,3 +76,7 @@ spec:
             enabled: true
           grpc:
             enabled: true
+      minio:
+        enabled: true
+        persistence:
+          storageClass: local-path-retain
