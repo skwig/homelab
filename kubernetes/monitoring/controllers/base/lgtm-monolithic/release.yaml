@@ -49,7 +49,7 @@ spec:
         kind: HelmRepository
         name: grafana
   dependsOn:
-    - lgtm-monolithic-tempo
+    - name: lgtm-monolithic-tempo
   install:
     createNamespace: true
   # https://artifacthub.io/packages/helm/grafana/grafana?modal=values
