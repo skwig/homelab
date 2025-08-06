@@ -80,9 +80,9 @@ spec:
         replicas: 1
         config:
           replication_factor: 1
-      distributor:
-        replicas: 1
-      compactor:
-        replicas: 1
-      querier:
-        replicas: 1
+      # distributor:
+      #   replicas: 1
+      # compactor:
+      #   replicas: 1
+      # querier:
+      #   replicas: 1
