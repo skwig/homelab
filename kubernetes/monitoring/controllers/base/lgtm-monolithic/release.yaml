@@ -56,8 +56,8 @@ spec:
       storage:
         type: filesystem
         filesystem:
-          chunks_directory: /var/loki/chunks
-          rules_directory: /var/loki/rules
+          chunks_directory: /var/loki/chunks2
+          rules_directory: /var/loki/rules2
       schemaConfig:
         configs:
           - from: "2025-08-01"
