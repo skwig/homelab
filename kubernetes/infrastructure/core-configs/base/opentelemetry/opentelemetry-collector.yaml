@@ -16,7 +16,7 @@ spec:
     processors: {}
     exporters:
       otlphttp/tempo:
-        endpoint: http://otel-lgtm.monitoring:3200
+        endpoint: http://lgtm-monolithic-tempo.monitoring:4318
         tls:
           insecure: true
       otlphttp/loki:
