@@ -67,6 +67,9 @@ spec:
             - lgtm-monolithic.homelab.skwig.party
       hosts:
         - lgtm-monolithic.homelab.skwig.party
+    persistence:
+      enabled: true
+      storageClassName: local-path-retain
     datasources:
       datasources.yaml:
         apiVersion: 1
