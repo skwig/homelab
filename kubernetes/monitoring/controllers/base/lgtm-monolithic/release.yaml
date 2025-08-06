@@ -90,7 +90,7 @@ spec:
           - name: Tempo
             uid: tempo
             type: tempo
-            url: http://lgtm-monolithic-tempo:3100
+            url: http://lgtm-monolithic-tempo:3200
             isDefault: false
             jsonData:
               tracesToLogsV2:
