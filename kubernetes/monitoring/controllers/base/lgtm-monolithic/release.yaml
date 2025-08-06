@@ -52,14 +52,15 @@ spec:
     createNamespace: true
   # https://artifacthub.io/packages/helm/grafana/loki?modal=values
   values:
+    loki:
+      storage:
+        type: filesystem
     deploymentMode: SingleBinary
     singleBinary:
       persistence:
         enabled: true
         size: 10Gi
         storageClass: local-path-retain
-    storage:
-      type: filesystem
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
