@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - ../../base/kube-prometheus-stack/
   - ../../base/lgtm/
+  - ../../base/lgtm-monolithic/
   - ../../base/otel-lgtm/
   - ../../base/weave/
