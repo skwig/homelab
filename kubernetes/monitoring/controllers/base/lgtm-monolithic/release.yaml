@@ -36,6 +36,32 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
+  name: lgtm-monolithic-loki
+spec:
+  releaseName: lgtm-monolithic-loki
+  targetNamespace: monitoring
+  interval: 10m
+  chart:
+    spec:
+      chart: loki
+      version: 6.35.0
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+  install:
+    createNamespace: true
+  # https://artifacthub.io/packages/helm/grafana/loki?modal=values
+  values:
+    deploymentMode: SingleBinary
+    singleBinary:
+      persistence:
+        enabled: true
+        size: 10Gi
+        storageClass: local-path-retain
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
   name: lgtm-monolithic-grafana
 spec:
   releaseName: lgtm-monolithic-grafana
@@ -50,6 +76,7 @@ spec:
         name: grafana
   dependsOn:
     - name: lgtm-monolithic-tempo
+    - name: lgtm-monolithic-loki
   install:
     createNamespace: true
   # https://artifacthub.io/packages/helm/grafana/grafana?modal=values
