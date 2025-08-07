@@ -57,8 +57,6 @@ spec:
         type: filesystem
         filesystem:
           admin_api_directory: null
-          chunks_directory: /var/loki/chunks
-          rules_directory: /var/loki/rules
       schemaConfig:
         configs:
           - from: "2025-08-01"
@@ -117,9 +115,9 @@ spec:
             - lgtm-monolithic.homelab.skwig.party
       hosts:
         - lgtm-monolithic.homelab.skwig.party
-    persistence:
-      enabled: true
-      storageClassName: local-path-retain
+    # persistence:
+    #   enabled: true
+    #   storageClassName: local-path-retain
     datasources:
       datasources.yaml:
         apiVersion: 1
