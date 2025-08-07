@@ -27,8 +27,7 @@ spec:
         endpoint: http://lgtm-monolithic-loki.monitoring:3100/otlp
         tls:
           insecure: true
-      debug:
-        verbosity: detailed
+      debug: {}
     extensions:
       health_check:
       pprof:
