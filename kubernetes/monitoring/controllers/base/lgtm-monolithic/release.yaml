@@ -10,32 +10,6 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: lgtm-monolithic-tempo
-spec:
-  releaseName: lgtm-monolithic-tempo
-  targetNamespace: monitoring
-  interval: 10m
-  chart:
-    spec:
-      chart: tempo
-      version: 1.23.2
-      sourceRef:
-        kind: HelmRepository
-        name: grafana
-  install:
-    createNamespace: true
-  # https://artifacthub.io/packages/helm/grafana/tempo?modal=values
-  values:
-    persistence:
-      enabled: true
-      storageClassName: local-path-retain
-      accessModes:
-        - ReadWriteOnce
-      size: 10Gi
----
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
   name: lgtm-monolithic-loki
 spec:
   releaseName: lgtm-monolithic-loki
@@ -79,6 +53,32 @@ spec:
       replicas: 0
     write:
       replicas: 0
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: lgtm-monolithic-tempo
+spec:
+  releaseName: lgtm-monolithic-tempo
+  targetNamespace: monitoring
+  interval: 10m
+  chart:
+    spec:
+      chart: tempo
+      version: 1.23.2
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+  install:
+    createNamespace: true
+  # https://artifacthub.io/packages/helm/grafana/tempo?modal=values
+  values:
+    persistence:
+      enabled: true
+      storageClassName: local-path-retain
+      accessModes:
+        - ReadWriteOnce
+      size: 10Gi
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
