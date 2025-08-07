@@ -19,12 +19,12 @@ spec:
         endpoint: http://lgtm-monolithic-tempo.monitoring:4318
         tls:
           insecure: true
-      otlphttp/loki:
-        endpoint: http://otel-lgtm.monitoring:3100/otlp
+      otlphttp/prometheus:
+        endpoint: http://kube-prometheus-stack-prometheus.kube-prometheus-stack:9090/api/v1/otlp
         tls:
           insecure: true
-      otlphttp/mimir:
-        endpoint: http://otel-lgtm.monitoring:9009/otlp
+      otlphttp/loki:
+        endpoint: http://lgtm-monolithic-loki.monitoring:3100/otlp
         tls:
           insecure: true
       debug:
@@ -48,7 +48,7 @@ spec:
         metrics:
           receivers: [otlp]
           processors: []
-          exporters: [debug, otlphttp/mimir]
+          exporters: [debug, otlphttp/prometheus]
         logs:
           receivers: [otlp]
           processors: []
