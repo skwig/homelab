@@ -31,6 +31,8 @@ spec:
       enabled: true
       prometheusSpec:
         enableOTLPReceiver: true
+        additionalArgs:
+          - --web.enable-otlp-receiver
         storageSpec:
           volumeClaimTemplate:
             spec:
