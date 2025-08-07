@@ -3,7 +3,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../../base/kube-prometheus-stack/
-  - ../../base/lgtm/
   - ../../base/lgtm-monolithic/
-  - ../../base/otel-lgtm/
   - ../../base/weave/
