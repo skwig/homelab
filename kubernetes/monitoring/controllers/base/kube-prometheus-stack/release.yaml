@@ -66,4 +66,27 @@ spec:
           - grafana.homelab.skwig.party
         paths:
           - /
+      additionalDataSources:
+          # https://grafana.com/docs/grafana/latest/datasources/loki/#provision-the-loki-data-source
+          - name: Loki
+            uid: loki
+            type: loki
+            url: http://lgtm-monolithic-loki
+            isDefault: false
+          # https://grafana.com/docs/grafana/latest/datasources/tempo/configure-tempo-data-source/#provision-the-data-source
+          - name: Tempo
+            uid: tempo
+            type: tempo
+            url: http://lgtm-monolithic-tempo:3200
+            isDefault: false
+            jsonData:
+              tracesToLogsV2:
+                datasourceUid: loki
+              lokiSearch:
+                datasourceUid: loki
+              tracesToMetrics:
+                datasourceUid: prom
+              serviceMap:
+                datasourceUid: prom
+
 
