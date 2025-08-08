@@ -40,6 +40,7 @@ spec:
             index:
               prefix: index_
               period: 24h
+      auth_enabled: false
     deploymentMode: SingleBinary
     singleBinary:
       replicas: 1
