@@ -46,7 +46,7 @@ spec:
       persistence:
         enabled: true
         size: 10Gi
-        storageClass: nfs-share-remain
+        storageClass: nfs-share-retain
     backend:
       replicas: 0
     read:
