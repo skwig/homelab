@@ -16,15 +16,15 @@ spec:
     processors: {}
     exporters:
       otlphttp/tempo:
-        endpoint: http://lgtm-monolithic-tempo.monitoring:4318
+        endpoint: http://tempo.monitoring:4318
         tls:
           insecure: true
       otlphttp/prometheus:
-        endpoint: http://kube-prometheus-stack-prometheus.kube-prometheus-stack:9090/api/v1/otlp
+        endpoint: http://kube-prometheus-stack-prometheus.monitoring:9090/api/v1/otlp
         tls:
           insecure: true
       otlphttp/loki:
-        endpoint: http://lgtm-monolithic-loki.monitoring:3100/otlp
+        endpoint: http://loki.monitoring:3100/otlp
         tls:
           insecure: true
       debug: {}
