@@ -73,7 +73,8 @@ spec:
           - name: Loki
             uid: loki
             type: loki
-            url: http://loki.monitoring:9095
+            access: proxy
+            url: http://loki.monitoring:3100
             isDefault: false
             jsonData:
               derivedFields:
@@ -87,6 +88,7 @@ spec:
           - name: Tempo
             uid: tempo
             type: tempo
+            access: proxy
             url: http://tempo.monitoring:3200
             isDefault: false
             jsonData:
