@@ -5,7 +5,8 @@ metadata:
   name: nfs-share-retain
 provisioner: nfs.csi.k8s.io
 parameters:
-  source: //192.168.100.37/Homelab
+  server: 192.168.100.37
+  share: Homelab
   subDir: ${pvc.metadata.name}
   csi.storage.k8s.io/provisioner-secret-name: nfs-share-credentials
   csi.storage.k8s.io/provisioner-secret-namespace: csi-driver-nfs
