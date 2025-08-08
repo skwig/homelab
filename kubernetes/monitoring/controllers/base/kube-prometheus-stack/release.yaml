@@ -22,7 +22,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: kube-prometheus-stack
-        namespace: kube-prometheus-stack
   dependsOn:
     - name: loki
     - name: tempo
