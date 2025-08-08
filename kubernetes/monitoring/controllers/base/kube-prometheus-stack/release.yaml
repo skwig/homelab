@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: kube-prometheus-stack
+  name: prometheus-community
 spec:
   interval: 10m
   url: https://prometheus-community.github.io/helm-charts
@@ -21,7 +21,7 @@ spec:
       version: 75.18.1
       sourceRef:
         kind: HelmRepository
-        name: kube-prometheus-stack
+        name: prometheus-community
   dependsOn:
     - name: loki
     - name: tempo
