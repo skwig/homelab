@@ -13,7 +13,7 @@ metadata:
   name: kube-prometheus-stack
 spec:
   releaseName: kube-prometheus-stack
-  targetNamespace: kube-prometheus-stack
+  targetNamespace: monitoring
   interval: 10m
   chart:
     spec:
