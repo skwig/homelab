@@ -28,7 +28,7 @@ spec:
   values:
     persistence:
       enabled: true
-      storageClassName: nfs-share-remain
+      storageClassName: nfs-share-retain
       accessModes:
         - ReadWriteOnce
       size: 10Gi
