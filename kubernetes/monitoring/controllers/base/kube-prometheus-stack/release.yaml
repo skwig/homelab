@@ -23,6 +23,9 @@ spec:
         kind: HelmRepository
         name: kube-prometheus-stack
         namespace: kube-prometheus-stack
+  dependsOn:
+    - name: loki
+    - name: tempo
   install:
     createNamespace: true
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
@@ -34,7 +37,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: smb-share-retain
+              storageClassName: nfs-share-retain
               accessModes: ["ReadWriteMany"]
               resources:
                 requests:
@@ -45,7 +48,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: smb-share-retain
+              storageClassName: nfs-share-retain
               accessModes: ["ReadWriteMany"]
               resources:
                 requests:
@@ -71,13 +74,13 @@ spec:
           - name: Loki
             uid: loki
             type: loki
-            url: http://lgtm-monolithic-loki.monitoring
+            url: http://loki.monitoring
             isDefault: false
           # https://grafana.com/docs/grafana/latest/datasources/tempo/configure-tempo-data-source/#provision-the-data-source
           - name: Tempo
             uid: tempo
             type: tempo
-            url: http://lgtm-monolithic-tempo.monitoring:3200
+            url: http://tempo.monitoring:3200
             isDefault: false
             jsonData:
               tracesToLogsV2:

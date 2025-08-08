@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: kube-prometheus-stack
+  name: monitoring
   labels:
     # needed for daemonset/kube-prometheus-stack-prometheus-node-exporter
     pod-security.kubernetes.io/enforce: privileged
