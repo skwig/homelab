@@ -37,6 +37,42 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
+  name: infrastructure-core-configs-2
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: infrastructure-core-controllers-2
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  path: ./kubernetes/infrastructure/core-configs-2/overlays/production
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  prune: true
+  wait: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infrastructure-core-controllers-2
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: infrastructure-core-configs
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  path: ./kubernetes/infrastructure/core-controllers-2/overlays/production
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  prune: true
+  wait: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
   name: infrastructure-configs
   namespace: flux-system
 spec:
@@ -59,7 +95,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: infrastructure-core-configs
+    - name: infrastructure-core-configs-2
   interval: 1h
   retryInterval: 1m
   timeout: 5m
