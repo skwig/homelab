@@ -8,3 +8,4 @@ resources:
   - configmap.yaml
   - service.yaml
   - ingress.yaml
+  - opentelemetry.yaml
