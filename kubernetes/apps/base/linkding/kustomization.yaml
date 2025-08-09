@@ -8,3 +8,4 @@ resources:
   - service.yaml
   - ingress.yaml
   - superuser-credentials-secret.yaml
+  - opentelemetry.yaml
