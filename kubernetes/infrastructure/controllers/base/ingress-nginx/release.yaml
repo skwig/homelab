@@ -31,7 +31,7 @@ spec:
         enabled: true
         name: nginx
         default: true
-      kind: DaemonSet
+      kind: Deployment
       hostNetwork: true
       service:
         type: ClusterIP
