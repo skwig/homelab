@@ -22,6 +22,10 @@ spec:
           image: "ghcr.io/sissbruecker/linkding:1.41.0-plus-alpine"
           imagePullPolicy: Always
           envFrom:
+            - configMapRef:
+                name: linkding-configmap
+            - secretRef:
+                name: db-credentials-secret
             - secretRef:
                 name: superuser-credentials-secret
           ports:
