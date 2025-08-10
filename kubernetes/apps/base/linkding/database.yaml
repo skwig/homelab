@@ -11,8 +11,6 @@ spec:
     initdb:
       database: linkding
       owner: linkding
-      secret:
-        name: db-credentials-secret
   storage:
     size: 1Gi
     storageClass: local-path-retain
