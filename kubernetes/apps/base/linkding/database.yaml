@@ -16,6 +16,11 @@ spec:
   storage:
     size: 1Gi
     storageClass: local-path-retain
+  managed:
+    services:
+      disabledDefaultServices:
+        - ro
+        - r
   monitoring:
     enablePodMonitor: true
 
