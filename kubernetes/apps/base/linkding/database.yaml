@@ -12,6 +12,10 @@ spec:
   storage:
     size: 1Gi
     storageClass: local-path-retain
+  # backup:
+  #   barmanObjectStore:
+  #     destinationPath: abc
+  #     endpointURL: 
   managed:
     services:
       disabledDefaultServices:
@@ -25,6 +29,8 @@ kind: Tenant
 metadata:
   name: linkding-backup
 spec:
+  configuration:
+    name: storage-configuration
   pools:
     - name: pool-0
       servers: 1
@@ -39,3 +45,15 @@ spec:
             requests:
               storage: 2Gi
           storageClassName: nfs-share-retain
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: storage-configuration
+type: Opaque
+stringData:
+  config.env: |-
+    export MINIO_ROOT_USER="minio"
+    export MINIO_ROOT_PASSWORD="minio123"
+    export MINIO_STORAGE_CLASS_STANDARD="EC:2"
+    export MINIO_BROWSER="on"
