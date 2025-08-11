@@ -38,17 +38,6 @@ metadata:
 spec:
   immediate: true
   schedule: "0 0 3 * * *"
-  backupOwnerReference: cluster
-  cluster:
-    name: linkding-db
----
-apiVersion: postgresql.cnpg.io/v1
-kind: Backup
-metadata:
-  name: linkding-db-backup-test
-spec:
-  immediate: true
-  backupOwnerReference: cluster
   cluster:
     name: linkding-db
 ---
