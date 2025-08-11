@@ -14,7 +14,7 @@ spec:
     storageClass: local-path-retain
   backup:
     barmanObjectStore:
-      destinationPath: s3://backup/
+      destinationPath: s3://backup/test
       endpointURL: http://linkding-backup-hl:9000
       s3Credentials:
         accessKeyId:
