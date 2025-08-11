@@ -15,7 +15,7 @@ spec:
   backup:
     barmanObjectStore:
       destinationPath: s3://backup/test
-      endpointURL: http://linkding-backup-hl:9000
+      endpointURL: https://minio
       s3Credentials:
         accessKeyId:
           name: storage-user
