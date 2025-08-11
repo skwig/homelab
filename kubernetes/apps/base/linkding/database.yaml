@@ -36,7 +36,7 @@ spec:
   pools:
     - name: pool-0
       servers: 1
-      volumesPerServer: 4
+      volumesPerServer: 1
       volumeClaimTemplate:
         metadata:
           name: backup
@@ -65,10 +65,10 @@ stringData:
     export MINIO_BROWSER="on"
 ---
 apiVersion: v1
-data:
-  CONSOLE_ACCESS_KEY: Y29uc29sZQ==
-  CONSOLE_SECRET_KEY: Y29uc29sZTEyMw==
 kind: Secret
 metadata:
   name: storage-user
 type: Opaque
+data:
+  CONSOLE_ACCESS_KEY: Y29uc29sZQ==
+  CONSOLE_SECRET_KEY: Y29uc29sZTEyMw==
