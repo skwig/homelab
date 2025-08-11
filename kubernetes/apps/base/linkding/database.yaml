@@ -19,4 +19,23 @@ spec:
         - r
   monitoring:
     enablePodMonitor: true
-
+---
+apiVersion: minio.min.io/v2
+kind: Tenant
+metadata:
+  name: linkding-backup
+spec:
+  pools:
+    - name: pool-0
+      servers: 1
+      volumesPerServer: 1
+      size: 10Gi
+      storageClassName: nfs-share-retain
+---
+apiVersion: minio.min.io/v2
+kind: Bucket
+metadata:
+  name: backup
+spec:
+  name: backup
+  tenant: linkding-backup
