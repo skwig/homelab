@@ -18,10 +18,10 @@ spec:
       endpointURL: http://linkding-backup-hl:9000
       s3Credentials:
         accessKeyId:
-          name: minio-creds
+          name: storage-user
           key: MINIO_ACCESS_KEY
         secretAccessKey:
-          name: minio-creds
+          name: storage-user
           key: MINIO_SECRET_KEY
   managed:
     services:
