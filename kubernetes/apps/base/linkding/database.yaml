@@ -31,11 +31,3 @@ spec:
       volumesPerServer: 1
       size: 10Gi
       storageClassName: nfs-share-retain
----
-apiVersion: minio.min.io/v2
-kind: Bucket
-metadata:
-  name: backup
-spec:
-  name: backup
-  tenant: linkding-backup
