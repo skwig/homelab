@@ -29,5 +29,13 @@ spec:
     - name: pool-0
       servers: 1
       volumesPerServer: 1
-      size: 10Gi
-      storageClassName: nfs-share-retain
+      volumeClaimTemplate:
+        metadata:
+          name: backup
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 2Gi
+          storageClassName: nfs-share-retain
