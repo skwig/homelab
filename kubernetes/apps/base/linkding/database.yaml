@@ -31,10 +31,12 @@ metadata:
 spec:
   configuration:
     name: storage-configuration
+  users:
+    - name: storage-user
   pools:
     - name: pool-0
       servers: 1
-      volumesPerServer: 1
+      volumesPerServer: 4
       volumeClaimTemplate:
         metadata:
           name: backup
@@ -45,6 +47,10 @@ spec:
             requests:
               storage: 2Gi
           storageClassName: nfs-share-retain
+  buckets:
+    - name: "test-bucket1"
+      region: "us-east-1"
+      objectLock: true
 ---
 apiVersion: v1
 kind: Secret
@@ -57,3 +63,13 @@ stringData:
     export MINIO_ROOT_PASSWORD="minio123"
     export MINIO_STORAGE_CLASS_STANDARD="EC:2"
     export MINIO_BROWSER="on"
+---
+apiVersion: v1
+data:
+  CONSOLE_ACCESS_KEY: Y29uc29sZQ==
+  CONSOLE_SECRET_KEY: Y29uc29sZTEyMw==
+kind: Secret
+metadata:
+  name: storage-user
+  namespace: default
+type: Opaque
