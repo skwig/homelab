@@ -12,10 +12,17 @@ spec:
   storage:
     size: 1Gi
     storageClass: local-path-retain
-  # backup:
-  #   barmanObjectStore:
-  #     destinationPath: abc
-  #     endpointURL: 
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://backup/
+      endpointURL: http://linkding-backup-hl:9000
+      s3Credentials:
+        accessKeyId:
+          name: minio-creds
+          key: MINIO_ACCESS_KEY
+        secretAccessKey:
+          name: minio-creds
+          key: MINIO_SECRET_KEY
   managed:
     services:
       disabledDefaultServices:
@@ -23,6 +30,27 @@ spec:
         - r
   monitoring:
     enablePodMonitor: true
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: linkding-db-backup
+spec:
+  immediate: true
+  schedule: "0 0 3 * * *"
+  backupOwnerReference: cluster
+  cluster:
+    name: linkding-db
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: linkding-db-backup-test
+spec:
+  immediate: true
+  backupOwnerReference: cluster
+  cluster:
+    name: linkding-db
 ---
 apiVersion: minio.min.io/v2
 kind: Tenant
@@ -48,8 +76,8 @@ spec:
               storage: 2Gi
           storageClassName: nfs-share-retain
   buckets:
-    - name: "test-bucket1"
-      region: "us-east-1"
+    - name: backup
+      region: us-east-1
       objectLock: true
 ---
 apiVersion: v1
