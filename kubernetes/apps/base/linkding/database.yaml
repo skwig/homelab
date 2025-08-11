@@ -19,10 +19,10 @@ spec:
       s3Credentials:
         accessKeyId:
           name: storage-user
-          key: MINIO_ACCESS_KEY
+          key: CONSOLE_ACCESS_KEY
         secretAccessKey:
           name: storage-user
-          key: MINIO_SECRET_KEY
+          key: CONSOLE_SECRET_KEY
   managed:
     services:
       disabledDefaultServices:
