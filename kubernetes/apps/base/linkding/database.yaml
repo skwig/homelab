@@ -15,8 +15,7 @@ spec:
   backup:
     barmanObjectStore:
       destinationPath: s3://backup
-      # endpointURL: http://minio
-      endpointURL: http://linkding-backup-hl:9000
+      endpointURL: http://minio
       s3Credentials:
         accessKeyId:
           name: storage-user
@@ -48,9 +47,9 @@ metadata:
   name: linkding-backup
 spec:
   configuration:
-    name: storage-configuration
+    name: linkding-backup-configuration
   users:
-    - name: storage-user
+    - name: minio-user-credentials
   pools:
     - name: pool-0
       servers: 1
@@ -74,20 +73,25 @@ spec:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: storage-configuration
+  name: linkding-backup-configuration
 type: Opaque
 stringData:
   config.env: |-
     export MINIO_STORAGE_CLASS_STANDARD="EC:0"
-    export MINIO_BROWSER="on"
 ---
-apiVersion: v1
-kind: Secret
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
 metadata:
-  name: storage-user
-  labels:
-    cnpg.io/reload: "true"
-type: Opaque
-data:
-  CONSOLE_ACCESS_KEY: Y29uc29sZQ==
-  CONSOLE_SECRET_KEY: Y29uc29sZTEyMw==
+  name: minio-user-credentials
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: azure-kv-cluster-secret-store
+    kind: ClusterSecretStore
+  data:
+    - secretKey: CONSOLE_ACCESS_KEY
+      remoteRef:
+        key: minio-console-accesskey
+    - secretKey: CONSOLE_SECRET_KEY
+      remoteRef:
+        key: minio-console-secretkey
