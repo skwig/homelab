@@ -15,7 +15,7 @@ spec:
   backup:
     barmanObjectStore:
       destinationPath: s3://backup/test
-      endpointURL: https://minio
+      endpointURL: http://minio
       s3Credentials:
         accessKeyId:
           name: storage-user
