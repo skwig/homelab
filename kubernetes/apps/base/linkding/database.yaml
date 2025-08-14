@@ -18,10 +18,10 @@ spec:
       endpointURL: http://minio
       s3Credentials:
         accessKeyId:
-          name: storage-user
+          name: minio-user-credentials
           key: CONSOLE_ACCESS_KEY
         secretAccessKey:
-          name: storage-user
+          name: minio-user-credentials
           key: CONSOLE_SECRET_KEY
   managed:
     services:
