@@ -51,6 +51,7 @@ spec:
         cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
         external-dns.alpha.kubernetes.io/hostname: obsidian.homelab.skwig.party
         external-dns.alpha.kubernetes.io/target: 192.168.100.47
+        nginx.ingress.kubernetes.io/proxy-body-size: "50m"
       tls:
         - secretName: obsidian-homelab-tls
           hosts:
