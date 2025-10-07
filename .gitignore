@@ -1,10 +1,12 @@
-# Terraform
 **/.terraform/*
 *.tfstate
 *.tfstate.*
 
-# Talos
 talos/secrets.yaml
 talos/controlplane.yaml
 talos/worker.yaml
 talos/talosconfig
+
+.direnv
+
+.idea
