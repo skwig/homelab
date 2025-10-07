@@ -17,11 +17,6 @@ spec:
         - name: vaultwarden
           image: "ghcr.io/dani-garcia/vaultwarden:1.34.3"
           imagePullPolicy: Always
-          envFrom:
-            - configMapRef:
-                name: vaultwarden-configmap
-            - secretRef:
-                name: superuser-credentials-secret
           env:
             - name: PGHOST
               valueFrom:
