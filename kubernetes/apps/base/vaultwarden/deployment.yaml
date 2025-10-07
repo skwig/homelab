@@ -17,6 +17,9 @@ spec:
         - name: vaultwarden
           image: "ghcr.io/dani-garcia/vaultwarden:1.34.3"
           imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: vaultwarden-configmap
           env:
             - name: DATABASE_URL
               valueFrom:
@@ -27,3 +30,10 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
+          volumeMounts:
+            - mountPath: /data
+              name: vaultwarden-data
+      volumes:
+        - name: vaultwarden-data
+          persistentVolumeClaim:
+            claimName: vaultwarden-pvc
