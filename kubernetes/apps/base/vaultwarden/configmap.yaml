@@ -6,6 +6,6 @@ metadata:
 data:
   DOMAIN: https://vaultwarden.skwig.party
   SMTP_HOST: in-v3.mailjet.com
-  SMTP_PORT: 587
+  SMTP_PORT: "587"
   SMTP_SECURITY: starttls
   SMTP_FROM: noreply@vaultwarden.skwig.party
