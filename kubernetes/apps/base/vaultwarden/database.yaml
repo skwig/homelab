@@ -1,0 +1,97 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: vaultwarden-db
+spec:
+  instances: 3
+  primaryUpdateStrategy: unsupervised
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.5
+  bootstrap:
+    initdb: {}
+  storage:
+    size: 1Gi
+    storageClass: local-path-retain
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://backup
+      endpointURL: http://minio
+      s3Credentials:
+        accessKeyId:
+          name: minio-user-credentials
+          key: CONSOLE_ACCESS_KEY
+        secretAccessKey:
+          name: minio-user-credentials
+          key: CONSOLE_SECRET_KEY
+  managed:
+    services:
+      disabledDefaultServices:
+        - ro
+        - r
+  monitoring:
+    enablePodMonitor: true
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: vaultwaren-db-backup
+spec:
+  immediate: true
+  schedule: "0 0 3 * * *"
+  cluster:
+    name: vaultwarden-db
+---
+apiVersion: minio.min.io/v2
+kind: Tenant
+metadata:
+  name: vaultwarden-backup
+spec:
+  configuration:
+    name: vaultwarden-backup-configuration
+  users:
+    - name: minio-user-credentials
+  pools:
+    - name: pool-0
+      servers: 1
+      volumesPerServer: 1
+      volumeClaimTemplate:
+        metadata:
+          name: backup
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 2Gi
+          storageClassName: nfs-share-retain
+  buckets:
+    - name: backup
+      region: us-east-1
+      objectLock: true
+  requestAutoCert: false
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: vaultwarden-backup-configuration
+type: Opaque
+stringData:
+  config.env: |-
+    export MINIO_STORAGE_CLASS_STANDARD="EC:0"
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: minio-user-credentials
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: azure-kv-cluster-secret-store
+    kind: ClusterSecretStore
+  data:
+    - secretKey: CONSOLE_ACCESS_KEY
+      remoteRef:
+        key: minio-console-accesskey
+    - secretKey: CONSOLE_SECRET_KEY
+      remoteRef:
+        key: minio-console-secretkey

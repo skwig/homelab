@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vaultwawrden
+  labels:
+    app.kubernetes.io/name: vaultwarden
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
+    external-dns.alpha.kubernetes.io/hostname: vaultwarden.homelab.skwig.party
+    external-dns.alpha.kubernetes.io/target: 192.168.100.47
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: vaultwarden.homelab.skwig.party
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: vaultwarden
+                port:
+                  name: http
+  tls:
+    - secretName: vaultwarden-homelab-tls
+      hosts:
+        - vaultwarden.homelab.skwig.party
+

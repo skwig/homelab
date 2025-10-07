@@ -9,10 +9,14 @@ data:
   bookmarks.yaml: ""
   docker.yaml: ""
   kubernetes.yaml: ""
+  # https://github.com/homarr-labs/dashboard-icons
   services.yaml: |
     - Links:
       - OsrsPrices:
             href: https://osrs-prices.homelab.skwig.party
+      - Vaultwarden:
+            href: https://vaultwarden.homelab.skwig.party
+            icon: vaultwarden.png
       - Linkding:
             href: https://linkding.homelab.skwig.party
             icon: linkding.png
