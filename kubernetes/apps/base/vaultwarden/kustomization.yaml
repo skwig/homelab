@@ -7,5 +7,6 @@ resources:
   - service.yaml
   - ingress.yaml
   - database.yaml
-  - configmap.yaml
   - pvc.yaml
+  - configmap.yaml
+  - smtp-credentials-secret.yaml
