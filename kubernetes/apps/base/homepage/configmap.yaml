@@ -15,7 +15,7 @@ data:
       - OsrsPrices:
             href: https://osrs-prices.homelab.skwig.party
       - Vaultwarden:
-            href: https://vaultwarden.homelab.skwig.party
+            href: https://vaultwarden.skwig.party
             icon: vaultwarden.png
       - Linkding:
             href: https://linkding.homelab.skwig.party

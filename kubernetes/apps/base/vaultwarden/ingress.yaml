@@ -7,12 +7,12 @@ metadata:
     app.kubernetes.io/name: vaultwarden
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
-    external-dns.alpha.kubernetes.io/hostname: vaultwarden.homelab.skwig.party
+    external-dns.alpha.kubernetes.io/hostname: vaultwarden.skwig.party
     external-dns.alpha.kubernetes.io/target: 192.168.100.47
 spec:
   ingressClassName: nginx
   rules:
-    - host: vaultwarden.homelab.skwig.party
+    - host: vaultwarden.skwig.party
       http:
         paths:
           - path: /
@@ -23,7 +23,7 @@ spec:
                 port:
                   name: http
   tls:
-    - secretName: vaultwarden-homelab-tls
+    - secretName: vaultwarden-tls
       hosts:
-        - vaultwarden.homelab.skwig.party
+        - vaultwarden.skwig.party
 
