@@ -15,13 +15,15 @@ spec:
           containers:
             - name: renovate
               image: ghcr.io/cooperspencer/gickup:0.10.39
+              command:
+                - /gickup/conf/conf.yml
               envFrom:
                 - secretRef:
                     name: gickup-github-token
                 - secretRef:
                     name: minio-user-credentials
               volumeMounts:
-                - mountPath: /gickup/
+                - mountPath: /gickup/conf/
                   name: conf
           volumes:
             - name: conf
