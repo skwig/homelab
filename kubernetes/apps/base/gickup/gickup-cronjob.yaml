@@ -15,8 +15,6 @@ spec:
           containers:
             - name: renovate
               image: ghcr.io/cooperspencer/gickup:0.10.39
-              command:
-                - /gickup/conf.yml
               envFrom:
                 - secretRef:
                     name: gickup-github-token
