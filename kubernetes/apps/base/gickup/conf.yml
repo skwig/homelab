@@ -20,7 +20,7 @@ destination:
       bucket: backup
       accesskey: minio-console-accesskey
       secretkey: minio-console-secretkey
-      usessl: true
+      usessl: false
       storageclass: STANDARD
 
 log:

@@ -7,7 +7,7 @@ spec:
   configuration:
     name: gickup-backup-configuration
   users:
-    - name: minio-user-credentials
+    - name: gickup-minio-user-credentials
   pools:
     - name: pool-0
       servers: 1
@@ -28,19 +28,38 @@ spec:
       objectLock: true
   requestAutoCert: false
 ---
-apiVersion: v1
-kind: Secret
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
 metadata:
   name: gickup-backup-configuration
-type: Opaque
-stringData:
-  config.env: |-
-    export MINIO_STORAGE_CLASS_STANDARD="EC:0"
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: azure-kv-cluster-secret-store
+    kind: ClusterSecretStore
+  target:
+    name: gickup-backup-configuration
+    creationPolicy: Owner
+    template:
+      type: Opaque
+      engineVersion: v2
+      data:
+        config.env: |-
+          export MINIO_STORAGE_CLASS_STANDARD="EC:0"
+          export MINIO_ROOT_USER="{{ .MINIO_ROOT_USER | toString }}"
+          export MINIO_ROOT_PASSWORD="{{ .MINIO_ROOT_PASSWORD | toString }}"
+  data:
+    - secretKey: MINIO_ROOT_USER
+      remoteRef:
+        key: minio-root-user
+    - secretKey: MINIO_ROOT_PASSWORD
+      remoteRef:
+        key: minio-console-password
 ---
 apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
-  name: minio-user-credentials
+  name: gickup-minio-user-credentials
 spec:
   refreshInterval: 1h
   secretStoreRef:
