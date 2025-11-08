@@ -54,7 +54,7 @@ spec:
         key: minio-root-user
     - secretKey: MINIO_ROOT_PASSWORD
       remoteRef:
-        key: minio-console-password
+        key: minio-root-password
 ---
 apiVersion: external-secrets.io/v1
 kind: ExternalSecret
