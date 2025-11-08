@@ -18,10 +18,10 @@ spec:
       endpointURL: http://minio
       s3Credentials:
         accessKeyId:
-          name: minio-user-credentials
+          name: vaultwarden-minio-user-credentials
           key: CONSOLE_ACCESS_KEY
         secretAccessKey:
-          name: minio-user-credentials
+          name: vaultwarden-minio-user-credentials
           key: CONSOLE_SECRET_KEY
   managed:
     services:
@@ -49,7 +49,7 @@ spec:
   configuration:
     name: vaultwarden-backup-configuration
   users:
-    - name: minio-user-credentials
+    - name: vaultwarden-minio-user-credentials
   pools:
     - name: pool-0
       servers: 1
@@ -70,19 +70,38 @@ spec:
       objectLock: true
   requestAutoCert: false
 ---
-apiVersion: v1
-kind: Secret
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
 metadata:
   name: vaultwarden-backup-configuration
-type: Opaque
-stringData:
-  config.env: |-
-    export MINIO_STORAGE_CLASS_STANDARD="EC:0"
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: azure-kv-cluster-secret-store
+    kind: ClusterSecretStore
+  target:
+    name: vaultwarden-backup-configuration
+    creationPolicy: Owner
+    template:
+      type: Opaque
+      engineVersion: v2
+      data:
+        config.env: |-
+          export MINIO_STORAGE_CLASS_STANDARD="EC:0"
+          export MINIO_ROOT_USER="{{ .MINIO_ROOT_USER | toString }}"
+          export MINIO_ROOT_PASSWORD="{{ .MINIO_ROOT_PASSWORD | toString }}"
+  data:
+    - secretKey: MINIO_ROOT_USER
+      remoteRef:
+        key: minio-root-user
+    - secretKey: MINIO_ROOT_PASSWORD
+      remoteRef:
+        key: minio-root-password
 ---
 apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
-  name: minio-user-credentials
+  name: vaultwarden-minio-user-credentials
 spec:
   refreshInterval: 1h
   secretStoreRef:
