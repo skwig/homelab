@@ -15,13 +15,13 @@ source:
       gists: true
 destination:
   s3:
-   - endpoint: http://minio
-     structured: true
-     bucket: backup
-     accesskey: minio-console-accesskey
-     secretkey: minio-console-secretkey
-     usessl: true
-     storageclass: STANDARD
+    - endpoint: minio:80
+      structured: true
+      bucket: backup
+      accesskey: minio-console-accesskey
+      secretkey: minio-console-secretkey
+      usessl: true
+      storageclass: STANDARD
 
 log:
   timeformat: 2006-01-02 15:04:05

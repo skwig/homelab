@@ -24,9 +24,9 @@ spec:
                     name: minio-user-credentials
               volumeMounts:
                 - mountPath: /gickup/conf/
-                  name: conf
+                  name: conf-yml
           volumes:
-            - name: conf
+            - name: conf-yml
               configMap:
-                name: gickup-conf
+                name: gickup-conf-yml
           restartPolicy: Never

@@ -8,6 +8,6 @@ resources:
   - s3.yaml
 
 configMapGenerator:
-  - name: gickup-conf
+  - name: gickup-conf-yml
     files:
       - conf.yml
