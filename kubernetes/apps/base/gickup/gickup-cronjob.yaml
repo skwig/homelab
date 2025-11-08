@@ -1,0 +1,32 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: gickup
+spec:
+  schedule: "@daily"
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 2
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: renovate
+              image: ghcr.io/cooperspencer/gickup:0.10.39
+              command:
+                - /gickup/conf.yml
+              envFrom:
+                - secretRef:
+                    name: gickup-github-token
+                - secretRef:
+                    name: minio-user-credential
+              volumeMounts:
+                - mountPath: /gickup/
+                  name: conf
+          volumes:
+            - name: conf
+              configMap:
+                name: gickup-conf
+          restartPolicy: Never

@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cooperspencer/gickup/refs/heads/main/gickup_spec.json
+
+source:
+  github:
+    - token: github-token
+      exclude:
+        - nixpkgs
+        # - Hyprland
+        # - aquamarine
+        # - HyprPanel
+      excludeorgs:
+        - NixOS
+      wiki: true
+      issues: true
+      gists: true
+destination:
+  s3:
+   - endpoint: http://minio
+     structured: true
+     bucket: backup
+     accesskey: minio-console-accesskey
+     secretkey: minio-console-secretkey
+     usessl: true
+     storageclass: STANDARD
+
+log:
+  timeformat: 2006-01-02 15:04:05

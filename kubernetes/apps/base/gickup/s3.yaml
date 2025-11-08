@@ -1,0 +1,55 @@
+---
+apiVersion: minio.min.io/v2
+kind: Tenant
+metadata:
+  name: gickup-backup
+spec:
+  configuration:
+    name: gickup-backup-configuration
+  users:
+    - name: minio-user-credentials
+  pools:
+    - name: pool-0
+      servers: 1
+      volumesPerServer: 1
+      volumeClaimTemplate:
+        metadata:
+          name: backup
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 5Gi
+          storageClassName: nfs-share-retain
+  buckets:
+    - name: backup
+      region: us-east-1
+      objectLock: true
+  requestAutoCert: false
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gickup-backup-configuration
+type: Opaque
+stringData:
+  config.env: |-
+    export MINIO_STORAGE_CLASS_STANDARD="EC:0"
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: minio-user-credentials
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: azure-kv-cluster-secret-store
+    kind: ClusterSecretStore
+  data:
+    - secretKey: CONSOLE_ACCESS_KEY
+      remoteRef:
+        key: minio-console-accesskey
+    - secretKey: CONSOLE_SECRET_KEY
+      remoteRef:
+        key: minio-console-secretkey
