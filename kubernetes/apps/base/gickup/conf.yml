@@ -2,7 +2,7 @@
 
 source:
   github:
-    - token: github-token
+    - token: GITHUB_TOKEN
       exclude:
         - nixpkgs
         # - Hyprland
@@ -18,8 +18,8 @@ destination:
     - endpoint: minio:80
       structured: true
       bucket: backup
-      accesskey: minio-console-accesskey
-      secretkey: minio-console-secretkey
+      accesskey: CONSOLE_ACCESS_KEY
+      secretkey: CONSOLE_SECRET_KEY
       usessl: false
       storageclass: STANDARD
 
