@@ -25,6 +25,7 @@
           opentofu
           sops
           talosctl
+          kustomize
         ];
       in
       {
