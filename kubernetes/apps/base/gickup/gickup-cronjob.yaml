@@ -21,7 +21,7 @@ spec:
                 - secretRef:
                     name: gickup-github-token
                 - secretRef:
-                    name: minio-user-credential
+                    name: minio-user-credentials
               volumeMounts:
                 - mountPath: /gickup/
                   name: conf
