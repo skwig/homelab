@@ -10,7 +10,7 @@ spec:
   bootstrap:
     initdb: {}
   storage:
-    size: 1Gi
+    size: 5Gi
     storageClass: local-path-retain
   backup:
     barmanObjectStore:
@@ -62,7 +62,7 @@ spec:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 2Gi
+              storage: 5Gi
           storageClassName: nfs-share-retain
   buckets:
     - name: backup
