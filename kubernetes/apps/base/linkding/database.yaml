@@ -12,17 +12,11 @@ spec:
   storage:
     size: 1Gi
     storageClass: local-path-retain
-  backup:
-    barmanObjectStore:
-      destinationPath: s3://backup
-      endpointURL: http://minio
-      s3Credentials:
-        accessKeyId:
-          name: linkding-minio-user-credentials
-          key: CONSOLE_ACCESS_KEY
-        secretAccessKey:
-          name: linkding-minio-user-credentials
-          key: CONSOLE_SECRET_KEY
+  plugins:
+  - name: barman-cloud.cloudnative-pg.io
+    parameters:
+      barmanObjectName: minio
+      serverName: linkding-db
   managed:
     services:
       disabledDefaultServices:
@@ -30,6 +24,22 @@ spec:
         - r
   monitoring:
     enablePodMonitor: true
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: minio
+spec:
+  configuration:
+    destinationPath: s3://backup
+    endpointURL: http://minio
+    s3Credentials:
+      accessKeyId:
+        name: linkding-minio-user-credentials
+        key: CONSOLE_ACCESS_KEY
+      secretAccessKey:
+        name: linkding-minio-user-credentials
+        key: CONSOLE_SECRET_KEY
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
@@ -40,6 +50,9 @@ spec:
   schedule: "0 0 3 * * *"
   cluster:
     name: linkding-db
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
 ---
 apiVersion: minio.min.io/v2
 kind: Tenant
