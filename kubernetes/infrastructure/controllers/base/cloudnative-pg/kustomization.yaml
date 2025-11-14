@@ -4,3 +4,4 @@ namespace: cloudnative-pg
 resources:
   - namespace.yaml
   - release.yaml
+  - plugin-barman-cloud.yaml
