@@ -19,7 +19,7 @@ metadata:
 spec:
   targetNamespace: cloudnative-pg
   interval: 10m
-  path: manifest.yaml
+  path: .
   prune: true
   sourceRef:
     kind: GitRepository
