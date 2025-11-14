@@ -40,6 +40,8 @@ spec:
       secretAccessKey:
         name: linkding-minio-user-credentials
         key: CONSOLE_SECRET_KEY
+    wal:
+      compression: bzip2
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
