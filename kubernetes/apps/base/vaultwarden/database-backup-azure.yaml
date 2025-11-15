@@ -15,7 +15,7 @@ spec:
         key: AZURE_STORAGE_SAS_TOKEN
     wal:
       compression: bzip2
-    retentionPolicy: "30d"
+  retentionPolicy: "30d"
 ---
 apiVersion: external-secrets.io/v1
 kind: ExternalSecret

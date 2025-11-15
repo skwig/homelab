@@ -46,7 +46,7 @@ spec:
         key: CONSOLE_SECRET_KEY
     wal:
       compression: bzip2
-    retentionPolicy: "30d"
+  retentionPolicy: "30d"
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
