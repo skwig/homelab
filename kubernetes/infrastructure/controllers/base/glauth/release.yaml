@@ -28,9 +28,10 @@ spec:
     image:
       tag: v2.4.0
     config:
+      # not actually used, but the chart isnt the best
       storage:
         size: 1G
-        class: local-path-retain
+        class: nfs-share-retain
     backend:
       type: config
     database:
