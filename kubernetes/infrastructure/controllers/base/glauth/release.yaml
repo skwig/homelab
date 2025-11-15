@@ -31,6 +31,18 @@ spec:
       type: config
     database:
       shell: false
+    service:
+      type: ClusterIP
+      ports:
+       - name: ldap
+         internal: 3893
+         external: 3893
+       - name: ldaps
+         internal: 3894
+         external: 3894
+       - name: web
+         internal: 5555
+         external: 5555
     ingress:
       enabled: true
       className: nginx
