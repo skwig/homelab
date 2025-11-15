@@ -2,9 +2,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: linkding
+  name: glauth
   labels:
-    app.kubernetes.io/name: linkding
+    app.kubernetes.io/name: glauth
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
     external-dns.alpha.kubernetes.io/hostname: auth.skwig.party
