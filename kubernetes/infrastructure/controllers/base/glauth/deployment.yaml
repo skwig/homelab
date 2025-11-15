@@ -50,5 +50,6 @@ spec:
             name: glauth-config
             subPath: config.cfg
       volumes:
-        - configMap:
+        - name: glauth-config
+          configMap:
             name: glauth-config
