@@ -27,6 +27,10 @@ spec:
   values:
     image:
       tag: v2.4.0
+    config:
+      storage:
+        size: 1G
+        class: local-path-retain
     backend:
       type: config
     database:
