@@ -4,6 +4,7 @@ namespace: glauth
 resources:
   - namespace.yaml
   - release.yaml
+  - ingress.yaml
 
 configMapGenerator:
   - name: glauth-config

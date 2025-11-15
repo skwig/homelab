@@ -44,18 +44,4 @@ spec:
          internal: 5555
          external: 5555
     ingress:
-      enabled: true
-      className: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
-        external-dns.alpha.kubernetes.io/hostname: auth.skwig.party
-        external-dns.alpha.kubernetes.io/target: 192.168.100.47
-      hosts:
-        - host: auth.skwig.party
-          paths:
-            - path: /
-              pathType: ImplementationSpecific
-      tls:
-        - secretName: auth-homelab-tls
-          hosts:
-            - auth.skwig.party
+      enabled: false
