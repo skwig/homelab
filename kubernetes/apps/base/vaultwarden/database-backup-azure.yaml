@@ -1,0 +1,35 @@
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: azure
+spec:
+  configuration:
+    destinationPath: https://skwighomelabsteuwprd.blob.core.windows.net/vaultwarden-db-backup/backup
+    azureCredentials:
+      connectionString:
+        name: vaultwarden-azure-credentials
+        key: AZURE_CONNECTION_STRING
+      storageSasToken:
+        name: vaultwarden-azure-credentials
+        key: AZURE_STORAGE_SAS_TOKEN
+    wal:
+      compression: bzip2
+    retentionPolicy: "30d"
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: vaultwarden-azure-credentials
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: azure-kv-cluster-secret-store
+    kind: ClusterSecretStore
+  data:
+    - secretKey: AZURE_CONNECTION_STRING
+      remoteRef:
+        key: vaultwarden-db-backup-connection-string
+    - secretKey: AZURE_STORAGE_SAS_TOKEN
+      remoteRef:
+        key: vaultwarden-db-backup-sas

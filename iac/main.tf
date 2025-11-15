@@ -121,3 +121,7 @@ output "tenant_id" {
 output "vault_uri" {
   value = azurerm_key_vault.homelab_key_vault.vault_uri
 }
+
+output "storage_endpoint" {
+  value = azurerm_storage_account.homelab_storage_account.primary_blob_endpoint
+}

@@ -14,8 +14,13 @@ spec:
     storageClass: local-path-retain
   plugins:
   - name: barman-cloud.cloudnative-pg.io
+    isWALArchiver: true
     parameters:
       barmanObjectName: minio
+  - name: barman-cloud.cloudnative-pg.io
+    isWALArchiver: false
+    parameters:
+      barmanObjectName: azure
   managed:
     services:
       disabledDefaultServices:
@@ -41,6 +46,7 @@ spec:
         key: CONSOLE_SECRET_KEY
     wal:
       compression: bzip2
+    retentionPolicy: "30d"
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
