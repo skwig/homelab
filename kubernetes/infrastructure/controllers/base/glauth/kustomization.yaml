@@ -3,8 +3,16 @@ kind: Kustomization
 namespace: glauth
 resources:
   - namespace.yaml
-  - release.yaml
+  - deployment.yaml
+  - service.yaml
+  - serviceaccount.yaml
   - ingress.yaml
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: glauth
+    includeTemplates: true
+    includeSelectors: true
 
 configMapGenerator:
   - name: glauth-config

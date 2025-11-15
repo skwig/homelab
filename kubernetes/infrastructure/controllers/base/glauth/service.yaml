@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: glauth
+spec:
+  type: ClusterIP
+  selector:
+    app: glauth
+  ports:
+    - name: ldap
+      port: 3893
+      protocol: TCP
+      targetPort: 3893
+    - name: ldaps
+      port: 3894
+      protocol: TCP
+      targetPort: 3894
+    - name: web
+      port: 5555
+      protocol: TCP
+      targetPort: 5555

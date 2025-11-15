@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: glauth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: glauth
+  template:
+    metadata:
+      labels:
+        app: glauth
+    spec:
+      containers:
+      - name: glauth
+        command:
+          - /app/glauth
+          - -c
+          - /app/config/config.cfg
+        image: glauth/glauth-plugins:v2.4.0
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 3893
+            protocol: TCP
+          - containerPort: 3894
+            protocol: TCP
+          - containerPort: 5555
+            protocol: TCP
+        livenessProbe:
+          exec:
+            command:
+              - sh
+              - -c
+              - echo OK
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        readinessProbe:
+          exec:
+            command:
+              - sh
+              - -c
+              - echo OK
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        resources: {}
+        volumeMounts:
+          - mountPath: /app/config/config.cfg
+            name: glauth-config
+            subPath: config.cfg
+      volumes:
+        - configMap:
+            name: glauth-config
