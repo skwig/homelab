@@ -32,3 +32,10 @@ spec:
       version: 1.21.7
       type: VANILLA
       difficulty: normal
+  persistence:
+    storageClass: local-path-retain
+    dataDir:
+      enabled: true
+      size: 10Gi
+      accessModes:
+        - ReadWriteOnce
