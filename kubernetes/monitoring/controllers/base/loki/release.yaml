@@ -46,6 +46,9 @@ spec:
         enabled: true
         size: 10Gi
         storageClass: nfs-share-retain
+      resources:
+        limits:
+          memory: 500Mi
     backend:
       replicas: 0
     read:
