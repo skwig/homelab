@@ -29,7 +29,7 @@ spec:
   values:
     minecraftServer:
       eula: "TRUE"
-      version: 1.21.7
+      version: 1.21.10
       type: VANILLA
       difficulty: normal
       # 
