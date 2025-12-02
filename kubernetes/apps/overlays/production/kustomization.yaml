@@ -6,6 +6,7 @@ resources:
   - ../../base/homepage/
   - ../../base/jellyfin/
   - ../../base/linkding/
+  - ../../base/minecraft/
   - ../../base/obsidian-livesync/
   - ../../base/osrs-prices/
   - ../../base/vaultwarden/

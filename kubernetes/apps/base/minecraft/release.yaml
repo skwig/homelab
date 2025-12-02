@@ -1,0 +1,34 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: minecraft-server-charts
+spec:
+  interval: 10m
+  url: https://itzg.github.io/minecraft-server-charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: minecraft
+spec:
+  releaseName: minecraft
+  targetNamespace: minecraft
+  interval: 10m
+  chart:
+    spec:
+      chart: minecraft
+      version: 5.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: minecraft-server-charts
+  install:
+    createNamespace: true
+  # https://github.com/itzg/minecraft-server-charts/blob/master/charts/minecraft/values.yaml
+  # https://artifacthub.io/packages/helm/minecraft-server-charts/minecraft?modal=values
+  values:
+    minecraftServer:
+      eula: "TRUE"
+      version: 1.21.7
+      type: VANILLA
+      difficulty: normal
