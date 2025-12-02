@@ -34,10 +34,10 @@ spec:
       difficulty: normal
       serviceType: NodePort
       nodePort: 25565
-  persistence:
-    storageClass: local-path-retain
-    dataDir:
-      enabled: true
-      size: 10Gi
-      accessModes:
-        - ReadWriteOnce
+    persistence:
+      storageClass: local-path-retain
+      dataDir:
+        enabled: true
+        size: 10Gi
+        accessModes:
+          - ReadWriteOnce
