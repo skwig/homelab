@@ -35,10 +35,10 @@ spec:
       # 
       serviceType: NodePort
       nodePort: 30000
-      serviceAnnotations:
-        cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
-        external-dns.alpha.kubernetes.io/hostname: minecraft.skwig.party
-        external-dns.alpha.kubernetes.io/target: 192.168.100.47
+    serviceAnnotations:
+      cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
+      external-dns.alpha.kubernetes.io/hostname: minecraft.skwig.party
+      external-dns.alpha.kubernetes.io/target: 192.168.100.47
     persistence:
       storageClass: local-path-retain
       dataDir:
