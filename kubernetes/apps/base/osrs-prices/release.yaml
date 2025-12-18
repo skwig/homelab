@@ -1,16 +1,11 @@
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: GitRepository
+kind: HelmRepository
 metadata:
   name: osrs-prices
 spec:
   interval: 10m
-  url: https://github.com/skwig/OsrsPrices
-  ref:
-    branch: master
-  ignore: |
-    /*
-    !/charts/
+  url: https://raw.githubusercontent.com/skwig/OsrsPrices/refs/heads/gh-pages/
   secretRef:
     name: github-credentials-secret
 ---
@@ -24,10 +19,10 @@ spec:
   interval: 10m
   chart:
     spec:
-      chart: ./charts/osrsprices
-      version: 1.49.0
+      chart: osrsprices
+      version: 1.0.0-8adc90a
       sourceRef:
-        kind: GitRepository
+        kind: HelmRepository
         name: osrs-prices
   install:
     createNamespace: true
