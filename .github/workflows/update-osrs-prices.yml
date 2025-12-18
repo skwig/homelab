@@ -9,13 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           ref: master
-          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Update Helm chart version
         run: |
@@ -33,17 +33,20 @@ jobs:
           # Verify the change was made
           grep "version: $CHART_VERSION" kubernetes/apps/base/osrs-prices/release.yaml
       
-      - name: Commit and push changes
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          
-          git add kubernetes/apps/base/osrs-prices/release.yaml
-          
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-            exit 0
-          fi
-          
-          git commit -m "chore(osrs-prices): update helm chart to version ${{ github.event.client_payload.chart_version }}"
-          git push origin master
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(osrs-prices): update helm chart to version ${{ github.event.client_payload.chart_version }}"
+          branch: update-osrs-prices-${{ github.event.client_payload.chart_version }}
+          delete-branch: true
+          title: "chore(osrs-prices): update helm chart to version ${{ github.event.client_payload.chart_version }}"
+          body: |
+            Automated update of OSRS Prices Helm chart version.
+            
+            **Chart Version:** ${{ github.event.client_payload.chart_version }}
+            
+            This PR was automatically created by the `update-osrs-prices` workflow in response to a repository dispatch event.
+          labels: |
+            automated
+            osrs-prices
