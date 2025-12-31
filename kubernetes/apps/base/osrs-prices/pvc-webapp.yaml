@@ -28,8 +28,8 @@ spec:
     driver: nfs.csi.k8s.io
     readOnly: true
     # Recommended: {nfs-server-address}#{share-name}#{sub-dir-name}
-    volumeHandle: "192.168.100.37#/volume1/Projects_Shared/flipping#"
+    volumeHandle: "192.168.100.37#/volume1/Projects_Shared#flipping"
     volumeAttributes:
-      subDir: /OsrsPrices/OsrsPrices.PriceArchive.WebApi/app-data/
+      subDir: flipping
       server: 192.168.100.37
-      share: /volume1/Projects_Shared/flipping
+      share: /volume1/Projects_Shared
