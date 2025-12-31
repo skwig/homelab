@@ -54,6 +54,10 @@ spec:
           - secretName: osrs-prices-homelab-tls
             hosts:
               - osrs-prices.homelab.skwig.party
+      volumes:
+        - name: app-data
+          persistentVolumeClaim:
+            claimName: osrs-prices-webapp-flipping-pv
       volumeMounts:
         - name: app-data
           mountPath: /app-data/
