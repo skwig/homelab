@@ -57,7 +57,7 @@ spec:
       volumes:
         - name: app-data
           persistentVolumeClaim:
-            claimName: osrs-prices-webapp-flipping2-pvc
+            claimName: osrs-prices-webapp-flipping3-pvc
       volumeMounts:
         - name: app-data
           mountPath: /app-data/
