@@ -55,14 +55,15 @@ spec:
             hosts:
               - osrs-prices.homelab.skwig.party
       volumes:
-        - name: app-data
+        - name: app-data-flipping
           persistentVolumeClaim:
-            claimName: osrs-prices-webapp-flipping3-pvc
+            claimName: osrs-prices-webapp-flipping-pvc
       volumeMounts:
-        - name: app-data
-          mountPath: /app-data/
+        - name: app-data-flipping
+          mountPath: /app-data/flipping-utilities/
       configMap:
         PriceArchiveApiOptions__BaseUri: http://osrs-prices-price-archive:8080
+        FlippingUtilitiesOptions__DirectoryPath: /app-data/flipping-utilities/
     price-archive:
       imagePullSecrets:
         - name: ghcr-credentials-secret
