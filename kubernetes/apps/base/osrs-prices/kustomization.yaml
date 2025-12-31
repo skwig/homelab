@@ -4,7 +4,8 @@ namespace: osrs-prices
 resources:
   - namespace.yaml
   - release.yaml
-  - pvc.yaml
+  - pvc-price-archive.yaml
+  - pvc-webapp.yaml
   - github-credentials-secret.yaml
   - ghcr-credentials-secret.yaml
   - opentelemetry.yaml

@@ -54,6 +54,9 @@ spec:
           - secretName: osrs-prices-homelab-tls
             hosts:
               - osrs-prices.homelab.skwig.party
+      volumeMounts:
+        - name: app-data
+          mountPath: /app-data/
       configMap:
         PriceArchiveApiOptions__BaseUri: http://osrs-prices-price-archive:8080
     price-archive:

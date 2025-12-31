@@ -1,0 +1,35 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: osrs-prices-webapp-flipping-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: osrs-prices-webapp-flipping-pv
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: osrs-prices-webapp-flipping-pv
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 1Gi
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - nfsvers=4.1
+  # https://github.com/kubernetes-csi/csi-driver-nfs/blob/master/docs/driver-parameters.md
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: true
+    # Recommended: {nfs-server-address}#{share-name}#{sub-dir-name}
+    volumeHandle: "192.168.100.37#/volume1/Projects_Shared/flipping#"
+    volumeAttributes:
+      subDir: /OsrsPrices/OsrsPrices.PriceArchive.WebApi/app-data/
+      server: 192.168.100.37
+      share: /volume1/Projects_Shared/flipping
