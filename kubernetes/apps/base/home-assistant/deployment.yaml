@@ -27,8 +27,9 @@ spec:
               containerPort: 8123
               protocol: TCP
           volumeMounts:
-            - mountPath: /config
+            - mountPath: /config/configuration.yaml
               name: configuration-yaml
+              subPath: configuration.yaml
       volumes:
         - name: configuration-yaml
           configMap:
