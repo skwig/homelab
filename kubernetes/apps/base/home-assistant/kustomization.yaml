@@ -4,10 +4,10 @@ namespace: home-assistant
 resources:
   - namespace.yaml
   - deployment.yaml
-  - pvc.yaml
   - service.yaml
   - ingress.yaml
   - database.yaml
+  - database-backup-minio.yaml
 
 configMapGenerator:
   - name: configuration-yaml
