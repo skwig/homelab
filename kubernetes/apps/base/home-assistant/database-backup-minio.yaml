@@ -1,0 +1,93 @@
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: minio
+spec:
+  configuration:
+    destinationPath: s3://backup
+    endpointURL: http://minio
+    s3Credentials:
+      accessKeyId:
+        home: home-assistant-minio-user-credentials
+        key: CONSOLE_ACCESS_KEY
+      secretAccessKey:
+        name: home-assistant-minio-user-credentials
+        key: CONSOLE_SECRET_KEY
+    wal:
+      compression: bzip2
+  retentionPolicy: "30d"
+---
+apiVersion: minio.min.io/v2
+kind: Tenant
+metadata:
+  name: home-assistant-backup
+spec:
+  configuration:
+    name: home-assistant-backup-configuration
+  users:
+    - name: home-assistant-minio-user-credentials
+  pools:
+    - name: pool-0
+      servers: 1
+      volumesPerServer: 1
+      volumeClaimTemplate:
+        metadata:
+          name: backup
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 2Gi
+          storageClassName: nfs-share-retain
+  buckets:
+    - name: backup
+      region: us-east-1
+      objectLock: true
+  requestAutoCert: false
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: home-assistant-backup-configuration
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: azure-kv-cluster-secret-store
+    kind: ClusterSecretStore
+  target:
+    name: home-assistant-backup-configuration
+    creationPolicy: Owner
+    template:
+      type: Opaque
+      engineVersion: v2
+      data:
+        config.env: |-
+          export MINIO_STORAGE_CLASS_STANDARD="EC:0"
+          export MINIO_ROOT_USER="{{ .MINIO_ROOT_USER | toString }}"
+          export MINIO_ROOT_PASSWORD="{{ .MINIO_ROOT_PASSWORD | toString }}"
+  data:
+    - secretKey: MINIO_ROOT_USER
+      remoteRef:
+        key: minio-root-user
+    - secretKey: MINIO_ROOT_PASSWORD
+      remoteRef:
+        key: minio-root-password
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: home-assistant-minio-user-credentials
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: azure-kv-cluster-secret-store
+    kind: ClusterSecretStore
+  data:
+    - secretKey: CONSOLE_ACCESS_KEY
+      remoteRef:
+        key: minio-console-accesskey
+    - secretKey: CONSOLE_SECRET_KEY
+      remoteRef:
+        key: minio-console-secretkey
