@@ -30,6 +30,6 @@ spec:
             - mountPath: /config
               name: configuration-yaml
       volumes:
-        - name: home-assistant-config
+        - name: configuration-yaml
           configMap:
             name: configuration-yaml
