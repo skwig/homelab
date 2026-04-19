@@ -7,7 +7,7 @@
   },
   "flux": {
     "fileMatch": [
-      "kubernetes/.*\\.ya?ml$"
+      "kubernetes/clusters/production/flux-system/.*\\.ya?ml$"
     ]
   }
 }
