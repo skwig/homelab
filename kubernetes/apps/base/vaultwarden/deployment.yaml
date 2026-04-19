@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: vaultwarden
-          image: "ghcr.io/dani-garcia/vaultwarden:1.34.3"
+          image: "ghcr.io/dani-garcia/vaultwarden:1.35.7"
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
