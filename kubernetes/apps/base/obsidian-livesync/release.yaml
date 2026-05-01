@@ -4,7 +4,7 @@ kind: HelmRepository
 metadata:
   name: couchdb
 spec:
-  interval: 10m
+  interval: 6h
   url: https://apache.github.io/couchdb-helm
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2

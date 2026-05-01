@@ -4,7 +4,7 @@ kind: HelmRepository
 metadata:
   name: prometheus-community
 spec:
-  interval: 10m
+  interval: 6h
   url: https://prometheus-community.github.io/helm-charts
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
@@ -69,41 +69,39 @@ spec:
         paths:
           - /
       additionalDataSources:
-          # https://grafana.com/docs/grafana/latest/datasources/loki/#provision-the-loki-data-source
-          - name: Loki
-            uid: loki
-            type: loki
-            access: proxy
-            url: http://loki.monitoring:3100
-            isDefault: false
-            jsonData:
-              derivedFields:
-                - name: "trace_id"
-                  matcherType: "label"
-                  matcherRegex: "trace_id"
-                  url: "$${__value.raw}"
-                  datasourceUid: "tempo"
-                  urlDisplayLabel: "Trace: $${__value.raw}"
-          # https://grafana.com/docs/grafana/latest/datasources/tempo/configure-tempo-data-source/#provision-the-data-source
-          - name: Tempo
-            uid: tempo
-            type: tempo
-            access: proxy
-            url: http://tempo.monitoring:3200
-            isDefault: false
-            jsonData:
-              tracesToLogsV2:
-                customQuery: true
-                datasourceUid: "loki"
-                query: '{$${__tags}} | trace_id = "$${__trace.traceId}"'
-                tags:
-                  - key: "service.name"
-                    value: "service_name"
-              lokiSearch:
-                datasourceUid: loki
-              tracesToMetrics:
-                datasourceUid: prometheus
-              serviceMap:
-                datasourceUid: prometheus
-
-
+        # https://grafana.com/docs/grafana/latest/datasources/loki/#provision-the-loki-data-source
+        - name: Loki
+          uid: loki
+          type: loki
+          access: proxy
+          url: http://loki.monitoring:3100
+          isDefault: false
+          jsonData:
+            derivedFields:
+              - name: "trace_id"
+                matcherType: "label"
+                matcherRegex: "trace_id"
+                url: "$${__value.raw}"
+                datasourceUid: "tempo"
+                urlDisplayLabel: "Trace: $${__value.raw}"
+        # https://grafana.com/docs/grafana/latest/datasources/tempo/configure-tempo-data-source/#provision-the-data-source
+        - name: Tempo
+          uid: tempo
+          type: tempo
+          access: proxy
+          url: http://tempo.monitoring:3200
+          isDefault: false
+          jsonData:
+            tracesToLogsV2:
+              customQuery: true
+              datasourceUid: "loki"
+              query: '{$${__tags}} | trace_id = "$${__trace.traceId}"'
+              tags:
+                - key: "service.name"
+                  value: "service_name"
+            lokiSearch:
+              datasourceUid: loki
+            tracesToMetrics:
+              datasourceUid: prometheus
+            serviceMap:
+              datasourceUid: prometheus

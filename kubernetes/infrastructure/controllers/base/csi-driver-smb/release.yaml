@@ -4,7 +4,7 @@ kind: HelmRepository
 metadata:
   name: csi-driver-smb
 spec:
-  interval: 10m
+  interval: 6h
   url: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2

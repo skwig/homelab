@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/part-of: weave-gitops
   name: ww-gitops
 spec:
-  interval: 1h0m0s
+  interval: 6h
   type: oci
   url: oci://ghcr.io/weaveworks/charts
 ---

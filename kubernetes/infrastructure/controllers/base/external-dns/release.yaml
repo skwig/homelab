@@ -4,7 +4,7 @@ kind: HelmRepository
 metadata:
   name: external-dns
 spec:
-  interval: 10m
+  interval: 6h
   url: https://kubernetes-sigs.github.io/external-dns
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
@@ -26,7 +26,7 @@ spec:
     createNamespace: true
   values:
     extraArgs:
-    - --publish-host-ip
+      - --publish-host-ip
     provider:
       name: webhook
       webhook:
@@ -35,20 +35,20 @@ spec:
           tag: v0.2.19
           pullPolicy: IfNotPresent
         args:
-        - --domain-filter=skwig.party
+          - --domain-filter=skwig.party
         env:
-        - name: GO_LOG
-          value: "debug"
-        - name: API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: porkbun-keys-secret
-              key: api-key
-        - name: API_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: porkbun-keys-secret
-              key: secret-key
+          - name: GO_LOG
+            value: "debug"
+          - name: API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: porkbun-keys-secret
+                key: api-key
+          - name: API_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: porkbun-keys-secret
+                key: secret-key
         securityContext:
           runAsUser: 1000
           runAsNonRoot: true

@@ -4,7 +4,7 @@ kind: HelmRepository
 metadata:
   name: minecraft-server-charts
 spec:
-  interval: 10m
+  interval: 6h
   url: https://itzg.github.io/minecraft-server-charts
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
@@ -32,7 +32,7 @@ spec:
       version: 1.21.10
       type: VANILLA
       difficulty: normal
-      # 
+      #
       serviceType: NodePort
       nodePort: 30000
     serviceAnnotations:
