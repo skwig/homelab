@@ -35,6 +35,9 @@ spec:
             - name: TS_EXTRA_ARGS
               value: "--advertise-routes=192.168.100.0/24"
 
+            - name: TS_KUBE_SECRET
+              value: ""
+
           volumeMounts:
             - name: state
               mountPath: /var/lib/tailscale
