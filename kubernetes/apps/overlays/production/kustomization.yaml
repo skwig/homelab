@@ -10,4 +10,5 @@ resources:
   # - ../../base/minecraft/
   - ../../base/obsidian-livesync/
   - ../../base/osrs-prices/
+  - ../../base/tailscale/
   - ../../base/vaultwarden/

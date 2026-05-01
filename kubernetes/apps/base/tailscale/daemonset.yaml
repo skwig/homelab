@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: tailscale
+spec:
+  selector:
+    matchLabels:
+      app: tailscale
+  template:
+    metadata:
+      labels:
+        app: tailscale
+    spec:
+      hostNetwork: true
+
+      containers:
+        - name: tailscale
+          image: tailscale/tailscale:1.96.5
+
+          securityContext:
+            privileged: true
+
+          env:
+            - name: TS_STATE_DIR
+              value: /var/lib/tailscale
+
+            - name: TS_EXTRA_ARGS
+              value: "--advertise-routes=192.168.100.0/24"
+
+          volumeMounts:
+            - name: state
+              mountPath: /var/lib/tailscale
+            - name: tun
+              mountPath: /dev/net/tun
+
+      volumes:
+        - name: state
+          persistentVolumeClaim:
+            claimName: tailscale-pvc
+        - name: tun
+          hostPath:
+            path: /dev/net/tun
