@@ -23,6 +23,9 @@ spec:
             privileged: true
 
           env:
+            - name: TS_HOSTNAME
+              value: homelab
+
             - name: TS_AUTHKEY
               valueFrom:
                 secretKeyRef:
