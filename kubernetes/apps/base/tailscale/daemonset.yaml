@@ -13,6 +13,7 @@ spec:
         app: tailscale
     spec:
       hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
 
       containers:
         - name: tailscale
