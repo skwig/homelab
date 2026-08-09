@@ -34,6 +34,8 @@
             gawk
             direnv
             nix-direnv
+            neovim
+            lazygit
           ];
         };
       });
