@@ -43,8 +43,10 @@ spec:
               containerPort: 4096
               protocol: TCP
           resources:
+            requests:
+              memory: 256Mi
             limits:
-              memory: 4Gi
+              memory: 2Gi
           volumeMounts:
             - name: workspace
               mountPath: /workspace
