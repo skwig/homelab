@@ -21,6 +21,7 @@
           packages = with pkgs; [
             opencode
             git
+            gh
             openssh
             bash
             curl

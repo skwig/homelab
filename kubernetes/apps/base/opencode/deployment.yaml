@@ -32,9 +32,10 @@ spec:
             - 0.0.0.0
             - --port
             - "4096"
+          workingDir: /workspace
           env:
             - name: HOME
-              value: /workspace/.home
+              value: /workspace
             - name: OPENCODE_SERVER_USERNAME
               value: opencode
             - name: OPENCODE_SERVER_PASSWORD
