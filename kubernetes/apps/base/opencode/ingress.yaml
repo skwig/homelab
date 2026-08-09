@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: opencode
+  labels:
+    app.kubernetes.io/name: opencode
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
+    external-dns.alpha.kubernetes.io/hostname: opencode.skwig.party
+    external-dns.alpha.kubernetes.io/target: 192.168.100.47
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: opencode.skwig.party
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: opencode
+                port:
+                  name: http
+  tls:
+    - secretName: opencode-skwig-party-tls
+      hosts:
+        - opencode.skwig.party
