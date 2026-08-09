@@ -30,6 +30,10 @@
       in
       {
         devShells.default = pkgs.mkShell {
+          shellHook = ''
+            export TALOSCONFIG="$(git rev-parse --show-toplevel)/talos/talosconfig"
+          '';
+
           packages = nativeDeps;
         };
       }
