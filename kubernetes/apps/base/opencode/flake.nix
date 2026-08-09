@@ -2,19 +2,18 @@
   description = "OpenCode Kubernetes runtime";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { nixpkgs, ... }:
+  outputs =
+    { nixpkgs, ... }:
     let
       systems = [
         "x86_64-linux"
         "aarch64-linux"
       ];
 
-      forAllSystems = f:
-        nixpkgs.lib.genAttrs systems
-          (system: f (import nixpkgs { inherit system; }));
+      forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f (import nixpkgs { inherit system; }));
     in
     {
       devShells = forAllSystems (pkgs: {
