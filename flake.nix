@@ -23,12 +23,12 @@
           just
           kubernetes-helm
           nixfmt
-          nixfmt-tree
           opentofu
           prettier
           shfmt
           sops
           talosctl
+          treefmt
           kustomize
         ];
       in

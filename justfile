@@ -2,4 +2,4 @@ alias fmt := format
 alias f := format
 
 format:
-    treefmt .
+    treefmt --no-cache .
