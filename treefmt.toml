@@ -1,0 +1,34 @@
+excludes = [
+  ".direnv/**",
+  ".terraform/**",
+  "**/.terraform/**",
+  "flake.lock",
+  "**/flake.lock",
+  "*.sops.yaml",
+  "*.tfstate",
+  "*.tfstate.*",
+]
+
+[formatter.nix]
+command = "nixfmt"
+includes = ["*.nix"]
+
+[formatter.terraform]
+command = "tofu"
+options = ["fmt"]
+includes = ["*.tf"]
+
+[formatter.shell]
+command = "shfmt"
+options = ["-w"]
+includes = ["*.sh"]
+
+[formatter.json]
+command = "fixjson"
+options = ["-w"]
+includes = ["*.json"]
+
+[formatter.prettier]
+command = "prettier"
+options = ["--write"]
+includes = ["*.md", "*.yaml", "*.yml"]

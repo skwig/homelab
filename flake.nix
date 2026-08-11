@@ -15,14 +15,18 @@
     flake-utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = import nixpkgs {
-          inherit system;
-        };
+        pkgs = import nixpkgs { inherit system; };
 
         nativeDeps = with pkgs; [
+          fixjson
           fluxcd
+          just
           kubernetes-helm
+          nixfmt
+          nixfmt-tree
           opentofu
+          prettier
+          shfmt
           sops
           talosctl
           kustomize
