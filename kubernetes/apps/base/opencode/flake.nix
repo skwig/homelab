@@ -36,6 +36,7 @@
             nix-direnv
             neovim
             lazygit
+            yazi
           ];
         };
       });
