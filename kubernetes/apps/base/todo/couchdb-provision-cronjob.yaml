@@ -1,0 +1,56 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: todo-couchdb-provision
+spec:
+  schedule: "17 */6 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 3
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: provision
+              image: python:3.13-alpine
+              imagePullPolicy: IfNotPresent
+              command:
+                - python
+                - /scripts/couchdb-provision.py
+              env:
+                - name: COUCHDB_URL
+                  value: http://todo-couchdb-svc-couchdb.todo.svc.cluster.local:5984
+                - name: DATABASE
+                  value: todo
+                - name: ADMIN_USERNAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: todo-couchdb-admin-credentials
+                      key: adminUsername
+                - name: ADMIN_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: todo-couchdb-admin-credentials
+                      key: adminPassword
+                - name: APP_USERNAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: todo-couchdb-app-credentials
+                      key: username
+                - name: APP_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: todo-couchdb-app-credentials
+                      key: password
+              volumeMounts:
+                - name: scripts
+                  mountPath: /scripts
+                  readOnly: true
+          volumes:
+            - name: scripts
+              configMap:
+                name: todo-couchdb-provision-script

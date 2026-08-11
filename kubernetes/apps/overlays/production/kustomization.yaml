@@ -8,8 +8,9 @@ resources:
   - ../../base/jellyfin/
   - ../../base/linkding/
   # - ../../base/minecraft/
-  - ../../base/opencode/
   - ../../base/obsidian-livesync/
+  - ../../base/opencode/
   - ../../base/osrs-prices/
   - ../../base/tailscale/
+  - ../../base/todo/
   - ../../base/vaultwarden/
