@@ -13,10 +13,10 @@ spec:
     size: 1Gi
     storageClass: local-path-retain
   plugins:
-  - name: barman-cloud.cloudnative-pg.io
-    isWALArchiver: true
-    parameters:
-      barmanObjectName: minio
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: minio
   managed:
     services:
       disabledDefaultServices:

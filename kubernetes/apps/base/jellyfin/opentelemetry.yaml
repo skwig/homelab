@@ -4,11 +4,11 @@ kind: Instrumentation
 metadata:
   name: jellyfin
 spec:
-  exporter: 
+  exporter:
     endpoint: http://opentelemetry-collector-collector.opentelemetry:4318
   propagators:
-     - tracecontext
-     - baggage
+    - tracecontext
+    - baggage
   sampler:
     type: parentbased_traceidratio
     argument: "1"

@@ -6,4 +6,3 @@ metadata:
   labels:
     # needed for deployment/local-path-provisioner
     pod-security.kubernetes.io/enforce: privileged
-

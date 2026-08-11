@@ -26,4 +26,3 @@ spec:
     - secretName: vaultwarden-tls
       hosts:
         - vaultwarden.skwig.party
-

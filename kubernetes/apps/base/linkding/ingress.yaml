@@ -26,4 +26,3 @@ spec:
     - secretName: linkding-homelab-tls
       hosts:
         - linkding.homelab.skwig.party
-
