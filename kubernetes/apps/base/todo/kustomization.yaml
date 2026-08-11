@@ -7,6 +7,9 @@ resources:
   - couchdb-admin-credentials-secret.yaml
   - couchdb-app-credentials-secret.yaml
   - couchdb-provision-cronjob.yaml
+  - webapp-deployment.yaml
+  - webapp-service.yaml
+  - ingress.yaml
 configMapGenerator:
   - name: todo-couchdb-provision-script
     files:

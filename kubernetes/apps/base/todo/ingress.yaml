@@ -1,0 +1,57 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todo-webapp
+  labels:
+    app.kubernetes.io/name: todo-webapp
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
+    external-dns.alpha.kubernetes.io/hostname: todo.skwig.party
+    external-dns.alpha.kubernetes.io/target: 192.168.100.47
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: todo.skwig.party
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: todo-webapp
+                port:
+                  name: http
+  tls:
+    - secretName: todo-tls
+      hosts:
+        - todo.skwig.party
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todo-couchdb
+  labels:
+    app.kubernetes.io/name: todo-couchdb
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
+    external-dns.alpha.kubernetes.io/hostname: todo.skwig.party
+    external-dns.alpha.kubernetes.io/target: 192.168.100.47
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: todo.skwig.party
+      http:
+        paths:
+          - path: /db(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: todo-couchdb-svc-couchdb
+                port:
+                  number: 5984
+  tls:
+    - secretName: todo-tls
+      hosts:
+        - todo.skwig.party
