@@ -20,7 +20,7 @@ spec:
   chart:
     spec:
       chart: skwigtodo
-      version: 1.0.0-cde13b5
+      version: 1.0.0-64bc493
       sourceRef:
         kind: HelmRepository
         name: todo
