@@ -5,6 +5,7 @@ resources:
   - namespace.yaml
   - release.yaml
   - github-credentials-secret.yaml
+  - ghcr-credentials-secret.yaml
   - couchdb-release.yaml
   - couchdb-ingress.yaml
   - couchdb-admin-credentials-secret.yaml
