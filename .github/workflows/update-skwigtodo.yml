@@ -1,0 +1,45 @@
+name: Update todo Helm Chart
+
+on:
+  repository_dispatch:
+    types: [update-todo-helm-chart]
+
+jobs:
+  update-chart:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update Helm chart version
+        run: |
+          CHART_VERSION="${{ github.event.client_payload.chart_version }}"
+
+          if [ -z "$CHART_VERSION" ]; then
+            echo "Error: chart_version not provided in payload"
+            exit 1
+          fi
+
+          echo "Updating chart version to: $CHART_VERSION"
+
+          sed -i "s/version: .*/version: $CHART_VERSION/" kubernetes/apps/base/todo/release.yaml
+
+          grep "version: $CHART_VERSION" kubernetes/apps/base/todo/release.yaml
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          git add kubernetes/apps/base/todo/release.yaml
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "chore(todo): update helm chart to version ${{ github.event.client_payload.chart_version }}"
+          git push origin master

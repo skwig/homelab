@@ -3,6 +3,8 @@ kind: Kustomization
 namespace: todo
 resources:
   - namespace.yaml
+  - release.yaml
+  - github-credentials-secret.yaml
   - couchdb-release.yaml
   - couchdb-ingress.yaml
   - couchdb-admin-credentials-secret.yaml
