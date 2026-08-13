@@ -4,6 +4,7 @@ namespace: todo
 resources:
   - namespace.yaml
   - couchdb-release.yaml
+  - couchdb-ingress.yaml
   - couchdb-admin-credentials-secret.yaml
   - couchdb-app-credentials-secret.yaml
   - couchdb-provision-cronjob.yaml
