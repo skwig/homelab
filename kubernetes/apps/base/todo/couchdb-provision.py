@@ -144,6 +144,17 @@ def ensure_database(config: Config) -> None:
         raise
 
 
+def ensure_users_database(config: Config) -> None:
+    try:
+        admin_request(config, "PUT", "/_users")
+        print("Created database _users")
+    except RequestError as exc:
+        if exc.status == 412:
+            print("Database _users already exists")
+            return
+        raise
+
+
 def user_doc_id(username: str) -> str:
     return f"org.couchdb.user:{username}"
 
@@ -236,6 +247,7 @@ def main() -> int:
         config = load_config()
         wait_for_couchdb(config)
         ensure_database(config)
+        ensure_users_database(config)
         ensure_app_user(config)
         ensure_security(config)
         verify_app_access(config)
