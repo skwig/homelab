@@ -35,6 +35,8 @@ spec:
       retries: 1
       remediateLastFailure: true
   values:
+    imagePullSecrets:
+      - name: ghcr-credentials-secret
     ingress:
       enabled: true
       className: nginx
