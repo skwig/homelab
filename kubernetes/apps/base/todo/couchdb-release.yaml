@@ -36,7 +36,7 @@ spec:
         WWW-Authenticate: Basic realm="couchdb"
       cors:
         credentials: true
-        origins: "null"
+        origins: http://localhost:5000, null
       chttpd:
         require_valid_user: true
       chttpd_auth:
