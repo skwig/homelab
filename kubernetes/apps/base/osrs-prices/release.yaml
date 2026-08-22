@@ -4,7 +4,7 @@ kind: HelmRepository
 metadata:
   name: osrs-prices
 spec:
-  interval: 6h
+  interval: 15m
   url: https://raw.githubusercontent.com/skwig/OsrsPrices/refs/heads/gh-pages/
   secretRef:
     name: github-credentials-secret
