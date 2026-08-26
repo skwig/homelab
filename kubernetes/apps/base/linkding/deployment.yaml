@@ -19,7 +19,7 @@ spec:
         fsGroup: 33
       containers:
         - name: linkding
-          image: "ghcr.io/sissbruecker/linkding:1.45.0-plus-alpine"
+          image: "ghcr.io/sissbruecker/linkding:1.46.2-plus-alpine"
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
