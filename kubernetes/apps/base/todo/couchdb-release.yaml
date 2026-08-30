@@ -41,6 +41,8 @@ spec:
         require_valid_user: true
       chttpd_auth:
         require_valid_user: true
+        allow_persistent_cookies: true
+        timeout: 2592000
     persistentVolume:
       enabled: true
       accessModes:
