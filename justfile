@@ -21,3 +21,6 @@ talosconfig-gen:
     talosctl gen config homelab https://homelab.nidus:6443 --with-secrets talos/secrets.yaml --output-types talosconfig --output "$TALOSCONFIG" --force >/dev/null
     talosctl config endpoint homelab.nidus
     talosctl config node homelab.nidus
+
+kubeconfig-gen:
+    talosctl kubeconfig --force
