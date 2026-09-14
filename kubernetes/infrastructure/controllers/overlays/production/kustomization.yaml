@@ -11,6 +11,5 @@ resources:
   - ../../base/glauth/
   - ../../base/ingress-nginx/
   - ../../base/local-path-provisioner/
-  - ../../base/metrics-server/
   - ../../base/minio/
   - ../../base/renovate/
