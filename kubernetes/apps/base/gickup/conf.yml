@@ -5,9 +5,10 @@ source:
     - token: GITHUB_TOKEN
       exclude:
         - nixpkgs
+        - Hyprland
+        - aquamarine
       excludeorgs:
         - NixOS
-        - hyprwm
       wiki: true
       issues: true
       gists: true
