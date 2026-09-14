@@ -15,7 +15,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  prune: true
+  prune: false
+  deletionPolicy: Orphan
   wait: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -31,7 +32,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  prune: true
+  prune: false
+  deletionPolicy: Orphan
   wait: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -49,7 +51,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  prune: true
+  prune: false
+  deletionPolicy: Orphan
   wait: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -67,5 +70,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  prune: true
+  prune: false
+  deletionPolicy: Orphan
   wait: true
