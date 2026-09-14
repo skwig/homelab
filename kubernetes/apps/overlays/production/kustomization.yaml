@@ -5,5 +5,4 @@ resources:
   - ../../base/home-assistant/
   - ../../base/linkding/
   # - ../../base/minecraft/
-  - ../../base/todo/
   - ../../base/vaultwarden/
