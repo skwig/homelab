@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - ../../base/gickup/
   - ../../base/home-assistant/
-  - ../../base/homepage/
   - ../../base/jellyfin/
   - ../../base/linkding/
   # - ../../base/minecraft/
