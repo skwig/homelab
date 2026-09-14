@@ -9,6 +9,7 @@ source:
         - aquamarine
       excludeorgs:
         - NixOS
+        - 4sgard-dev
       wiki: true
       issues: true
       gists: true
