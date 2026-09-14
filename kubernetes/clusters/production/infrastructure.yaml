@@ -9,6 +9,7 @@ spec:
   dependsOn:
     - name: infrastructure-core-controllers
     - name: infrastructure-external-secrets
+    - name: infrastructure-opentelemetry
   interval: 1h
   retryInterval: 1m
   timeout: 5m
