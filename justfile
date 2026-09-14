@@ -15,3 +15,9 @@ sops-encrypt:
     sops encrypt talos/controlplane.yaml > talos/controlplane.sops.yaml
     sops encrypt talos/worker.yaml > talos/worker.sops.yaml
     sops encrypt --input-type yaml --output-type yaml talos/talosconfig > talos/talosconfig.sops.yaml
+
+talosconfig-gen:
+    test -n "$TALOSCONFIG"
+    talosctl gen config homelab https://homelab.nidus:6443 --with-secrets talos/secrets.yaml --output-types talosconfig --output "$TALOSCONFIG" --force >/dev/null
+    talosctl config endpoint homelab.nidus
+    talosctl config node homelab.nidus
