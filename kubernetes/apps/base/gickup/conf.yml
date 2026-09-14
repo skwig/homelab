@@ -5,23 +5,16 @@ source:
     - token: GITHUB_TOKEN
       exclude:
         - nixpkgs
-        # - Hyprland
-        # - aquamarine
-        # - HyprPanel
       excludeorgs:
         - NixOS
+        - hyprwm
       wiki: true
       issues: true
       gists: true
 destination:
-  s3:
-    - endpoint: minio:80
+  local:
+    - path: /gickup/backups
       structured: true
-      bucket: backup
-      accesskey: CONSOLE_ACCESS_KEY
-      secretkey: CONSOLE_SECRET_KEY
-      usessl: false
-      storageclass: STANDARD
 
 log:
   timeformat: 2006-01-02 15:04:05

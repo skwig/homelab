@@ -20,13 +20,16 @@ spec:
               envFrom:
                 - secretRef:
                     name: gickup-github-token
-                - secretRef:
-                    name: gickup-minio-user-credentials
               volumeMounts:
                 - mountPath: /gickup/conf/
                   name: conf-yml
+                - mountPath: /gickup/backups
+                  name: backup
           volumes:
             - name: conf-yml
               configMap:
                 name: gickup-conf-yml
+            - name: backup
+              persistentVolumeClaim:
+                claimName: gickup-backup-pvc
           restartPolicy: Never
