@@ -31,5 +31,5 @@ spec:
                 name: gickup-conf-yml
             - name: backup
               persistentVolumeClaim:
-                claimName: gickup-backup-pvc
+                claimName: gickup-backup
           restartPolicy: Never
