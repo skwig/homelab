@@ -5,7 +5,6 @@ resources:
   - ../../base/home-assistant/
   - ../../base/linkding/
   # - ../../base/minecraft/
-  - ../../base/opencode/
   - ../../base/osrs-prices/
   - ../../base/tailscale/
   - ../../base/todo/
