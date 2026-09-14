@@ -6,7 +6,6 @@ resources:
   - gickup-cronjob.yaml
   - gickup-github-token-secret.yaml
   - pvc.yaml
-  - s3.yaml
 
 configMapGenerator:
   - name: gickup-conf-yml
