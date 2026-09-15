@@ -5,6 +5,9 @@ metadata:
   name: infrastructure-opentelemetry
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: infrastructure-cert-manager
+
   interval: 1h
   retryInterval: 1m
   timeout: 5m
