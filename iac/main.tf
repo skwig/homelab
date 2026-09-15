@@ -11,8 +11,6 @@ terraform {
   }
 
   backend "azurerm" {
-    tenant_id            = "b3033e23-4e79-48f8-a7b4-062fd451d4b2"
-    subscription_id      = "a9835b1f-dc51-4b91-83b1-436fc54726b5"
     resource_group_name  = "skwig-homelab-rg-euw-prd"
     storage_account_name = "skwighomelabsteuwprd"
     container_name       = "iac"
