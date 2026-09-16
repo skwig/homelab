@@ -48,6 +48,7 @@ spec:
   dependsOn:
     - name: infrastructure-cloudnative-pg
     - name: infrastructure-controllers
+    - name: infrastructure-csi-driver-nfs
     - name: infrastructure-local-path-provisioner
     - name: infrastructure-metrics-server
     - name: infrastructure-minio
