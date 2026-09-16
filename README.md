@@ -25,3 +25,9 @@ Disk: 1000 GiB
    flux install
    flux bootstrap github --owner skwig --repository homelab --branch master --path ./kubernetes/clusters/production --personal
    ```
+
+## Storage classes
+- `local-path-*` - Used when storage cannot be over the network (e.g. postgres)
+- `nfs-share-*` - Used when storage is on NAS, but can be accessed WITHOUT authentication
+- `smb-share-*` - Used when storage is on NAS, but should be accessed WITH authentication
+- `null` - Used when statically provisioning `PersistentVolume` with a specific driver
