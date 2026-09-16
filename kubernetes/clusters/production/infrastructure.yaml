@@ -46,6 +46,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
+    - name: infrastructure-cloudnative-pg
     - name: infrastructure-controllers
     - name: infrastructure-local-path-provisioner
     - name: infrastructure-metrics-server
