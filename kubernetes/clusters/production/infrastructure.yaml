@@ -68,6 +68,7 @@ spec:
   dependsOn:
     - name: infrastructure-core-configs
     - name: infrastructure-external-secrets-configs
+    - name: infrastructure-opentelemetry-configs
   interval: 1h
   retryInterval: 1m
   timeout: 5m

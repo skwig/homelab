@@ -1,0 +1,24 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infrastructure-opentelemetry-configs
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: infrastructure-core-controllers
+    - name: infrastructure-opentelemetry
+
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+
+  path: ./kubernetes/infrastructure/core-configs/base/opentelemetry
+
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+
+  prune: false
+  deletionPolicy: Orphan
+  wait: true
