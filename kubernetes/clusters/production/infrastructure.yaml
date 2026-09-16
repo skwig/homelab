@@ -47,6 +47,7 @@ metadata:
 spec:
   dependsOn:
     - name: infrastructure-controllers
+    - name: infrastructure-local-path-provisioner
     - name: infrastructure-metrics-server
   interval: 1h
   retryInterval: 1m
