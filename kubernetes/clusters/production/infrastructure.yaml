@@ -60,6 +60,7 @@ spec:
     - name: infrastructure-metrics-server
     - name: infrastructure-minio
     - name: infrastructure-renovate
+    - name: infrastructure-renovate-configs
   interval: 1h
   retryInterval: 1m
   timeout: 5m
