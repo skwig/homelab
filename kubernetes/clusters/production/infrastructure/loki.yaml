@@ -13,7 +13,7 @@ spec:
   retryInterval: 1m
   timeout: 5m
 
-  path: ./kubernetes/monitoring/controllers/base/loki
+  path: ./kubernetes/infrastructure/base/loki
 
   sourceRef:
     kind: GitRepository
