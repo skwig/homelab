@@ -1,0 +1,24 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infrastructure-loki
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: infrastructure-configs
+    - name: infrastructure-monitoring-namespace
+
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+
+  path: ./kubernetes/monitoring/controllers/base/loki
+
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+
+  prune: false
+  deletionPolicy: Orphan
+  wait: true
