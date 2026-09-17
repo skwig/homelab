@@ -15,7 +15,7 @@ spec:
   retryInterval: 1m
   timeout: 5m
 
-  path: ./kubernetes/monitoring/controllers/base/kube-prometheus-stack
+  path: ./kubernetes/infrastructure/base/kube-prometheus-stack
 
   sourceRef:
     kind: GitRepository
