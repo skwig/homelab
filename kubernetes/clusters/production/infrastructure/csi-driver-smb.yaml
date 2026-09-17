@@ -12,7 +12,7 @@ spec:
   retryInterval: 1m
   timeout: 5m
 
-  path: ./kubernetes/infrastructure/controllers/base/csi-driver-smb
+  path: ./kubernetes/infrastructure/base/csi-driver-smb
 
   sourceRef:
     kind: GitRepository
