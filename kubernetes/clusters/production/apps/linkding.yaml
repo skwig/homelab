@@ -6,7 +6,12 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: infrastructure-configs
+    - name: infrastructure-external-secrets-configs
+    - name: infrastructure-cloudnative-pg
+    - name: infrastructure-minio
+    - name: infrastructure-local-path-provisioner
+    - name: infrastructure-csi-driver-nfs
+    - name: infrastructure-opentelemetry
 
   interval: 1h
   retryInterval: 1m
