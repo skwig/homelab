@@ -12,7 +12,7 @@ spec:
   retryInterval: 1m
   timeout: 5m
 
-  path: ./kubernetes/infrastructure/controllers/base/alerts
+  path: ./kubernetes/infrastructure/base/alerts
 
   sourceRef:
     kind: GitRepository
