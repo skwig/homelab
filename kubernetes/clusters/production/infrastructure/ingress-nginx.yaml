@@ -1,0 +1,24 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infrastructure-ingress-nginx
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: infrastructure-core-configs
+    - name: infrastructure-opentelemetry
+
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+
+  path: ./kubernetes/infrastructure/controllers/base/ingress-nginx
+
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+
+  prune: false
+  deletionPolicy: Orphan
+  wait: true

@@ -51,6 +51,7 @@ spec:
     - name: infrastructure-controllers
     - name: infrastructure-csi-driver-nfs
     - name: infrastructure-external-dns
+    - name: infrastructure-ingress-nginx
     - name: infrastructure-local-path-provisioner
     - name: infrastructure-metrics-server
     - name: infrastructure-minio
