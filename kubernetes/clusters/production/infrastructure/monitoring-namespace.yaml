@@ -9,7 +9,7 @@ spec:
   retryInterval: 1m
   timeout: 5m
 
-  path: ./kubernetes/monitoring/controllers/base/namespace
+  path: ./kubernetes/infrastructure/base/monitoring-namespace
 
   sourceRef:
     kind: GitRepository
