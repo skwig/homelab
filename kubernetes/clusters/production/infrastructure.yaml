@@ -52,6 +52,7 @@ spec:
     - name: infrastructure-cert-manager-porkbun
     - name: infrastructure-cloudnative-pg
     - name: infrastructure-controllers
+    - name: infrastructure-csi-driver-smb
     - name: infrastructure-csi-driver-nfs
     - name: infrastructure-csi-driver-nfs-configs
     - name: infrastructure-external-dns

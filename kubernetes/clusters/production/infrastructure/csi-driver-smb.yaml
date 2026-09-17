@@ -1,0 +1,25 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infrastructure-csi-driver-smb
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: infrastructure-core-configs
+    - name: infrastructure-external-secrets-configs
+    - name: infrastructure-opentelemetry-configs
+
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+
+  path: ./kubernetes/infrastructure/controllers/base/csi-driver-smb
+
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+
+  prune: false
+  deletionPolicy: Orphan
+  wait: true
