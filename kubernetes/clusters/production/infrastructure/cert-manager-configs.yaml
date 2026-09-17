@@ -1,0 +1,26 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infrastructure-cert-manager-configs
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: infrastructure-controllers
+    - name: infrastructure-cert-manager
+    - name: infrastructure-cert-manager-porkbun
+    - name: infrastructure-external-secrets-configs
+
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+
+  path: ./kubernetes/infrastructure/configs/base/cert-manager
+
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+
+  prune: false
+  deletionPolicy: Orphan
+  wait: true
