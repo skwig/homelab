@@ -9,7 +9,7 @@ spec:
   retryInterval: 1m
   timeout: 5m
 
-  path: ./kubernetes/infrastructure/controllers/base/csi-driver-nfs
+  path: ./kubernetes/infrastructure/base/csi-driver-nfs
 
   sourceRef:
     kind: GitRepository
