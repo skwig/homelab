@@ -9,7 +9,7 @@ spec:
   retryInterval: 1m
   timeout: 5m
 
-  path: ./kubernetes/infrastructure/controllers/base/local-path-provisioner
+  path: ./kubernetes/infrastructure/base/local-path-provisioner
 
   sourceRef:
     kind: GitRepository
