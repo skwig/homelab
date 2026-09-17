@@ -52,7 +52,6 @@ spec:
     - name: infrastructure-controllers
     - name: infrastructure-csi-driver-smb
     - name: infrastructure-csi-driver-nfs
-    - name: infrastructure-csi-driver-nfs-configs
     - name: infrastructure-external-dns
     - name: infrastructure-glauth
     - name: infrastructure-ingress-nginx
