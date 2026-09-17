@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: infrastructure-configs
+    - name: infrastructure-external-secrets-configs
 
   interval: 1h
   retryInterval: 1m

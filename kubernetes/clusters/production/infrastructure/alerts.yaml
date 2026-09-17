@@ -6,8 +6,6 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: infrastructure-core-configs
-    - name: infrastructure-controllers
     - name: infrastructure-external-secrets-configs
 
   interval: 1h
