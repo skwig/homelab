@@ -13,7 +13,7 @@ spec:
   retryInterval: 1m
   timeout: 5m
 
-  path: ./kubernetes/monitoring/controllers/base/tempo
+  path: ./kubernetes/infrastructure/base/tempo
 
   sourceRef:
     kind: GitRepository
