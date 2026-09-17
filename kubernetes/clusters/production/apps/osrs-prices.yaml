@@ -6,7 +6,10 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: infrastructure-configs
+    - name: infrastructure-external-secrets-configs
+    - name: infrastructure-csi-driver-nfs
+    - name: infrastructure-csi-driver-smb
+    - name: infrastructure-opentelemetry
 
   interval: 1h
   retryInterval: 1m
