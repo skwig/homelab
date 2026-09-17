@@ -12,7 +12,7 @@ spec:
   retryInterval: 1m
   timeout: 5m
 
-  path: ./kubernetes/infrastructure/controllers/base/cloudnative-pg
+  path: ./kubernetes/infrastructure/base/cloudnative-pg
 
   sourceRef:
     kind: GitRepository
