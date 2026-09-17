@@ -12,7 +12,7 @@ spec:
   retryInterval: 1m
   timeout: 5m
 
-  path: ./kubernetes/infrastructure/controllers/base/renovate
+  path: ./kubernetes/infrastructure/base/renovate
 
   sourceRef:
     kind: GitRepository
