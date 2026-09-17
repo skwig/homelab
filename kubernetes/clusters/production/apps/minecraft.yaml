@@ -6,7 +6,7 @@
 #   namespace: flux-system
 # spec:
 #   dependsOn:
-#     - name: infrastructure-configs
+#     - name: infrastructure-local-path-provisioner
 #
 #   interval: 1h
 #   retryInterval: 1m
