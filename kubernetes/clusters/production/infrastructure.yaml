@@ -47,7 +47,6 @@ metadata:
 spec:
   dependsOn:
     - name: infrastructure-alerts
-    - name: infrastructure-alerts-configs
     - name: infrastructure-cert-manager-configs
     - name: infrastructure-cert-manager-porkbun
     - name: infrastructure-cloudnative-pg

@@ -4,3 +4,4 @@ namespace: flux-system
 resources:
   - discord-alert.yaml
   - discord-provider.yaml
+  - discord-webhook-secret.yaml
