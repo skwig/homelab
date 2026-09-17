@@ -19,6 +19,6 @@ spec:
     kind: GitRepository
     name: flux-system
 
-  prune: true
+  prune: false
   deletionPolicy: Orphan
   wait: true
