@@ -15,7 +15,7 @@ spec:
       automountServiceAccountToken: false
       containers:
         - name: opencode
-          image: nixos/nix:2.34.8
+          image: nixos/nix:2.35.2
           imagePullPolicy: IfNotPresent
           command:
             - nix
