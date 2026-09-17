@@ -9,7 +9,7 @@ spec:
   retryInterval: 1m
   timeout: 5m
 
-  path: ./kubernetes/infrastructure/controllers/base/glauth
+  path: ./kubernetes/infrastructure/base/glauth
 
   sourceRef:
     kind: GitRepository
