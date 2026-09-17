@@ -5,3 +5,4 @@ resources:
   - namespace.yaml
   - release.yaml
   - smb-share-retain.yaml
+  - smb-share-credentials-secret.yaml
