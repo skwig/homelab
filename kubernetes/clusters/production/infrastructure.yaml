@@ -38,24 +38,3 @@ spec:
   prune: false
   deletionPolicy: Orphan
   wait: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: infrastructure-controllers
-  namespace: flux-system
-spec:
-  dependsOn:
-    - name: infrastructure-core-configs
-    - name: infrastructure-external-secrets-configs
-    - name: infrastructure-opentelemetry-configs
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  path: ./kubernetes/infrastructure/controllers/overlays/production
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  prune: false
-  deletionPolicy: Orphan
-  wait: true
