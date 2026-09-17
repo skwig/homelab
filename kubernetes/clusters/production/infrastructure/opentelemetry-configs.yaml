@@ -6,7 +6,6 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: infrastructure-core-controllers
     - name: infrastructure-opentelemetry
 
   interval: 1h
