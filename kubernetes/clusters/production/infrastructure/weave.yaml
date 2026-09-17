@@ -12,7 +12,7 @@ spec:
   retryInterval: 1m
   timeout: 5m
 
-  path: ./kubernetes/monitoring/controllers/base/weave
+  path: ./kubernetes/infrastructure/base/weave
 
   sourceRef:
     kind: GitRepository
