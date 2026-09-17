@@ -46,6 +46,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
+    - name: infrastructure-cert-manager-porkbun
     - name: infrastructure-cloudnative-pg
     - name: infrastructure-controllers
     - name: infrastructure-csi-driver-nfs
