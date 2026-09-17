@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: infrastructure-configs
+    - name: infrastructure-opentelemetry
 
   interval: 1h
   retryInterval: 1m
