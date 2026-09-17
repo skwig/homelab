@@ -42,37 +42,6 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: infrastructure-configs
-  namespace: flux-system
-spec:
-  dependsOn:
-    - name: infrastructure-alerts
-    - name: infrastructure-cert-manager-configs
-    - name: infrastructure-cloudnative-pg
-    - name: infrastructure-controllers
-    - name: infrastructure-csi-driver-smb
-    - name: infrastructure-csi-driver-nfs
-    - name: infrastructure-external-dns
-    - name: infrastructure-glauth
-    - name: infrastructure-ingress-nginx
-    - name: infrastructure-local-path-provisioner
-    - name: infrastructure-metrics-server
-    - name: infrastructure-minio
-    - name: infrastructure-renovate
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  path: ./kubernetes/infrastructure/configs/overlays/production
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  prune: false
-  deletionPolicy: Orphan
-  wait: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
   name: infrastructure-controllers
   namespace: flux-system
 spec:
