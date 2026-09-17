@@ -59,6 +59,7 @@ spec:
     - name: infrastructure-local-path-provisioner
     - name: infrastructure-metrics-server
     - name: infrastructure-minio
+    - name: infrastructure-renovate
   interval: 1h
   retryInterval: 1m
   timeout: 5m
