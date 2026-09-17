@@ -6,8 +6,10 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: infrastructure-configs
     - name: infrastructure-monitoring-namespace
+    - name: infrastructure-csi-driver-nfs
+    - name: infrastructure-loki
+    - name: infrastructure-tempo
 
   interval: 1h
   retryInterval: 1m
