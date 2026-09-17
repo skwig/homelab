@@ -8,7 +8,6 @@ spec:
   dependsOn:
     - name: infrastructure-controllers
     - name: infrastructure-cert-manager
-    - name: infrastructure-cert-manager-porkbun
     - name: infrastructure-external-secrets-configs
 
   interval: 1h

@@ -48,7 +48,6 @@ spec:
   dependsOn:
     - name: infrastructure-alerts
     - name: infrastructure-cert-manager-configs
-    - name: infrastructure-cert-manager-porkbun
     - name: infrastructure-cloudnative-pg
     - name: infrastructure-controllers
     - name: infrastructure-csi-driver-smb
