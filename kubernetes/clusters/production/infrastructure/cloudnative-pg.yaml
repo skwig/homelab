@@ -5,9 +5,6 @@ metadata:
   name: infrastructure-cloudnative-pg
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: infrastructure-core-configs
-
   interval: 1h
   retryInterval: 1m
   timeout: 5m
