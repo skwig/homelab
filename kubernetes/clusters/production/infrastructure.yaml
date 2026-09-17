@@ -50,6 +50,7 @@ spec:
     - name: infrastructure-cloudnative-pg
     - name: infrastructure-controllers
     - name: infrastructure-csi-driver-nfs
+    - name: infrastructure-csi-driver-nfs-configs
     - name: infrastructure-external-dns
     - name: infrastructure-glauth
     - name: infrastructure-ingress-nginx
