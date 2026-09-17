@@ -3,28 +3,6 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: infrastructure-core-configs
-  namespace: flux-system
-spec:
-  dependsOn:
-    - name: infrastructure-core-controllers
-    - name: infrastructure-cert-manager
-    - name: infrastructure-external-secrets
-    - name: infrastructure-opentelemetry
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  path: ./kubernetes/infrastructure/core-configs/overlays/production
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  prune: false
-  deletionPolicy: Orphan
-  wait: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
   name: infrastructure-core-controllers
   namespace: flux-system
 spec:
