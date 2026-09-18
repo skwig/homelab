@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - gickup.yaml
+  - home-assistant.yaml
+  - homepage.yaml
+  - jellyfin.yaml
+  - linkding.yaml
+  - minecraft.yaml
+  - obsidian-livesync.yaml
+  - opencode.yaml
+  - osrs-prices.yaml
+  - tailscale.yaml
+  - todo.yaml
+  - vaultwarden.yaml
