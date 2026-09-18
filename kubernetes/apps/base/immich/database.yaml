@@ -1,0 +1,27 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: immich-db
+spec:
+  instances: 1
+  primaryUpdateStrategy: unsupervised
+  imageName: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
+  bootstrap:
+    initdb:
+      postInitApplicationSQL:
+        - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
+  postgresql:
+    parameters:
+      shared_preload_libraries: vchord.so
+  storage:
+    size: 20Gi
+    storageClass: local-path-retain
+  managed:
+    services:
+      disabledDefaultServices:
+        - ro
+        - r
+  monitoring:
+    enablePodMonitor: true

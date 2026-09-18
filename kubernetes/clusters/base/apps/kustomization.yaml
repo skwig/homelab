@@ -4,6 +4,7 @@ resources:
   - gickup.yaml
   - home-assistant.yaml
   - homepage.yaml
+  - immich.yaml
   - jellyfin.yaml
   - linkding.yaml
   - minecraft.yaml

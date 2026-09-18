@@ -1,0 +1,51 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-library-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: local-path-retain
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-external-library-pvc
+spec:
+  accessModes:
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: ""
+  volumeName: immich-external-library-pv
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: immich-library-pv
+spec:
+  accessModes:
+    - ReadOnlyMany
+  capacity:
+    storage: 1Ti
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""
+  mountOptions:
+    - noserverino
+    - dir_mode=0555
+    - file_mode=0444
+  csi:
+    driver: smb.csi.k8s.io
+    readOnly: true
+    volumeHandle: "//192.168.100.37#/#/Immich_Bind"
+    volumeAttributes:
+      source: //192.168.100.37/Immich_Bind
+      subDir: /
+    nodeStageSecretRef:
+      name: smb-share-credentials
+      namespace: immich

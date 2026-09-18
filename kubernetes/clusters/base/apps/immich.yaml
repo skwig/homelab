@@ -1,0 +1,27 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: app-immich
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: infrastructure-external-secrets-configs
+    - name: infrastructure-cloudnative-pg
+    - name: infrastructure-kube-prometheus-stack
+    - name: infrastructure-local-path-provisioner
+    - name: infrastructure-csi-driver-smb
+
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+
+  path: ./kubernetes/apps/base/immich
+
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+
+  prune: true
+  deletionPolicy: Orphan
+  wait: true
