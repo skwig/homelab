@@ -1,0 +1,418 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../base
+  - flux-system
+patches:
+  # Switch from git to locally copied oci
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+    patch: |-
+      - op: replace
+        path: /spec/sourceRef/kind
+        value: OCIRepository
+      - op: add
+        path: /spec/patches
+        value: []
+
+  # Use docker compose SMB
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+      name: app-jellyfin
+    patch: |-
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            version: v1
+            kind: PersistentVolume
+            name: jellyfin-media-pv
+          patch: |-
+            - op: replace
+              path: /spec/csi/volumeHandle
+              value: //dev-smb#/share#/
+            - op: add
+              path: /spec/csi/nodeStageSecretRef
+              value:
+                name: smb-share-credentials
+                namespace: csi-driver-smb
+            - op: replace
+              path: /spec/csi/volumeAttributes/source
+              value: //dev-smb/share
+            - op: replace
+              path: /spec/csi/volumeAttributes/subDir
+              value: /
+            - op: remove
+              path: /spec/mountOptions/3
+
+  # Use docker compose SMB
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+      name: app-osrs-prices
+    patch: |-
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            version: v1
+            kind: PersistentVolume
+            name: osrs-prices-price-archive-projects-pv
+          patch: |-
+            - op: replace
+              path: /spec/csi/volumeHandle
+              value: //dev-smb#/share#osrs-prices-price-archive
+            - op: replace
+              path: /spec/csi/volumeAttributes/source
+              value: //dev-smb/share
+            - op: replace
+              path: /spec/csi/volumeAttributes/subDir
+              value: osrs-prices-price-archive
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            version: v1
+            kind: PersistentVolume
+            name: osrs-prices-webapp-flipping-pv
+          patch: |-
+            - op: replace
+              path: /spec/csi/volumeHandle
+              value: dev-nfs#/#osrs-prices-webapp-flipping
+            - op: replace
+              path: /spec/csi/volumeAttributes/server
+              value: dev-nfs
+            - op: replace
+              path: /spec/csi/volumeAttributes/share
+              value: /
+            - op: replace
+              path: /spec/csi/volumeAttributes/subDir
+              value: osrs-prices-webapp-flipping
+
+  # No patching can make this work on dev, suspend
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+      name: app-tailscale
+    patch: |-
+      - op: add
+        path: /spec/suspend
+        value: true
+
+  # Disable azure backup
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+      name: app-vaultwarden
+    patch: |-
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: barmancloud.cnpg.io
+            version: v1
+            kind: ObjectStore
+            name: azure
+          patch: |-
+            $patch: delete
+            apiVersion: barmancloud.cnpg.io/v1
+            kind: ObjectStore
+            metadata:
+              name: azure
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: postgresql.cnpg.io
+            version: v1
+            kind: Cluster
+            name: vaultwarden-db
+          patch: |-
+            - op: remove
+              path: /spec/plugins/1
+
+  # Self-sign and disable existing porkbun machinery
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+      name: infrastructure-cert-manager-configs
+    patch: |-
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: cert-manager.io
+            version: v1
+            kind: ClusterIssuer
+            name: letsencrypt-cluster-issuer-staging
+          patch: |-
+            - op: replace
+              path: /spec
+              value:
+                selfSigned: {}
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: cert-manager.io
+            version: v1
+            kind: ClusterIssuer
+            name: letsencrypt-cluster-issuer-production
+          patch: |-
+            - op: replace
+              path: /spec
+              value:
+                selfSigned: {}
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: source.toolkit.fluxcd.io
+            version: v1
+            kind: HelmRepository
+            name: porkbun-webhook
+          patch: |-
+            $patch: delete
+            apiVersion: source.toolkit.fluxcd.io/v1
+            kind: HelmRepository
+            metadata:
+              name: porkbun-webhook
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: helm.toolkit.fluxcd.io
+            version: v2
+            kind: HelmRelease
+            name: porkbun-webhook
+          patch: |-
+            $patch: delete
+            apiVersion: helm.toolkit.fluxcd.io/v2
+            kind: HelmRelease
+            metadata:
+              name: porkbun-webhook
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: external-secrets.io
+            kind: ExternalSecret
+            name: porkbun-keys-secret
+          patch: |-
+            $patch: delete
+            apiVersion: external-secrets.io/v1
+            kind: ExternalSecret
+            metadata:
+              name: porkbun-keys-secret
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: rbac.authorization.k8s.io
+            version: v1
+            kind: Role
+            name: porkbun-key:reader
+          patch: |-
+            $patch: delete
+            apiVersion: rbac.authorization.k8s.io/v1
+            kind: Role
+            metadata:
+              name: porkbun-key:reader
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: rbac.authorization.k8s.io
+            version: v1
+            kind: RoleBinding
+            name: porkbun-webhook:key-reader
+          patch: |-
+            $patch: delete
+            apiVersion: rbac.authorization.k8s.io/v1
+            kind: RoleBinding
+            metadata:
+              name: porkbun-webhook:key-reader
+
+  # Docker compose NFS magic
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+      name: infrastructure-csi-driver-nfs
+    patch: |-
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: storage.k8s.io
+            version: v1
+            kind: StorageClass
+            name: nfs-share-retain
+          patch: |-
+            - op: replace
+              path: /parameters/server
+              value: dev-nfs
+            - op: replace
+              path: /parameters/share
+              value: /
+
+  # Docker compose SMB magic
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+      name: infrastructure-csi-driver-smb
+    patch: |-
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: storage.k8s.io
+            version: v1
+            kind: StorageClass
+            name: smb-share-retain
+          patch: |-
+            - op: replace
+              path: /parameters/source
+              value: //dev-smb/share
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: external-secrets.io
+            kind: ExternalSecret
+            name: smb-share-credentials
+          patch: |-
+            - op: replace
+              path: /apiVersion
+              value: v1
+            - op: replace
+              path: /kind
+              value: Secret
+            - op: remove
+              path: /spec
+            - op: add
+              path: /type
+              value: Opaque
+            - op: add
+              path: /stringData
+              value:
+                username: dev
+                password: dev
+
+  # No patching can make this work on dev, suspend
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+      name: infrastructure-external-dns
+    patch: |-
+      - op: add
+        path: /spec/suspend
+        value: true
+
+  # Use fake & hardcoded secrets
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+      name: infrastructure-external-secrets-configs
+    patch: |-
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: external-secrets.io
+            kind: ClusterSecretStore
+            name: azure-kv-cluster-secret-store
+          patch: |-
+            - op: replace
+              path: /spec/provider
+              value:
+                fake:
+                  data:
+                    - key: couchdb-admin-password
+                      value: dev
+                    - key: couchdb-admin-username
+                      value: dev
+                    - key: couchdb-app-password
+                      value: dev
+                    - key: couchdb-app-username
+                      value: dev
+                    - key: discord-homelab-channel-webhook
+                      value: http://127.0.0.1:9
+                    - key: vaultwarden-db-backup-connection-string
+                      value: dev
+                    - key: vaultwarden-db-backup-sas
+                      value: dev
+                    - key: gickup-github-token
+                      value: dev
+                    - key: homelab-flux-github-classic-token-packages
+                      value: dev
+                    - key: homelab-flux-github-token
+                      value: dev
+                    - key: homelab-flux-github-username
+                      value: dev
+                    - key: linkding-superuser-password
+                      value: dev
+                    - key: linkding-superuser-username
+                      value: dev
+                    - key: mailjet-apikey
+                      value: dev
+                    - key: mailjet-secretkey
+                      value: dev-password
+                    - key: minio-console-accesskey
+                      value: dev
+                    - key: minio-console-secretkey
+                      value: dev-password
+                    - key: minio-root-password
+                      value: dev-password
+                    - key: minio-root-user
+                      value: dev
+                    - key: obsidian-livesync-admin-password
+                      value: dev
+                    - key: obsidian-livesync-admin-username
+                      value: dev
+                    - key: opencode-server-password
+                      value: dev
+                    - key: porkbun-api-key
+                      value: dev
+                    - key: porkbun-secret-key
+                      value: dev
+                    - key: renovate-github-token
+                      value: dev
+                    - key: smb-share-password
+                      value: dev
+                    - key: smb-share-username
+                      value: dev
+                    - key: tailscale-auth-key
+                      value: dev
+                    - key: todo-couchdb-admin-password
+                      value: dev
+                    - key: todo-couchdb-admin-username
+                      value: dev
+                    - key: todo-couchdb-password
+                      value: dev
+                    - key: weave-password
+                      value: dev
+                    - key: weave-username
+                      value: dev
+
+  # No patching can make this work on dev, suspend
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+      name: infrastructure-renovate
+    patch: |-
+      - op: add
+        path: /spec/suspend
+        value: true

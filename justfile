@@ -1,6 +1,8 @@
 alias fmt := format
 alias f := format
 
+mod dev
+
 format:
     treefmt --no-cache .
 

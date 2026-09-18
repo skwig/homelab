@@ -1,0 +1,51 @@
+services:
+  registry:
+    image: registry:2.8.3
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5001:5000"
+    volumes:
+      - registry-data:/var/lib/registry
+    networks:
+      kind:
+        aliases:
+          - dev-registry
+
+  nfs:
+    image: itsthenetwork/nfs-server-alpine:12
+    restart: unless-stopped
+    privileged: true
+    environment:
+      SHARED_DIRECTORY: /exports
+    volumes:
+      - nfs-data:/exports
+    networks:
+      kind:
+        aliases:
+          - dev-nfs
+
+  smb:
+    image: dperson/samba:amd64
+    restart: unless-stopped
+    command:
+      - -u
+      - dev;dev
+      - -s
+      - share;/share;yes;no;no;dev
+      - -p
+    volumes:
+      - smb-data:/share
+    networks:
+      kind:
+        aliases:
+          - dev-smb
+
+volumes:
+  registry-data:
+  nfs-data:
+  smb-data:
+
+networks:
+  kind:
+    external: true
+    name: kind

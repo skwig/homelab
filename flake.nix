@@ -18,18 +18,25 @@
         pkgs = import nixpkgs { inherit system; };
 
         nativeDeps = with pkgs; [
-          fixjson
-          fluxcd
           just
-          kubernetes-helm
+          rsync
+
+          fixjson
           nixfmt
-          opentofu
           prettier
           shfmt
-          sops
-          talosctl
           treefmt
+
+          opentofu
+
+          sops
+
+          talosctl
+          fluxcd
           kustomize
+          kubernetes-helm
+          kubectl
+          kind
         ];
       in
       {
