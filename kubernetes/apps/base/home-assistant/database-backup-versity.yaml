@@ -1,0 +1,36 @@
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: versity
+spec:
+  configuration:
+    destinationPath: s3://home-assistant-db-backup
+    endpointURL: http://s3.skwig.party:7070
+    s3Credentials:
+      accessKeyId:
+        name: home-assistant-db-backup-credentials
+        key: AWS_ACCESS_KEY_ID
+      secretAccessKey:
+        name: home-assistant-db-backup-credentials
+        key: AWS_SECRET_ACCESS_KEY
+    wal:
+      compression: bzip2
+  retentionPolicy: "30d"
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: home-assistant-db-backup-credentials
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: azure-kv-cluster-secret-store
+    kind: ClusterSecretStore
+  data:
+    - secretKey: AWS_ACCESS_KEY_ID
+      remoteRef:
+        key: home-assistant-db-backup-accesskey
+    - secretKey: AWS_SECRET_ACCESS_KEY
+      remoteRef:
+        key: home-assistant-db-backup-secretkey

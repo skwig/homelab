@@ -16,7 +16,7 @@ spec:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
-        barmanObjectName: minio
+        barmanObjectName: versity
   managed:
     services:
       disabledDefaultServices:
