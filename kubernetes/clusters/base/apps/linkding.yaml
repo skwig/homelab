@@ -8,7 +8,6 @@ spec:
   dependsOn:
     - name: infrastructure-external-secrets-configs
     - name: infrastructure-cloudnative-pg
-    - name: infrastructure-minio
     - name: infrastructure-local-path-provisioner
     - name: infrastructure-csi-driver-nfs
     - name: infrastructure-opentelemetry

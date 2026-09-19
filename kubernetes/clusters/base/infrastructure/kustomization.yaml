@@ -16,7 +16,6 @@ resources:
   - local-path-provisioner.yaml
   - loki.yaml
   - metrics-server.yaml
-  - minio.yaml
   - monitoring-namespace.yaml
   - opentelemetry.yaml
   - opentelemetry-configs.yaml
