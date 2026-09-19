@@ -17,14 +17,9 @@ spec:
   releaseName: immich
   targetNamespace: immich
   interval: 10m
-  chart:
-    spec:
-      chart: immich
-      version: 0.13.2
-      sourceRef:
-        kind: OCIRepository
-        name: immich
-        namespace: immich
+  chartRef:
+    kind: OCIRepository
+    name: immich
   # https://artifacthub.io/packages/helm/immich/immich?modal=values
   values:
     immich:
