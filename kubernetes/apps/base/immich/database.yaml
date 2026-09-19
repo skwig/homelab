@@ -15,6 +15,11 @@ spec:
   storage:
     size: 20Gi
     storageClass: local-path-retain
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: versity
   managed:
     services:
       disabledDefaultServices:
@@ -22,3 +27,52 @@ spec:
         - r
   monitoring:
     enablePodMonitor: true
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: versity
+spec:
+  configuration:
+    destinationPath: s3://immich-db-backup
+    endpointURL: http://s3.skwig.party:7070
+    s3Credentials:
+      accessKeyId:
+        name: immich-db-backup-credentials
+        key: AWS_ACCESS_KEY_ID
+      secretAccessKey:
+        name: immich-db-backup-credentials
+        key: AWS_SECRET_ACCESS_KEY
+    wal:
+      compression: bzip2
+  retentionPolicy: "30d"
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: immich-db-backup
+spec:
+  immediate: true
+  schedule: "0 0 3 * * *"
+  cluster:
+    name: immich-db
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: immich-db-backup-credentials
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: azure-kv-cluster-secret-store
+    kind: ClusterSecretStore
+  data:
+    - secretKey: AWS_ACCESS_KEY_ID
+      remoteRef:
+        key: immich-db-backup-accesskey
+    - secretKey: AWS_SECRET_ACCESS_KEY
+      remoteRef:
+        key: immich-db-backup-secretkey
