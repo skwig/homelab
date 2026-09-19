@@ -12,9 +12,6 @@ spec:
       postInitApplicationSQL:
         - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
         - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
-  postgresql:
-    parameters:
-      shared_preload_libraries: vchord.so
   storage:
     size: 20Gi
     storageClass: local-path-retain
