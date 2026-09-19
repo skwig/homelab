@@ -5,5 +5,6 @@ resources:
   - namespace.yaml
   - release.yaml
   - database.yaml
-  - pvc.yaml
+  - pvc-library.yaml
+  - pvc-external-library.yaml
   - smb-share-credentials-secret.yaml
