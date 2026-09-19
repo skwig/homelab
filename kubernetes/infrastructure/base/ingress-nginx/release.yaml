@@ -27,6 +27,12 @@ spec:
   # https://github.com/kubernetes/ingress-nginx/tree/main/charts/ingress-nginx#values
   values:
     controller:
+      # Makes apps able to create ingresses without the ingress controller already running, 
+      # mimicking behavior of different ingress controllers.
+      # Not ideal in nginx, but it's getting replaced soon anyway
+      admissionWebhooks:
+        failurePolicy: Ignore
+        timeoutSeconds: 2
       ingressClassResource:
         enabled: true
         name: nginx
