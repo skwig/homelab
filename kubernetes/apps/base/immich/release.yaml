@@ -59,6 +59,7 @@ spec:
                     secretKeyRef:
                       name: immich-db-app
                       key: password
+                DB_VECTOR_EXTENSION: pgvector
       persistence:
         external-library:
           type: persistentVolumeClaim

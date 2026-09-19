@@ -6,11 +6,11 @@ metadata:
 spec:
   instances: 1
   primaryUpdateStrategy: unsupervised
-  imageName: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.6-standard-trixie
   bootstrap:
     initdb:
       postInitApplicationSQL:
-        - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS vector;
         - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
   storage:
     size: 20Gi
