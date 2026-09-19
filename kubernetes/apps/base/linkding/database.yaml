@@ -16,7 +16,7 @@ spec:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
-        barmanObjectName: minio
+        barmanObjectName: versity
   managed:
     services:
       disabledDefaultServices:
@@ -28,18 +28,18 @@ spec:
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:
-  name: minio
+  name: versity
 spec:
   configuration:
-    destinationPath: s3://backup
-    endpointURL: http://minio
+    destinationPath: s3://linkding-db-backup
+    endpointURL: http://s3.skwig.party:7070
     s3Credentials:
       accessKeyId:
-        name: linkding-minio-user-credentials
-        key: CONSOLE_ACCESS_KEY
+        name: linkding-db-backup-credentials
+        key: AWS_ACCESS_KEY_ID
       secretAccessKey:
-        name: linkding-minio-user-credentials
-        key: CONSOLE_SECRET_KEY
+        name: linkding-db-backup-credentials
+        key: AWS_SECRET_ACCESS_KEY
     wal:
       compression: bzip2
   retentionPolicy: "30d"
@@ -57,76 +57,19 @@ spec:
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
 ---
-apiVersion: minio.min.io/v2
-kind: Tenant
-metadata:
-  name: linkding-backup
-spec:
-  configuration:
-    name: linkding-backup-configuration
-  users:
-    - name: linkding-minio-user-credentials
-  pools:
-    - name: pool-0
-      servers: 1
-      volumesPerServer: 1
-      volumeClaimTemplate:
-        metadata:
-          name: backup
-        spec:
-          accessModes:
-            - ReadWriteOnce
-          resources:
-            requests:
-              storage: 2Gi
-          storageClassName: nfs-share-retain
-  buckets:
-    - name: backup
-      region: us-east-1
-      objectLock: true
-  requestAutoCert: false
----
 apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
-  name: linkding-backup-configuration
-spec:
-  refreshInterval: 1h
-  secretStoreRef:
-    name: azure-kv-cluster-secret-store
-    kind: ClusterSecretStore
-  target:
-    name: linkding-backup-configuration
-    creationPolicy: Owner
-    template:
-      type: Opaque
-      engineVersion: v2
-      data:
-        config.env: |-
-          export MINIO_STORAGE_CLASS_STANDARD="EC:0"
-          export MINIO_ROOT_USER="{{ .MINIO_ROOT_USER | toString }}"
-          export MINIO_ROOT_PASSWORD="{{ .MINIO_ROOT_PASSWORD | toString }}"
-  data:
-    - secretKey: MINIO_ROOT_USER
-      remoteRef:
-        key: minio-root-user
-    - secretKey: MINIO_ROOT_PASSWORD
-      remoteRef:
-        key: minio-root-password
----
-apiVersion: external-secrets.io/v1
-kind: ExternalSecret
-metadata:
-  name: linkding-minio-user-credentials
+  name: linkding-db-backup-credentials
 spec:
   refreshInterval: 1h
   secretStoreRef:
     name: azure-kv-cluster-secret-store
     kind: ClusterSecretStore
   data:
-    - secretKey: CONSOLE_ACCESS_KEY
+    - secretKey: AWS_ACCESS_KEY_ID
       remoteRef:
-        key: minio-console-accesskey
-    - secretKey: CONSOLE_SECRET_KEY
+        key: linkding-db-backup-accesskey
+    - secretKey: AWS_SECRET_ACCESS_KEY
       remoteRef:
-        key: minio-console-secretkey
+        key: linkding-db-backup-secretkey
