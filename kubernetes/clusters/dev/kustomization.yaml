@@ -49,6 +49,34 @@ patches:
             - op: remove
               path: /spec/mountOptions/3
 
+  # Use docker compose NFS
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+      name: app-arr
+    patch: |-
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            version: v1
+            kind: PersistentVolume
+            name: qbittorrent-downloads-pv
+          patch: |-
+            - op: replace
+              path: /spec/csi/volumeHandle
+              value: dev-nfs#/#/
+            - op: replace
+              path: /spec/csi/volumeAttributes/server
+              value: dev-nfs
+            - op: replace
+              path: /spec/csi/volumeAttributes/share
+              value: /
+            - op: replace
+              path: /spec/csi/volumeAttributes/subDir
+              value: /
+
   # Use docker compose SMB
   - target:
       group: kustomize.toolkit.fluxcd.io

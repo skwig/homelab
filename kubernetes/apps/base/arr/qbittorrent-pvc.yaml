@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: qbittorrent-downloads
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: ""
+  volumeName: qbittorrent-downloads-pv
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: qbittorrent-downloads-pv
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 1Ti
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""
+  mountOptions:
+    - nfsvers=4.1
+  # https://github.com/kubernetes-csi/csi-driver-nfs/blob/master/docs/driver-parameters.md
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    # Recommended: {nfs-server-address}#{share-name}#{sub-dir-name}
+    volumeHandle: syn.skwig.party#/volume1/Media_Shared#/
+    volumeAttributes:
+      server: syn.skwig.party
+      share: /volume1/Media_Shared
+      subDir: /
