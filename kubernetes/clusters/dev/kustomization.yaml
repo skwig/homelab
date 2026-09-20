@@ -217,6 +217,47 @@ patches:
             - op: replace
               path: /spec/configuration/endpointURL
               value: http://dev-s3:7070
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            version: v1
+            kind: PersistentVolume
+            name: immich-external-library-pv
+          patch: |-
+            - op: replace
+              path: /spec/csi/volumeHandle
+              value: //dev-smb#/share#/
+            - op: replace
+              path: /spec/csi/volumeAttributes/source
+              value: //dev-smb/share
+            - op: replace
+              path: /spec/csi/volumeAttributes/subDir
+              value: /
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: external-secrets.io
+            kind: ExternalSecret
+            name: smb-share-credentials
+          patch: |-
+            - op: replace
+              path: /apiVersion
+              value: v1
+            - op: replace
+              path: /kind
+              value: Secret
+            - op: remove
+              path: /spec
+            - op: add
+              path: /type
+              value: Opaque
+            - op: add
+              path: /stringData
+              value:
+                username: dev
+                password: dev
 
   # Self-sign and disable existing porkbun machinery
   - target:
