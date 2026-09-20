@@ -4,5 +4,6 @@ namespace: arr
 resources:
   - namespace.yaml
   - qbittorrent-deployment.yaml
+  - qbittorrent-ingress.yaml
   - qbittorrent-service.yaml
   - qbittorrent-pvc.yaml
