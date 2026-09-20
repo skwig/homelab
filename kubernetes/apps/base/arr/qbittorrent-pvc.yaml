@@ -29,8 +29,7 @@ spec:
     driver: nfs.csi.k8s.io
     readOnly: false
     # Recommended: {nfs-server-address}#{share-name}#{sub-dir-name}
-    volumeHandle: syn.skwig.party#/volume1/Media_Shared#/
+    volumeHandle: syn.skwig.party#/volume1/Media_Shared#
     volumeAttributes:
       server: syn.skwig.party
       share: /volume1/Media_Shared
-      subDir: /

@@ -66,15 +66,12 @@ patches:
           patch: |-
             - op: replace
               path: /spec/csi/volumeHandle
-              value: dev-nfs#/#/
+              value: dev-nfs#/#
             - op: replace
               path: /spec/csi/volumeAttributes/server
               value: dev-nfs
             - op: replace
               path: /spec/csi/volumeAttributes/share
-              value: /
-            - op: replace
-              path: /spec/csi/volumeAttributes/subDir
               value: /
 
   # Use docker compose SMB
