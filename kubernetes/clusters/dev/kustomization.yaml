@@ -138,6 +138,86 @@ patches:
             - op: remove
               path: /spec/plugins/1
 
+  # Use docker compose S3 for database backups
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+      name: app-linkding
+    patch: |-
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: barmancloud.cnpg.io
+            version: v1
+            kind: ObjectStore
+            name: versity
+          patch: |-
+            - op: replace
+              path: /spec/configuration/endpointURL
+              value: http://dev-s3:7070
+
+  # Use docker compose S3 for database backups
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+      name: app-home-assistant
+    patch: |-
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: barmancloud.cnpg.io
+            version: v1
+            kind: ObjectStore
+            name: versity
+          patch: |-
+            - op: replace
+              path: /spec/configuration/endpointURL
+              value: http://dev-s3:7070
+
+  # Use docker compose S3 for database backups
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+      name: app-vaultwarden
+    patch: |-
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: barmancloud.cnpg.io
+            version: v1
+            kind: ObjectStore
+            name: versity
+          patch: |-
+            - op: replace
+              path: /spec/configuration/endpointURL
+              value: http://dev-s3:7070
+
+  # Use docker compose S3 for database backups
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      version: v1
+      kind: Kustomization
+      name: app-immich
+    patch: |-
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
+            group: barmancloud.cnpg.io
+            version: v1
+            kind: ObjectStore
+            name: versity
+          patch: |-
+            - op: replace
+              path: /spec/configuration/endpointURL
+              value: http://dev-s3:7070
+
   # Self-sign and disable existing porkbun machinery
   - target:
       group: kustomize.toolkit.fluxcd.io
@@ -349,6 +429,14 @@ patches:
                       value: dev
                     - key: discord-homelab-channel-webhook
                       value: http://127.0.0.1:9
+                    - key: home-assistant-db-backup-accesskey
+                      value: dev
+                    - key: home-assistant-db-backup-secretkey
+                      value: dev-password
+                    - key: immich-db-backup-accesskey
+                      value: dev
+                    - key: immich-db-backup-secretkey
+                      value: dev-password
                     - key: vaultwarden-db-backup-connection-string
                       value: dev
                     - key: vaultwarden-db-backup-sas
@@ -365,18 +453,14 @@ patches:
                       value: dev
                     - key: linkding-superuser-username
                       value: dev
+                    - key: linkding-db-backup-accesskey
+                      value: dev
+                    - key: linkding-db-backup-secretkey
+                      value: dev-password
                     - key: mailjet-apikey
                       value: dev
                     - key: mailjet-secretkey
                       value: dev-password
-                    - key: minio-console-accesskey
-                      value: dev
-                    - key: minio-console-secretkey
-                      value: dev-password
-                    - key: minio-root-password
-                      value: dev-password
-                    - key: minio-root-user
-                      value: dev
                     - key: obsidian-livesync-admin-password
                       value: dev
                     - key: obsidian-livesync-admin-username
@@ -401,6 +485,10 @@ patches:
                       value: dev
                     - key: todo-couchdb-password
                       value: dev
+                    - key: vaultwarden-db-backup-accesskey
+                      value: dev
+                    - key: vaultwarden-db-backup-secretkey
+                      value: dev-password
                     - key: weave-password
                       value: dev
                     - key: weave-username

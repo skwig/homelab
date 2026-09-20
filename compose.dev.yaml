@@ -40,10 +40,32 @@ services:
         aliases:
           - dev-smb
 
+  s3:
+    image: ghcr.io/versity/versitygw:v1.8.0
+    restart: unless-stopped
+    environment:
+      ROOT_ACCESS_KEY: dev
+      ROOT_SECRET_KEY: dev-password
+      VGW_PORT: ":7070"
+      VGW_ADMIN_PORT: ":7071"
+      VGW_REGION: us-east-1
+      VGW_BACKEND: posix
+      VGW_BACKEND_ARG: /data/s3
+      VGW_IAM_DIR: /data/iam
+    volumes:
+      - s3-data:/data/s3
+      - s3-iam:/data/iam
+    networks:
+      kind:
+        aliases:
+          - dev-s3
+
 volumes:
   registry-data:
   nfs-data:
   smb-data:
+  s3-data:
+  s3-iam:
 
 networks:
   kind:
