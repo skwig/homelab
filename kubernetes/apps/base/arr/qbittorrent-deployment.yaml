@@ -40,9 +40,16 @@ spec:
               containerPort: 6881
               protocol: UDP
           volumeMounts:
+            - mountPath: /config/qBittorrent/qBittorrent.conf
+              name: qbittorrent-config
+              readOnly: true
+              subPath: qBittorrent.conf
             - mountPath: /downloads
               name: qbittorrent-downloads
       volumes:
+        - name: qbittorrent-config
+          configMap:
+            name: qbittorrent-config
         - name: qbittorrent-downloads
           persistentVolumeClaim:
             claimName: qbittorrent-downloads

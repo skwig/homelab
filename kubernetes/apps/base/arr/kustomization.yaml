@@ -7,3 +7,8 @@ resources:
   - qbittorrent-ingress.yaml
   - qbittorrent-service.yaml
   - qbittorrent-pvc.yaml
+
+configMapGenerator:
+  - name: qbittorrent-config
+    files:
+      - qBittorrent.conf
