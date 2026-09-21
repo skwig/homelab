@@ -1,6 +1,6 @@
 services:
   registry:
-    image: registry:2.8.3
+    image: registry:3.1.1
     restart: unless-stopped
     ports:
       - "127.0.0.1:5001:5000"
