@@ -55,15 +55,16 @@ spec:
             hosts:
               - osrs-prices.homelab.skwig.party
       volumes:
-        - name: app-data-flipping
+        - name: runelite
           persistentVolumeClaim:
-            claimName: osrs-prices-webapp-flipping-pvc
+            claimName: osrs-prices-webapp-runelite-pvc
       volumeMounts:
-        - name: app-data-flipping
-          mountPath: /app-data/flipping-utilities/
+        - name: runelite
+          mountPath: /app/runelite
+          readOnly: true
       configMap:
         PriceArchiveApiOptions__BaseUri: http://osrs-prices-price-archive:8080
-        FlippingUtilitiesOptions__DirectoryPath: /app-data/flipping-utilities/
+        ExchangeLoggerOptions__DirectoryPath: /app/runelite/exchange-logger
     price-archive:
       imagePullSecrets:
         - name: ghcr-credentials-secret

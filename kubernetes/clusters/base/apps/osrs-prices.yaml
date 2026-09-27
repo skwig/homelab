@@ -7,7 +7,6 @@ metadata:
 spec:
   dependsOn:
     - name: infrastructure-external-secrets-configs
-    - name: infrastructure-csi-driver-nfs
     - name: infrastructure-csi-driver-smb
     - name: infrastructure-opentelemetry
 

@@ -5,7 +5,8 @@ resources:
   - namespace.yaml
   - release.yaml
   - pvc-price-archive.yaml
-  - pvc-webapp.yaml
+  - pvc-runelite.yaml
+  - smb-share-credentials-secret.yaml
   - github-credentials-secret.yaml
   - ghcr-credentials-secret.yaml
   - opentelemetry.yaml
