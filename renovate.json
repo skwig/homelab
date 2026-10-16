@@ -1,6 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "prConcurrentLimit": 30,
+  "prHourlyLimit": 10,
   "dependencyDashboard": true,
   "kubernetes": {
     "managerFilePatterns": [
