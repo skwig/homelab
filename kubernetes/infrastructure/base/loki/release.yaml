@@ -42,6 +42,13 @@ spec:
               period: 24h
       auth_enabled: false
     deploymentMode: Monolithic
+    gateway:
+      # Required anti-affinity prevents two gateway pods sharing our only node.
+      deploymentStrategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
     singleBinary:
       replicas: 1
       persistence:
