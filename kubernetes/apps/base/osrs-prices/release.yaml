@@ -65,6 +65,11 @@ spec:
       configMap:
         PriceArchiveApiOptions__BaseUri: http://osrs-prices-price-archive:8080
         ExchangeLoggerOptions__DirectoryPath: /app/runelite/exchange-logger
+        OTEL_SERVICE_NAME: osrsprices-webapp
+        OTEL_EXPORTER_OTLP_ENDPOINT: http://opentelemetry-collector-collector.opentelemetry:4318
+        OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
+        OTEL_RESOURCE_ATTRIBUTES: deployment.environment.name=production
+        OTEL_TRACES_SAMPLER: parentbased_always_on
     price-archive:
       imagePullSecrets:
         - name: ghcr-credentials-secret
@@ -77,3 +82,8 @@ spec:
           mountPath: /app-data/
       configMap:
         FileStorageOptions__BasePath: /app-data/
+        OTEL_SERVICE_NAME: osrsprices-price-archive
+        OTEL_EXPORTER_OTLP_ENDPOINT: http://opentelemetry-collector-collector.opentelemetry:4318
+        OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
+        OTEL_RESOURCE_ATTRIBUTES: deployment.environment.name=production
+        OTEL_TRACES_SAMPLER: parentbased_always_on
