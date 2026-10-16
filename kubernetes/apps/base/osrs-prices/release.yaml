@@ -20,7 +20,7 @@ spec:
   chart:
     spec:
       chart: osrsprices
-      version: 1.0.0-9c67377
+      version: 1.0.0-056de83
       sourceRef:
         kind: HelmRepository
         name: osrs-prices
