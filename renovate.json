@@ -3,13 +3,13 @@
   "prConcurrentLimit": 30,
   "dependencyDashboard": true,
   "kubernetes": {
-    "fileMatch": [
-      "\\.ya?ml$"
+    "managerFilePatterns": [
+      "/\\.ya?ml$/"
     ]
   },
   "flux": {
-    "fileMatch": [
-      "kubernetes/clusters/production/flux-system/.*\\.ya?ml$"
+    "managerFilePatterns": [
+      "/^kubernetes\\/.*\\.ya?ml$/"
     ]
   }
 }
