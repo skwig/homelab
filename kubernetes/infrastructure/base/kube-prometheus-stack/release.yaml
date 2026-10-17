@@ -103,5 +103,17 @@ spec:
               datasourceUid: loki
             tracesToMetrics:
               datasourceUid: prometheus
+              spanStartTimeShift: "-2m"
+              spanEndTimeShift: "2m"
+              tags:
+                - key: service.name
+                  value: job
+              queries:
+                - name: GC pause time (ms over 2m)
+                  query: 'increase(dotnet_gc_pause_time_seconds_total{$${__tags}}[2m]) * 1000'
+                - name: GC collections (over 2m)
+                  query: 'sum by (gc_heap_generation) (increase(dotnet_gc_collections_total{$${__tags}}[2m]))'
+                - name: Allocation rate (bytes/s)
+                  query: 'rate(dotnet_gc_heap_allocated_bytes_total{$${__tags}}[2m])'
             serviceMap:
               datasourceUid: prometheus
