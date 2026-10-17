@@ -43,8 +43,8 @@ spec:
         className: nginx
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
-          external-dns.alpha.kubernetes.io/hostname: osrs-prices.homelab.skwig.party
-          external-dns.alpha.kubernetes.io/target: 192.168.100.47
+          external-dns.kubernetes.io/hostname: osrs-prices.homelab.skwig.party
+          external-dns.kubernetes.io/target: 192.168.100.47
         hosts:
           - host: osrs-prices.homelab.skwig.party
             paths:
