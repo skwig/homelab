@@ -113,7 +113,11 @@ spec:
                   query: 'increase(dotnet_gc_pause_time_seconds_total{$${__tags}}[2m]) * 1000'
                 - name: GC collections (over 2m)
                   query: 'sum by (gc_heap_generation) (increase(dotnet_gc_collections_total{$${__tags}}[2m]))'
+                - name: GC pause time (ms since previous report, ~60s)
+                  query: 'clamp_min(idelta(dotnet_gc_pause_time_seconds_total{$${__tags}}[3m]), 0) * 1000'
+                - name: GC collections by generation (since previous report, ~60s)
+                  query: 'sum by (gc_heap_generation) (clamp_min(idelta(dotnet_gc_collections_total{$${__tags}}[3m]), 0))'
                 - name: Allocation rate (bytes/s)
-                  query: 'rate(dotnet_gc_heap_allocated_bytes_total{$${__tags}}[2m])'
+                  query: 'irate(dotnet_gc_heap_allocated_bytes_total{$${__tags}}[3m])'
             serviceMap:
               datasourceUid: prometheus
