@@ -25,6 +25,7 @@ spec:
   install:
     createNamespace: true
   values:
+    policy: upsert-only
     extraArgs:
       - --publish-host-ip
     provider:
