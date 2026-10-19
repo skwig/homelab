@@ -85,6 +85,19 @@ patches:
         path: /spec/patches/-
         value:
           target:
+            group: helm.toolkit.fluxcd.io
+            kind: HelmRelease
+            name: osrs-prices
+          patch: |-
+            - op: add
+              path: /spec/values/webapp/env
+              value:
+                - name: DumpAlertsOptions__WebhookUrl
+                  value: ""
+      - op: add
+        path: /spec/patches/-
+        value:
+          target:
             version: v1
             kind: PersistentVolume
             name: osrs-prices-price-archive-projects-pv

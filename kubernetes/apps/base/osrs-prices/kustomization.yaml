@@ -9,3 +9,4 @@ resources:
   - smb-share-credentials-secret.yaml
   - github-credentials-secret.yaml
   - ghcr-credentials-secret.yaml
+  - discord-webhook-secret.yaml
