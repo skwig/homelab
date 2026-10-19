@@ -64,7 +64,7 @@ spec:
           readOnly: true
       configMap:
         PriceArchiveApiOptions__BaseUri: http://osrs-prices-price-archive:8080
-        ExchangeLoggerOptions__DirectoryPath: /app/runelite/exchange-logger
+        GrandExchangeLogStorageOptions__DirectoryPath: /app/runelite/exchange-logger
         OTEL_SERVICE_NAME: osrsprices-webapp
         OTEL_EXPORTER_OTLP_ENDPOINT: http://opentelemetry-collector-collector.opentelemetry:4318
         OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
