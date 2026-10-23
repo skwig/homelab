@@ -41,7 +41,7 @@ services:
           - dev-smb
 
   s3:
-    image: ghcr.io/versity/versitygw:v1.9.0
+    image: ghcr.io/versity/versitygw:v1.10.0
     restart: unless-stopped
     environment:
       ROOT_ACCESS_KEY: dev
