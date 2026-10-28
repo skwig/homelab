@@ -1,3 +1,4 @@
+---
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -9,9 +10,6 @@ spec:
     initdb:
       database: n8n
       owner: n8n
-      secret:
-        name: n8n-db-credentials
   storage:
     storageClass: local-path-retain
     size: 5Gi
-# Single node / single instance: no HA. Add encrypted, tested backups before real data.

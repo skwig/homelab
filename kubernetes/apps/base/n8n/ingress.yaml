@@ -1,11 +1,13 @@
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: n8n
+  labels:
+    app.kubernetes.io/name: n8n
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
     external-dns.kubernetes.io/hostname: n8n.skwig.party
-    # Copied from the previous homelab scaffold; verify this is still the private ingress target.
     external-dns.kubernetes.io/target: 192.168.100.47
 spec:
   ingressClassName: nginx
@@ -24,4 +26,3 @@ spec:
     - hosts:
         - n8n.skwig.party
       secretName: n8n-skwig-party-tls
-# IMPORTANT: keep the editor LAN/VPN-only. No public port-forward, tunnel or WAN ingress.

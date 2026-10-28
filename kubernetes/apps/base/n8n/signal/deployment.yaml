@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -31,6 +32,7 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+              protocol: TCP
           resources:
             requests:
               cpu: 50m
@@ -45,4 +47,4 @@ spec:
       volumes:
         - name: signal-state
           persistentVolumeClaim:
-            claimName: signal-state
+            claimName: signal-api-pvc
