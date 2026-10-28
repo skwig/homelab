@@ -1,0 +1,28 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: n8n
+  labels:
+    app.kubernetes.io/name: n8n
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
+    external-dns.kubernetes.io/hostname: n8n.skwig.party
+    external-dns.kubernetes.io/target: 192.168.100.47
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: n8n.skwig.party
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: n8n
+                port:
+                  name: http
+  tls:
+    - hosts:
+        - n8n.skwig.party
+      secretName: n8n-skwig-party-tls
