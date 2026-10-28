@@ -1,0 +1,4 @@
+# Add one entry under `resources:` in your CURRENT existing file:
+# kubernetes/apps/overlays/production/kustomization.yaml
+# Do NOT replace the current file with a stale copy from this draft.
+  - ../../base/n8n/

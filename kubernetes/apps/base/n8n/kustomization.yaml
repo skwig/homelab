@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: n8n
+resources:
+  - namespace.yaml
+  - external-secrets.yaml
+  - database.yaml
+  - n8n-pvc.yaml
+  - n8n-deployment.yaml
+  - n8n-service.yaml
+  - n8n-ingress.yaml
+# Signal is an optional add-on. See signal/kustomization.yaml.
