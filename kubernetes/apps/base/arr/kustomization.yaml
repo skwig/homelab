@@ -4,9 +4,24 @@ namespace: arr
 resources:
   - namespace.yaml
   - qbittorrent-deployment.yaml
-  - qbittorrent-ingress.yaml
   - qbittorrent-service.yaml
   - qbittorrent-pvc.yaml
+  - radarr-deployment.yaml
+  - radarr-service.yaml
+  - radarr-pvc.yaml
+  - sonarr-deployment.yaml
+  - sonarr-service.yaml
+  - sonarr-pvc.yaml
+  - prowlarr-deployment.yaml
+  - prowlarr-service.yaml
+  - prowlarr-pvc.yaml
+  - bazarr-deployment.yaml
+  - bazarr-service.yaml
+  - bazarr-pvc.yaml
+  - seerr-deployment.yaml
+  - seerr-service.yaml
+  - seerr-pvc.yaml
+  - seerr-ingress.yaml
 
 configMapGenerator:
   - name: qbittorrent-config

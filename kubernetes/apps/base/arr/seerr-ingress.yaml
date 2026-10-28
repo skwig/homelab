@@ -2,27 +2,27 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: qbittorrent
+  name: seerr
   labels:
-    app.kubernetes.io/name: qbittorrent
+    app.kubernetes.io/name: seerr
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
-    external-dns.alpha.kubernetes.io/hostname: qbit.skwig.party
+    external-dns.alpha.kubernetes.io/hostname: seerr.skwig.party
     external-dns.alpha.kubernetes.io/target: 192.168.100.47
 spec:
   ingressClassName: nginx
   rules:
-    - host: qbit.skwig.party
+    - host: seerr.skwig.party
       http:
         paths:
           - path: /
             pathType: ImplementationSpecific
             backend:
               service:
-                name: qbittorrent
+                name: seerr
                 port:
                   name: http
   tls:
-    - secretName: qbit-skwig-party-tls
+    - secretName: seerr-skwig-party-tls
       hosts:
-        - qbit.skwig.party
+        - seerr.skwig.party

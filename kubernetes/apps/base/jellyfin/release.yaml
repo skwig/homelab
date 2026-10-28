@@ -32,17 +32,17 @@ spec:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer-production
-        external-dns.alpha.kubernetes.io/hostname: jellyfin.homelab.skwig.party
+        external-dns.alpha.kubernetes.io/hostname: jellyfin.skwig.party
         external-dns.alpha.kubernetes.io/target: 192.168.100.47
       hosts:
-        - host: jellyfin.homelab.skwig.party
+        - host: jellyfin.skwig.party
           paths:
             - path: /
               pathType: ImplementationSpecific
       tls:
-        - secretName: jellyfin-homelab-tls
+        - secretName: jellyfin-skwig-party-tls
           hosts:
-            - jellyfin.homelab.skwig.party
+            - jellyfin.skwig.party
     persistence:
       config:
         enabled: true

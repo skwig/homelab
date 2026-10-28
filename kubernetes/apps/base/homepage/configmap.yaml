@@ -21,8 +21,11 @@ data:
             href: https://linkding.homelab.skwig.party
             icon: linkding.png
       - Jellyfin:
-            href: https://jellyfin.homelab.skwig.party
+            href: https://jellyfin.skwig.party
             icon: jellyfin.png
+      - Seerr:
+            href: https://seerr.skwig.party
+            icon: seerr.png
       - Grafana:
             href: https://grafana.homelab.skwig.party
             icon: grafana.png

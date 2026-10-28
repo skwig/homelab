@@ -17,6 +17,30 @@ spec:
     spec:
       securityContext:
         fsGroup: 1000
+      initContainers:
+        - name: seed-config
+          image: lscr.io/linuxserver/qbittorrent:5.2.3
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+          command:
+            - /bin/sh
+            - -ec
+            - |
+              mkdir -p /config/qBittorrent
+              if [ ! -s /config/qBittorrent/qBittorrent.conf ]; then
+                # Replace an empty, potentially root-owned old mountpoint atomically.
+                temp_file=$(mktemp /config/qBittorrent/.qBittorrent.conf.XXXXXX)
+                trap 'rm -f "$temp_file"' EXIT
+                cp /defaults/qBittorrent.conf "$temp_file"
+                mv "$temp_file" /config/qBittorrent/qBittorrent.conf
+              fi
+          volumeMounts:
+            - mountPath: /config
+              name: qbittorrent-config-storage
+            - mountPath: /defaults
+              name: qbittorrent-config
+              readOnly: true
       containers:
         - name: qbittorrent
           image: lscr.io/linuxserver/qbittorrent:5.2.3
@@ -42,10 +66,6 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: qbittorrent-config-storage
-            - mountPath: /config/qBittorrent/qBittorrent.conf
-              name: qbittorrent-config
-              readOnly: true
-              subPath: qBittorrent.conf
             - mountPath: /downloads
               name: qbittorrent-downloads
       volumes:
