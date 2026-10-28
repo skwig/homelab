@@ -9,6 +9,7 @@ resources:
   - jellyfin.yaml
   - linkding.yaml
   - minecraft.yaml
+  - n8n.yaml
   - obsidian-livesync.yaml
   - opencode.yaml
   - osrs-prices.yaml
