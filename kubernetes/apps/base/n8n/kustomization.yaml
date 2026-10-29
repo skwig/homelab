@@ -10,3 +10,4 @@ resources:
   - pvc.yaml
   - configmap.yaml
   - encryption-key-secret.yaml
+  - google-credentials-secret.yaml

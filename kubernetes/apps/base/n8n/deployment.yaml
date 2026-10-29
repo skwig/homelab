@@ -32,6 +32,8 @@ spec:
             - configMapRef:
                 name: n8n-configmap
           env:
+            - name: CREDENTIALS_OVERWRITE_DATA_FILE
+              value: /etc/n8n/credentials/overwrites.json
             - name: DB_POSTGRESDB_HOST
               valueFrom:
                 secretKeyRef:
@@ -83,9 +85,16 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
           volumeMounts:
+            - name: google-credentials
+              mountPath: /etc/n8n/credentials
+              readOnly: true
             - name: n8n-data
               mountPath: /home/node/.n8n
       volumes:
+        - name: google-credentials
+          secret:
+            secretName: n8n-google-credentials
+            defaultMode: 0440
         - name: n8n-data
           persistentVolumeClaim:
             claimName: n8n-pvc
