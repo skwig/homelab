@@ -34,6 +34,12 @@ spec:
       baseProtocol: https
       databaseUrlSecretName: windmill-db-app
       databaseUrlSecretKey: uri
+      app:
+        resources:
+          requests:
+            memory: 512Mi
+          limits:
+            memory: 2Gi
       indexer:
         enabled: false
       workerGroups:
