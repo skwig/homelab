@@ -4,4 +4,5 @@ namespace: windmill
 resources:
   - namespace.yaml
   - database.yaml
+  - google-credentials-secret.yaml
   - release.yaml
