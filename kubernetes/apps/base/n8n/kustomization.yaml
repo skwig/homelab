@@ -11,3 +11,4 @@ resources:
   - configmap.yaml
   - encryption-key-secret.yaml
   - google-credentials-secret.yaml
+  - bank-credentials-secret.yaml

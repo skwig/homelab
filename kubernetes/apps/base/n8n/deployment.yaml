@@ -32,6 +32,16 @@ spec:
             - configMapRef:
                 name: n8n-configmap
           env:
+            - name: N8N_BANK1READONLY_APIKEY
+              valueFrom:
+                secretKeyRef:
+                  name: n8n-bank-credentials
+                  key: N8N_BANK1READONLY_APIKEY
+            - name: N8N_BANK2READONLY_APIKEY
+              valueFrom:
+                secretKeyRef:
+                  name: n8n-bank-credentials
+                  key: N8N_BANK2READONLY_APIKEY
             - name: CREDENTIALS_OVERWRITE_DATA_FILE
               value: /etc/n8n/credentials/overwrites.json
             - name: DB_POSTGRESDB_HOST
