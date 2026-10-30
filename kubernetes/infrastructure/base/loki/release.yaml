@@ -42,6 +42,12 @@ spec:
               period: 24h
       auth_enabled: false
     deploymentMode: Monolithic
+    chunksCache:
+      allocatedMemory: 256
+      allocatedCPU: 50m
+    resultsCache:
+      allocatedMemory: 64
+      allocatedCPU: 50m
     gateway:
       # Required anti-affinity prevents two gateway pods sharing our only node.
       deploymentStrategy:
