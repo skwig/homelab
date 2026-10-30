@@ -1,0 +1,35 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: windmill-db
+spec:
+  instances: 1
+  primaryUpdateStrategy: unsupervised
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.6-standard-trixie
+  bootstrap:
+    initdb:
+      database: windmill
+      owner: windmill
+      # Bootstrap as postgres so the application does not need superuser access.
+      # https://github.com/windmill-labs/windmill/blob/main/init-db-as-superuser.sql
+      postInitApplicationSQL:
+        - CREATE ROLE windmill_user;
+        - CREATE ROLE windmill_admin WITH BYPASSRLS;
+        - GRANT windmill_user TO windmill_admin;
+        - GRANT windmill_admin, windmill_user TO windmill;
+        - GRANT USAGE ON SCHEMA public TO windmill_user, windmill_admin;
+        - GRANT ALL ON ALL TABLES IN SCHEMA public TO windmill_user;
+        - GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO windmill_user;
+        - ALTER DEFAULT PRIVILEGES FOR ROLE windmill IN SCHEMA public GRANT ALL ON TABLES TO windmill_user;
+        - ALTER DEFAULT PRIVILEGES FOR ROLE windmill IN SCHEMA public GRANT ALL ON SEQUENCES TO windmill_user;
+  storage:
+    storageClass: local-path-retain
+    size: 5Gi
+  managed:
+    services:
+      disabledDefaultServices:
+        - ro
+        - r
+  monitoring:
+    enablePodMonitor: true

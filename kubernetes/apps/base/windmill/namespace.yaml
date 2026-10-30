@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: windmill
+  labels:
+    # The official chart's worker uses privileged mode for PID isolation.
+    pod-security.kubernetes.io/enforce: privileged

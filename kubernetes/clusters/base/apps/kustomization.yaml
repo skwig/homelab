@@ -16,3 +16,4 @@ resources:
   - tailscale.yaml
   - todo.yaml
   - vaultwarden.yaml
+  - windmill.yaml
