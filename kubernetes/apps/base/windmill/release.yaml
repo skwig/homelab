@@ -67,10 +67,16 @@ spec:
             - name: google-credentials
               secret:
                 secretName: windmill-google-credentials
+            - name: bank-credentials
+              secret:
+                secretName: windmill-bank-credentials
           volumeMounts:
             - name: google-credentials
               mountPath: /usr/src/app/oauth.json
               subPath: oauth.json
+              readOnly: true
+            - name: bank-credentials
+              mountPath: /etc/windmill/bank
               readOnly: true
           resources:
             requests:
