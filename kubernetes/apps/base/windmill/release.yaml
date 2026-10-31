@@ -35,6 +35,9 @@ spec:
       databaseUrlSecretName: windmill-db-app
       databaseUrlSecretKey: uri
       app:
+        extraEnv:
+          - name: ALLOW_PRIVATE_AI_BASE_URLS
+            value: blackbox.nidus:11434
         volumes:
           - name: google-credentials
             secret:
@@ -55,6 +58,9 @@ spec:
         - name: default
           replicas: 1
           privileged: true
+          extraEnv:
+            - name: ALLOW_PRIVATE_AI_BASE_URLS
+              value: blackbox.nidus:11434
           volumes:
             - name: google-credentials
               secret:
