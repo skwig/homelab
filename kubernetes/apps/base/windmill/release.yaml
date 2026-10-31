@@ -55,6 +55,15 @@ spec:
         - name: default
           replicas: 1
           privileged: true
+          volumes:
+            - name: google-credentials
+              secret:
+                secretName: windmill-google-credentials
+          volumeMounts:
+            - name: google-credentials
+              mountPath: /usr/src/app/oauth.json
+              subPath: oauth.json
+              readOnly: true
           resources:
             requests:
               cpu: 100m
