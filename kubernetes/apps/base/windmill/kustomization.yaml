@@ -6,4 +6,5 @@ resources:
   - database.yaml
   - google-credentials-secret.yaml
   - bank-credentials-secret.yaml
+  - discord-webhook-secret.yaml
   - release.yaml

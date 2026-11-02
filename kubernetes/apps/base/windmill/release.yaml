@@ -70,6 +70,9 @@ spec:
             - name: bank-credentials
               secret:
                 secretName: windmill-bank-credentials
+            - name: discord-webhook
+              secret:
+                secretName: windmill-discord-webhook
           volumeMounts:
             - name: google-credentials
               mountPath: /usr/src/app/oauth.json
@@ -77,6 +80,9 @@ spec:
               readOnly: true
             - name: bank-credentials
               mountPath: /etc/windmill/bank
+              readOnly: true
+            - name: discord-webhook
+              mountPath: /etc/windmill/discord
               readOnly: true
           resources:
             requests:
