@@ -15,3 +15,4 @@ configMapGenerator:
   - name: opencode-runtime
     files:
       - flake.nix
+      - flake.lock
