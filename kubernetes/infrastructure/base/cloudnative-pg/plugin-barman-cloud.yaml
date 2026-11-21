@@ -7,7 +7,7 @@ spec:
   interval: 10m
   url: https://github.com/cloudnative-pg/plugin-barman-cloud
   ref:
-    tag: v0.15.1
+    tag: v0.16.0
   ignore: |
     /*
     !/manifest.yaml
