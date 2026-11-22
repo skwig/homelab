@@ -19,7 +19,7 @@ spec:
             - /app/glauth
             - -c
             - /app/config/config.cfg
-          image: glauth/glauth-plugins:v2.5.4
+          image: glauth/glauth-plugins:v2.5.5
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3893
