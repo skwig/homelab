@@ -18,20 +18,16 @@ spec:
           image: nixos/nix:2.34.8
           imagePullPolicy: IfNotPresent
           command:
-            - nix
+            - /bin/sh
+            - -ec
           args:
-            - --extra-experimental-features
-            - nix-command flakes
-            - develop
-            - /etc/opencode
-            - --no-write-lock-file
-            - --command
-            - opencode
-            - serve
-            - --hostname
-            - 0.0.0.0
-            - --port
-            - "4096"
+            - |
+              # Nix rejects flake.lock when mounted as a ConfigMap symlink.
+              flake_dir=$(mktemp -d)
+              cp -L /etc/opencode/flake.nix /etc/opencode/flake.lock "$flake_dir/"
+              exec nix --extra-experimental-features 'nix-command flakes' \
+                develop "path:$flake_dir" --no-write-lock-file \
+                --command opencode serve --hostname 0.0.0.0 --port 4096
           workingDir: /workspace
           env:
             - name: HOME
